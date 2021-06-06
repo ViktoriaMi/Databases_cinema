@@ -31,8 +31,9 @@ namespace Kino
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutFilm));
             this.comboBoxSelectFilm = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxFilmDesc = new System.Windows.Forms.TextBox();
             this.posterPictureBox = new System.Windows.Forms.PictureBox();
+            this.buttonBuyTicketAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,21 +41,26 @@ namespace Kino
             // 
             this.comboBoxSelectFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxSelectFilm.FormattingEnabled = true;
-            this.comboBoxSelectFilm.Location = new System.Drawing.Point(413, 12);
+            this.comboBoxSelectFilm.Location = new System.Drawing.Point(392, 12);
             this.comboBoxSelectFilm.Name = "comboBoxSelectFilm";
-            this.comboBoxSelectFilm.Size = new System.Drawing.Size(259, 28);
+            this.comboBoxSelectFilm.Size = new System.Drawing.Size(320, 28);
             this.comboBoxSelectFilm.TabIndex = 27;
+            this.comboBoxSelectFilm.SelectedIndexChanged += new System.EventHandler(this.comboBoxSelectFilm_SelectedIndexChanged);
             // 
-            // textBox1
+            // textBoxFilmDesc
             // 
-            this.textBox1.Location = new System.Drawing.Point(413, 62);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 263);
-            this.textBox1.TabIndex = 28;
+            this.textBoxFilmDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxFilmDesc.Location = new System.Drawing.Point(392, 62);
+            this.textBoxFilmDesc.Multiline = true;
+            this.textBoxFilmDesc.Name = "textBoxFilmDesc";
+            this.textBoxFilmDesc.Size = new System.Drawing.Size(320, 337);
+            this.textBoxFilmDesc.TabIndex = 28;
+            this.textBoxFilmDesc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxFilmDesc.Enter += new System.EventHandler(this.textBoxFilmDesc_Enter);
             // 
             // posterPictureBox
             // 
+            this.posterPictureBox.Image = global::Kino.Properties.Resources._1;
             this.posterPictureBox.Location = new System.Drawing.Point(12, 12);
             this.posterPictureBox.Name = "posterPictureBox";
             this.posterPictureBox.Size = new System.Drawing.Size(355, 520);
@@ -62,20 +68,32 @@ namespace Kino
             this.posterPictureBox.TabIndex = 26;
             this.posterPictureBox.TabStop = false;
             // 
+            // buttonBuyTicketAbout
+            // 
+            this.buttonBuyTicketAbout.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBuyTicketAbout.Location = new System.Drawing.Point(392, 427);
+            this.buttonBuyTicketAbout.Name = "buttonBuyTicketAbout";
+            this.buttonBuyTicketAbout.Size = new System.Drawing.Size(320, 105);
+            this.buttonBuyTicketAbout.TabIndex = 29;
+            this.buttonBuyTicketAbout.Text = "Купить билет";
+            this.buttonBuyTicketAbout.UseVisualStyleBackColor = true;
+            this.buttonBuyTicketAbout.Click += new System.EventHandler(this.buttonBuyTicketAbout_Click);
+            // 
             // AboutFilm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 546);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(725, 546);
+            this.Controls.Add(this.buttonBuyTicketAbout);
+            this.Controls.Add(this.textBoxFilmDesc);
             this.Controls.Add(this.comboBoxSelectFilm);
             this.Controls.Add(this.posterPictureBox);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(700, 585);
+            this.MaximumSize = new System.Drawing.Size(1000, 585);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(700, 585);
+            this.MinimumSize = new System.Drawing.Size(650, 585);
             this.Name = "AboutFilm";
             this.Text = "Кинотеатр \"Звёздный\" - О фильме";
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).EndInit();
@@ -88,6 +106,7 @@ namespace Kino
 
         private System.Windows.Forms.PictureBox posterPictureBox;
         private System.Windows.Forms.ComboBox comboBoxSelectFilm;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxFilmDesc;
+        private System.Windows.Forms.Button buttonBuyTicketAbout;
     }
 }

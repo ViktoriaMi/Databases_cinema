@@ -34,22 +34,22 @@ namespace Kino
             this.tabPage_Enter = new System.Windows.Forms.TabPage();
             this.passTextBox1 = new System.Windows.Forms.TextBox();
             this.emailTextBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.emailPicture = new System.Windows.Forms.PictureBox();
             this.clientButton = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.adminButton = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.tabPage_Registration = new System.Windows.Forms.TabPage();
             this.RegistrationButton = new System.Windows.Forms.Button();
             this.passTextBoxRepeat = new System.Windows.Forms.TextBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.passTextBox2 = new System.Windows.Forms.TextBox();
             this.emailTextBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.emailPicture = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -58,13 +58,13 @@ namespace Kino
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.TabControl.SuspendLayout();
             this.tabPage_Enter.SuspendLayout();
+            this.tabPage_Registration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.tabPage_Registration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -130,24 +130,6 @@ namespace Kino
             this.emailTextBox1.Enter += new System.EventHandler(this.emailTextBox_Enter);
             this.emailTextBox1.Leave += new System.EventHandler(this.emailTextBox_Leave);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(40, 246);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
-            // 
-            // emailPicture
-            // 
-            this.emailPicture.Location = new System.Drawing.Point(40, 172);
-            this.emailPicture.Name = "emailPicture";
-            this.emailPicture.Size = new System.Drawing.Size(40, 40);
-            this.emailPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.emailPicture.TabIndex = 25;
-            this.emailPicture.TabStop = false;
-            // 
             // clientButton
             // 
             this.clientButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -160,25 +142,6 @@ namespace Kino
             this.clientButton.UseVisualStyleBackColor = true;
             this.clientButton.Click += new System.EventHandler(this.clientButton_Click);
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(105, 417);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(325, 86);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 23;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(-2, 417);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(325, 86);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 22;
-            this.pictureBox4.TabStop = false;
-            // 
             // adminButton
             // 
             this.adminButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -190,26 +153,6 @@ namespace Kino
             this.adminButton.Text = "Администратор";
             this.adminButton.UseVisualStyleBackColor = true;
             this.adminButton.Click += new System.EventHandler(this.adminButton_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(-3, 0);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(325, 86);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 20;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(104, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(325, 86);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 21;
-            this.pictureBox2.TabStop = false;
             // 
             // titleLabel
             // 
@@ -226,10 +169,10 @@ namespace Kino
             this.tabPage_Registration.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage_Registration.Controls.Add(this.RegistrationButton);
             this.tabPage_Registration.Controls.Add(this.passTextBoxRepeat);
-            this.tabPage_Registration.Controls.Add(this.pictureBox12);
             this.tabPage_Registration.Controls.Add(this.passTextBox2);
             this.tabPage_Registration.Controls.Add(this.emailTextBox2);
             this.tabPage_Registration.Controls.Add(this.label1);
+            this.tabPage_Registration.Controls.Add(this.pictureBox12);
             this.tabPage_Registration.Controls.Add(this.pictureBox10);
             this.tabPage_Registration.Controls.Add(this.pictureBox11);
             this.tabPage_Registration.Controls.Add(this.pictureBox8);
@@ -268,15 +211,6 @@ namespace Kino
             this.passTextBoxRepeat.Enter += new System.EventHandler(this.passTextBoxRepeat_Enter);
             this.passTextBoxRepeat.Leave += new System.EventHandler(this.passTextBoxRepeat_Leave);
             // 
-            // pictureBox12
-            // 
-            this.pictureBox12.Location = new System.Drawing.Point(38, 229);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(44, 44);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox12.TabIndex = 33;
-            this.pictureBox12.TabStop = false;
-            // 
             // passTextBox2
             // 
             this.passTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -312,8 +246,79 @@ namespace Kino
             this.label1.Text = "Кинотеатр \"Звёздный\"";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Kino.Properties.Resources._lock;
+            this.pictureBox1.Location = new System.Drawing.Point(40, 246);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
+            // emailPicture
+            // 
+            this.emailPicture.Image = global::Kino.Properties.Resources.email;
+            this.emailPicture.Location = new System.Drawing.Point(40, 172);
+            this.emailPicture.Name = "emailPicture";
+            this.emailPicture.Size = new System.Drawing.Size(40, 40);
+            this.emailPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.emailPicture.TabIndex = 25;
+            this.emailPicture.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Kino.Properties.Resources.kinolenta2;
+            this.pictureBox3.Location = new System.Drawing.Point(105, 417);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(325, 86);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 23;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Kino.Properties.Resources.kinolenta2;
+            this.pictureBox4.Location = new System.Drawing.Point(-2, 417);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(325, 86);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 22;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Kino.Properties.Resources.kinolenta2;
+            this.pictureBox5.Location = new System.Drawing.Point(-3, 0);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(325, 86);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 20;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Kino.Properties.Resources.kinolenta2;
+            this.pictureBox2.Location = new System.Drawing.Point(104, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(325, 86);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = global::Kino.Properties.Resources.unlock;
+            this.pictureBox12.Location = new System.Drawing.Point(38, 229);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(44, 44);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 33;
+            this.pictureBox12.TabStop = false;
+            // 
             // pictureBox10
             // 
+            this.pictureBox10.Image = global::Kino.Properties.Resources._lock;
             this.pictureBox10.Location = new System.Drawing.Point(40, 286);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(40, 40);
@@ -323,6 +328,7 @@ namespace Kino
             // 
             // pictureBox11
             // 
+            this.pictureBox11.Image = global::Kino.Properties.Resources.email;
             this.pictureBox11.Location = new System.Drawing.Point(40, 172);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(40, 40);
@@ -332,6 +338,7 @@ namespace Kino
             // 
             // pictureBox8
             // 
+            this.pictureBox8.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox8.Location = new System.Drawing.Point(105, 417);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(325, 86);
@@ -341,6 +348,7 @@ namespace Kino
             // 
             // pictureBox9
             // 
+            this.pictureBox9.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox9.Location = new System.Drawing.Point(-2, 417);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(325, 86);
@@ -350,6 +358,7 @@ namespace Kino
             // 
             // pictureBox6
             // 
+            this.pictureBox6.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox6.Location = new System.Drawing.Point(-3, 0);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(325, 86);
@@ -359,6 +368,7 @@ namespace Kino
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox7.Location = new System.Drawing.Point(104, 0);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(325, 86);
@@ -384,14 +394,14 @@ namespace Kino
             this.TabControl.ResumeLayout(false);
             this.tabPage_Enter.ResumeLayout(false);
             this.tabPage_Enter.PerformLayout();
+            this.tabPage_Registration.ResumeLayout(false);
+            this.tabPage_Registration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emailPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.tabPage_Registration.ResumeLayout(false);
-            this.tabPage_Registration.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();

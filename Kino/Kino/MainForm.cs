@@ -126,7 +126,7 @@ namespace Kino
 
                 if (table.Rows.Count == 1)
                 {
-                    Client form = new Client();
+                    ClientForm form = new ClientForm();
                     form.ShowDialog();
                 }
                 else
@@ -321,7 +321,7 @@ namespace Kino
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.RightAlign);
 
-                            Client form = new Client();
+                            ClientForm form = new ClientForm();
                             form.ShowDialog();
                         }
                         else

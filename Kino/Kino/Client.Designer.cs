@@ -1,7 +1,7 @@
 ﻿
 namespace Kino
 {
-    partial class Client
+    partial class ClientForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Kino
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Client));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             this.dataGridViewShedule = new System.Windows.Forms.DataGridView();
             this.dateTimePickerShedule = new System.Windows.Forms.DateTimePicker();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -90,7 +90,7 @@ namespace Kino
             // 
             // pictureBox2
             // 
-            //this.pictureBox2.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox2.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox2.Location = new System.Drawing.Point(322, 414);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(325, 86);
@@ -100,7 +100,7 @@ namespace Kino
             // 
             // pictureBox1
             // 
-            //this.pictureBox1.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox1.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox1.Location = new System.Drawing.Point(1, 414);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(325, 86);
@@ -110,7 +110,7 @@ namespace Kino
             // 
             // pictureBox3
             // 
-            //this.pictureBox3.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox3.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox3.Location = new System.Drawing.Point(322, 1);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(325, 86);
@@ -120,7 +120,7 @@ namespace Kino
             // 
             // pictureBox5
             // 
-            //this.pictureBox5.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox5.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox5.Location = new System.Drawing.Point(1, 1);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(325, 86);
@@ -162,6 +162,7 @@ namespace Kino
             this.buttonBuyTicket.TabIndex = 30;
             this.buttonBuyTicket.Text = "Купить билет";
             this.buttonBuyTicket.UseVisualStyleBackColor = true;
+            this.buttonBuyTicket.Click += new System.EventHandler(this.buttonBuyTicket_Click);
             // 
             // label
             // 
@@ -173,7 +174,7 @@ namespace Kino
             this.label.TabIndex = 31;
             this.label.Text = "Выберите дату:";
             // 
-            // Client
+            // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -194,7 +195,7 @@ namespace Kino
             this.MaximumSize = new System.Drawing.Size(530, 540);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(530, 540);
-            this.Name = "Client";
+            this.Name = "ClientForm";
             this.Text = "Кинотеатр \"Звёздный\" - Расписание";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -15,19 +15,22 @@ namespace Kino
 {
     public partial class AboutFilm : Form
     {
-        public AboutFilm()
+        public AboutFilm(DataGridView dataGridViewShedule)
         {
             InitializeComponent();
 
             comboBoxSelectFilm.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSelectFilm.MaxDropDownItems = 9;
-            showInfoAboutFilm();
+            buttonBuyTicketAbout.Select();
+            //textBoxFilmDesc.BorderStyle = BorderStyle.None;
+            textBoxFilmDesc.ReadOnly = true;
+            //textBoxFilmDesc.Enabled = false;
+            //textBoxFilmDesc.ForeColor = Color.Black;
+            showInfoAboutFilm(dataGridViewShedule);
         }
 
-        public void showInfoAboutFilm ()
+        public void showInfoAboutFilm (DataGridView dataGridViewShedule)
         {
-            //posterPictureBox.Image = Properties.Resources._5;
-
             DB db = new DB();
             MySqlCommand myCom = new MySqlCommand("SELECT * FROM movieSelection;",
                 db.getConnection());
@@ -47,10 +50,69 @@ namespace Kino
                 films[i] = table.Rows[i][0].ToString();
                 comboBoxSelectFilm.Items.Add(films[i]);
             }
-            
-            comboBoxSelectFilm.SelectedIndex = 2;
 
+            comboBoxSelectFilm.SelectedIndex = 0;
 
+            // проверяем, что выбрана какая-либо из ячеек 1-го столбца
+            if (dataGridViewShedule.GetCellCount(DataGridViewElementStates.Selected) == 1
+                && dataGridViewShedule.CurrentCell.ColumnIndex == 0)
+            {
+                // извлекаем название фильма из выбранной ячейки
+                string selectCell = dataGridViewShedule.CurrentCell.Value.ToString();
+
+                // если название фильма не равно активному тексту в comboBox
+                if (selectCell != comboBoxSelectFilm.Text)
+                {
+                    for (int i = 0; i < comboBoxSelectFilm.Items.Count; i++)
+                    {
+                        // если название фильма совпадает с каким-либо из item-ов comboBox
+                        if (selectCell == comboBoxSelectFilm.GetItemText(comboBoxSelectFilm.Items[i]))
+                            comboBoxSelectFilm.SelectedIndex = i;
+                    }
+                }
+                //MessageBox.Show("выделена ячейка 1-го столбца");
+            }
+
+            changeInfoAboutFilm();
+
+            //posterPictureBox.Image = Properties.Resources._1;
+        }
+
+        public void changeInfoAboutFilm ()
+        {
+            string curMovieTitle = comboBoxSelectFilm.Text;
+
+            DB db = new DB();
+            MySqlCommand myCom = new MySqlCommand("CALL selectDesc(@nameFilm);",
+                db.getConnection());
+            myCom.Parameters.Add("@nameFilm", MySqlDbType.VarChar).Value = curMovieTitle;
+
+            db.OpenConnection();
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            dataAdapter.SelectCommand = myCom;
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            db.CloseConnection();
+
+            textBoxFilmDesc.Text = table.Rows[0][0].ToString();
+        }
+
+        private void buttonBuyTicketAbout_Click(object sender, EventArgs e)
+        {
+            BuyTicket form = new BuyTicket();
+            form.ShowDialog();
+        }
+
+        private void comboBoxSelectFilm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            changeInfoAboutFilm();
+        }
+
+        private void textBoxFilmDesc_Enter(object sender, EventArgs e)
+        {
+            buttonBuyTicketAbout.Select();
         }
     }
 }

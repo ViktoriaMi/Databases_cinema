@@ -13,9 +13,9 @@ using MySql.Data.MySqlClient;
 
 namespace Kino
 {
-    public partial class Client : Form
+    public partial class ClientForm : Form
     {
-        public Client()
+        public ClientForm()
         {
             InitializeComponent();
             dateTimePickerShedule.MinDate = DateTime.Today;
@@ -105,7 +105,13 @@ namespace Kino
 
         private void buttonAboutFilm_Click(object sender, EventArgs e)
         {
-            AboutFilm form = new AboutFilm();
+            AboutFilm form = new AboutFilm(this.dataGridViewShedule);
+            form.ShowDialog();
+        }
+
+        private void buttonBuyTicket_Click(object sender, EventArgs e)
+        {
+            BuyTicket form = new BuyTicket();
             form.ShowDialog();
         }
     }

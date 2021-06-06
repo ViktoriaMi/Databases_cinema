@@ -25,6 +25,6 @@ C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.exe
 C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.pdb
 C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.MainForm.resources
 C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.Admin.resources
-C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.Client.resources
 C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.AboutFilm.resources
 C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.BuyTicket.resources
+C:\Users\HOME\source\repos\Kino\Kino\obj\Debug\Kino.ClientForm.resources

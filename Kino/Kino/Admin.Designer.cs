@@ -42,7 +42,7 @@ namespace Kino
             // 
             // pictureBox3
             // 
-            //this.pictureBox3.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox3.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox3.Location = new System.Drawing.Point(321, 0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(325, 86);
@@ -52,7 +52,7 @@ namespace Kino
             // 
             // pictureBox2
             // 
-            //this.pictureBox2.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox2.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox2.Location = new System.Drawing.Point(321, 363);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(325, 86);
@@ -62,7 +62,7 @@ namespace Kino
             // 
             // pictureBox1
             // 
-            //this.pictureBox1.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox1.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox1.Location = new System.Drawing.Point(0, 363);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(325, 86);
@@ -72,7 +72,7 @@ namespace Kino
             // 
             // pictureBox5
             // 
-            //this.pictureBox5.Image = global::Kino.Properties.Resources.kinolenta;
+            this.pictureBox5.Image = global::Kino.Properties.Resources.kinolenta2;
             this.pictureBox5.Location = new System.Drawing.Point(0, 0);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(325, 86);
