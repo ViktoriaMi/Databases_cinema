@@ -151,6 +151,15 @@ namespace Kino
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.labelFilm = new System.Windows.Forms.Label();
+            this.buttonFree = new System.Windows.Forms.Button();
+            this.buttonOccupied = new System.Windows.Forms.Button();
+            this.buttonChosen = new System.Windows.Forms.Button();
+            this.buttonBuyTicket = new System.Windows.Forms.Button();
+            this.labelFree = new System.Windows.Forms.Label();
+            this.labelOccupied = new System.Windows.Forms.Label();
+            this.labelChosen = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -224,7 +233,7 @@ namespace Kino
             // dateTimePickerTicket
             // 
             this.dateTimePickerTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerTicket.Location = new System.Drawing.Point(507, 133);
+            this.dateTimePickerTicket.Location = new System.Drawing.Point(507, 149);
             this.dateTimePickerTicket.MinDate = new System.DateTime(2021, 6, 6, 0, 0, 0, 0);
             this.dateTimePickerTicket.Name = "dateTimePickerTicket";
             this.dateTimePickerTicket.Size = new System.Drawing.Size(189, 26);
@@ -236,7 +245,7 @@ namespace Kino
             this.comboBoxSelectFilmTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxSelectFilmTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxSelectFilmTicket.FormattingEnabled = true;
-            this.comboBoxSelectFilmTicket.Location = new System.Drawing.Point(507, 171);
+            this.comboBoxSelectFilmTicket.Location = new System.Drawing.Point(507, 235);
             this.comboBoxSelectFilmTicket.Name = "comboBoxSelectFilmTicket";
             this.comboBoxSelectFilmTicket.Size = new System.Drawing.Size(189, 28);
             this.comboBoxSelectFilmTicket.TabIndex = 31;
@@ -293,7 +302,7 @@ namespace Kino
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(204, 6);
+            this.label4.Location = new System.Drawing.Point(201, 6);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 16);
             this.label4.TabIndex = 36;
@@ -313,7 +322,7 @@ namespace Kino
             this.groupBox.Controls.Add(this.label2);
             this.groupBox.Controls.Add(this.line1);
             this.groupBox.Controls.Add(this.label1);
-            this.groupBox.Location = new System.Drawing.Point(19, 101);
+            this.groupBox.Location = new System.Drawing.Point(19, 97);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(476, 398);
             this.groupBox.TabIndex = 37;
@@ -450,6 +459,7 @@ namespace Kino
             // 
             // b99
             // 
+            this.b99.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b99.Location = new System.Drawing.Point(399, 327);
             this.b99.Name = "b99";
             this.b99.Size = new System.Drawing.Size(38, 30);
@@ -459,6 +469,7 @@ namespace Kino
             // 
             // b59
             // 
+            this.b59.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b59.Location = new System.Drawing.Point(399, 183);
             this.b59.Name = "b59";
             this.b59.Size = new System.Drawing.Size(38, 30);
@@ -468,6 +479,7 @@ namespace Kino
             // 
             // b98
             // 
+            this.b98.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b98.Location = new System.Drawing.Point(355, 327);
             this.b98.Name = "b98";
             this.b98.Size = new System.Drawing.Size(38, 30);
@@ -477,6 +489,7 @@ namespace Kino
             // 
             // b29
             // 
+            this.b29.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b29.Location = new System.Drawing.Point(399, 75);
             this.b29.Name = "b29";
             this.b29.Size = new System.Drawing.Size(38, 30);
@@ -486,6 +499,7 @@ namespace Kino
             // 
             // b97
             // 
+            this.b97.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b97.Location = new System.Drawing.Point(311, 327);
             this.b97.Name = "b97";
             this.b97.Size = new System.Drawing.Size(38, 30);
@@ -495,6 +509,7 @@ namespace Kino
             // 
             // b58
             // 
+            this.b58.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b58.Location = new System.Drawing.Point(355, 183);
             this.b58.Name = "b58";
             this.b58.Size = new System.Drawing.Size(38, 30);
@@ -504,6 +519,7 @@ namespace Kino
             // 
             // b96
             // 
+            this.b96.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b96.Location = new System.Drawing.Point(267, 327);
             this.b96.Name = "b96";
             this.b96.Size = new System.Drawing.Size(38, 30);
@@ -513,6 +529,7 @@ namespace Kino
             // 
             // b19
             // 
+            this.b19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b19.Location = new System.Drawing.Point(399, 39);
             this.b19.Name = "b19";
             this.b19.Size = new System.Drawing.Size(38, 30);
@@ -522,6 +539,7 @@ namespace Kino
             // 
             // b95
             // 
+            this.b95.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b95.Location = new System.Drawing.Point(223, 327);
             this.b95.Name = "b95";
             this.b95.Size = new System.Drawing.Size(38, 30);
@@ -531,6 +549,7 @@ namespace Kino
             // 
             // b57
             // 
+            this.b57.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b57.Location = new System.Drawing.Point(311, 183);
             this.b57.Name = "b57";
             this.b57.Size = new System.Drawing.Size(38, 30);
@@ -540,6 +559,7 @@ namespace Kino
             // 
             // b94
             // 
+            this.b94.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b94.Location = new System.Drawing.Point(179, 327);
             this.b94.Name = "b94";
             this.b94.Size = new System.Drawing.Size(38, 30);
@@ -549,6 +569,7 @@ namespace Kino
             // 
             // b28
             // 
+            this.b28.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b28.Location = new System.Drawing.Point(355, 75);
             this.b28.Name = "b28";
             this.b28.Size = new System.Drawing.Size(38, 30);
@@ -558,6 +579,7 @@ namespace Kino
             // 
             // b93
             // 
+            this.b93.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b93.Location = new System.Drawing.Point(135, 327);
             this.b93.Name = "b93";
             this.b93.Size = new System.Drawing.Size(38, 30);
@@ -567,6 +589,7 @@ namespace Kino
             // 
             // b56
             // 
+            this.b56.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b56.Location = new System.Drawing.Point(267, 183);
             this.b56.Name = "b56";
             this.b56.Size = new System.Drawing.Size(38, 30);
@@ -576,6 +599,7 @@ namespace Kino
             // 
             // b92
             // 
+            this.b92.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b92.Location = new System.Drawing.Point(91, 327);
             this.b92.Name = "b92";
             this.b92.Size = new System.Drawing.Size(38, 30);
@@ -585,6 +609,7 @@ namespace Kino
             // 
             // b09
             // 
+            this.b09.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b09.Location = new System.Drawing.Point(399, 3);
             this.b09.Name = "b09";
             this.b09.Size = new System.Drawing.Size(38, 30);
@@ -594,6 +619,7 @@ namespace Kino
             // 
             // b91
             // 
+            this.b91.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b91.Location = new System.Drawing.Point(47, 327);
             this.b91.Name = "b91";
             this.b91.Size = new System.Drawing.Size(38, 30);
@@ -603,6 +629,7 @@ namespace Kino
             // 
             // b55
             // 
+            this.b55.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b55.Location = new System.Drawing.Point(223, 183);
             this.b55.Name = "b55";
             this.b55.Size = new System.Drawing.Size(38, 30);
@@ -612,6 +639,7 @@ namespace Kino
             // 
             // b90
             // 
+            this.b90.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b90.Location = new System.Drawing.Point(3, 327);
             this.b90.Name = "b90";
             this.b90.Size = new System.Drawing.Size(38, 30);
@@ -621,6 +649,7 @@ namespace Kino
             // 
             // b27
             // 
+            this.b27.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b27.Location = new System.Drawing.Point(311, 75);
             this.b27.Name = "b27";
             this.b27.Size = new System.Drawing.Size(38, 30);
@@ -630,6 +659,7 @@ namespace Kino
             // 
             // b89
             // 
+            this.b89.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b89.Location = new System.Drawing.Point(399, 291);
             this.b89.Name = "b89";
             this.b89.Size = new System.Drawing.Size(38, 30);
@@ -639,6 +669,7 @@ namespace Kino
             // 
             // b54
             // 
+            this.b54.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b54.Location = new System.Drawing.Point(179, 183);
             this.b54.Name = "b54";
             this.b54.Size = new System.Drawing.Size(38, 30);
@@ -648,6 +679,7 @@ namespace Kino
             // 
             // b88
             // 
+            this.b88.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b88.Location = new System.Drawing.Point(355, 291);
             this.b88.Name = "b88";
             this.b88.Size = new System.Drawing.Size(38, 30);
@@ -657,6 +689,7 @@ namespace Kino
             // 
             // b18
             // 
+            this.b18.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b18.Location = new System.Drawing.Point(355, 39);
             this.b18.Name = "b18";
             this.b18.Size = new System.Drawing.Size(38, 30);
@@ -666,6 +699,7 @@ namespace Kino
             // 
             // b87
             // 
+            this.b87.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b87.Location = new System.Drawing.Point(311, 291);
             this.b87.Name = "b87";
             this.b87.Size = new System.Drawing.Size(38, 30);
@@ -675,6 +709,7 @@ namespace Kino
             // 
             // b53
             // 
+            this.b53.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b53.Location = new System.Drawing.Point(135, 183);
             this.b53.Name = "b53";
             this.b53.Size = new System.Drawing.Size(38, 30);
@@ -684,6 +719,7 @@ namespace Kino
             // 
             // b86
             // 
+            this.b86.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b86.Location = new System.Drawing.Point(267, 291);
             this.b86.Name = "b86";
             this.b86.Size = new System.Drawing.Size(38, 30);
@@ -693,6 +729,7 @@ namespace Kino
             // 
             // b26
             // 
+            this.b26.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b26.Location = new System.Drawing.Point(267, 75);
             this.b26.Name = "b26";
             this.b26.Size = new System.Drawing.Size(38, 30);
@@ -702,6 +739,7 @@ namespace Kino
             // 
             // b85
             // 
+            this.b85.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b85.Location = new System.Drawing.Point(223, 291);
             this.b85.Name = "b85";
             this.b85.Size = new System.Drawing.Size(38, 30);
@@ -711,6 +749,7 @@ namespace Kino
             // 
             // b52
             // 
+            this.b52.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b52.Location = new System.Drawing.Point(91, 183);
             this.b52.Name = "b52";
             this.b52.Size = new System.Drawing.Size(38, 30);
@@ -720,6 +759,7 @@ namespace Kino
             // 
             // b84
             // 
+            this.b84.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b84.Location = new System.Drawing.Point(179, 291);
             this.b84.Name = "b84";
             this.b84.Size = new System.Drawing.Size(38, 30);
@@ -729,6 +769,7 @@ namespace Kino
             // 
             // b25
             // 
+            this.b25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b25.Location = new System.Drawing.Point(223, 75);
             this.b25.Name = "b25";
             this.b25.Size = new System.Drawing.Size(38, 30);
@@ -738,6 +779,7 @@ namespace Kino
             // 
             // b83
             // 
+            this.b83.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b83.Location = new System.Drawing.Point(135, 291);
             this.b83.Name = "b83";
             this.b83.Size = new System.Drawing.Size(38, 30);
@@ -747,6 +789,7 @@ namespace Kino
             // 
             // b51
             // 
+            this.b51.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b51.Location = new System.Drawing.Point(47, 183);
             this.b51.Name = "b51";
             this.b51.Size = new System.Drawing.Size(38, 30);
@@ -756,6 +799,7 @@ namespace Kino
             // 
             // b82
             // 
+            this.b82.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b82.Location = new System.Drawing.Point(91, 291);
             this.b82.Name = "b82";
             this.b82.Size = new System.Drawing.Size(38, 30);
@@ -765,6 +809,7 @@ namespace Kino
             // 
             // b17
             // 
+            this.b17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b17.Location = new System.Drawing.Point(311, 39);
             this.b17.Name = "b17";
             this.b17.Size = new System.Drawing.Size(38, 30);
@@ -774,6 +819,7 @@ namespace Kino
             // 
             // b81
             // 
+            this.b81.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b81.Location = new System.Drawing.Point(47, 291);
             this.b81.Name = "b81";
             this.b81.Size = new System.Drawing.Size(38, 30);
@@ -783,6 +829,7 @@ namespace Kino
             // 
             // b50
             // 
+            this.b50.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b50.Location = new System.Drawing.Point(3, 183);
             this.b50.Name = "b50";
             this.b50.Size = new System.Drawing.Size(38, 30);
@@ -792,6 +839,7 @@ namespace Kino
             // 
             // b80
             // 
+            this.b80.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b80.Location = new System.Drawing.Point(3, 291);
             this.b80.Name = "b80";
             this.b80.Size = new System.Drawing.Size(38, 30);
@@ -801,6 +849,7 @@ namespace Kino
             // 
             // b24
             // 
+            this.b24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b24.Location = new System.Drawing.Point(179, 75);
             this.b24.Name = "b24";
             this.b24.Size = new System.Drawing.Size(38, 30);
@@ -810,6 +859,7 @@ namespace Kino
             // 
             // b79
             // 
+            this.b79.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b79.Location = new System.Drawing.Point(399, 255);
             this.b79.Name = "b79";
             this.b79.Size = new System.Drawing.Size(38, 30);
@@ -819,6 +869,7 @@ namespace Kino
             // 
             // b38
             // 
+            this.b38.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b38.Location = new System.Drawing.Point(355, 111);
             this.b38.Name = "b38";
             this.b38.Size = new System.Drawing.Size(38, 30);
@@ -828,6 +879,7 @@ namespace Kino
             // 
             // b77
             // 
+            this.b77.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b77.Location = new System.Drawing.Point(311, 255);
             this.b77.Name = "b77";
             this.b77.Size = new System.Drawing.Size(38, 30);
@@ -837,6 +889,7 @@ namespace Kino
             // 
             // b78
             // 
+            this.b78.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b78.Location = new System.Drawing.Point(355, 255);
             this.b78.Name = "b78";
             this.b78.Size = new System.Drawing.Size(38, 30);
@@ -846,6 +899,7 @@ namespace Kino
             // 
             // b49
             // 
+            this.b49.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b49.Location = new System.Drawing.Point(399, 147);
             this.b49.Name = "b49";
             this.b49.Size = new System.Drawing.Size(38, 30);
@@ -855,6 +909,7 @@ namespace Kino
             // 
             // b76
             // 
+            this.b76.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b76.Location = new System.Drawing.Point(267, 255);
             this.b76.Name = "b76";
             this.b76.Size = new System.Drawing.Size(38, 30);
@@ -864,6 +919,7 @@ namespace Kino
             // 
             // b08
             // 
+            this.b08.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b08.Location = new System.Drawing.Point(355, 3);
             this.b08.Name = "b08";
             this.b08.Size = new System.Drawing.Size(38, 30);
@@ -873,6 +929,7 @@ namespace Kino
             // 
             // b75
             // 
+            this.b75.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b75.Location = new System.Drawing.Point(223, 255);
             this.b75.Name = "b75";
             this.b75.Size = new System.Drawing.Size(38, 30);
@@ -882,6 +939,7 @@ namespace Kino
             // 
             // b48
             // 
+            this.b48.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b48.Location = new System.Drawing.Point(355, 147);
             this.b48.Name = "b48";
             this.b48.Size = new System.Drawing.Size(38, 30);
@@ -891,6 +949,7 @@ namespace Kino
             // 
             // b74
             // 
+            this.b74.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b74.Location = new System.Drawing.Point(179, 255);
             this.b74.Name = "b74";
             this.b74.Size = new System.Drawing.Size(38, 30);
@@ -900,6 +959,7 @@ namespace Kino
             // 
             // b23
             // 
+            this.b23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b23.Location = new System.Drawing.Point(135, 75);
             this.b23.Name = "b23";
             this.b23.Size = new System.Drawing.Size(38, 30);
@@ -909,6 +969,7 @@ namespace Kino
             // 
             // b73
             // 
+            this.b73.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b73.Location = new System.Drawing.Point(135, 255);
             this.b73.Name = "b73";
             this.b73.Size = new System.Drawing.Size(38, 30);
@@ -918,6 +979,7 @@ namespace Kino
             // 
             // b47
             // 
+            this.b47.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b47.Location = new System.Drawing.Point(311, 147);
             this.b47.Name = "b47";
             this.b47.Size = new System.Drawing.Size(38, 30);
@@ -927,6 +989,7 @@ namespace Kino
             // 
             // b72
             // 
+            this.b72.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b72.Location = new System.Drawing.Point(91, 255);
             this.b72.Name = "b72";
             this.b72.Size = new System.Drawing.Size(38, 30);
@@ -936,6 +999,7 @@ namespace Kino
             // 
             // b16
             // 
+            this.b16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b16.Location = new System.Drawing.Point(267, 39);
             this.b16.Name = "b16";
             this.b16.Size = new System.Drawing.Size(38, 30);
@@ -945,6 +1009,7 @@ namespace Kino
             // 
             // b71
             // 
+            this.b71.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b71.Location = new System.Drawing.Point(47, 255);
             this.b71.Name = "b71";
             this.b71.Size = new System.Drawing.Size(38, 30);
@@ -954,6 +1019,7 @@ namespace Kino
             // 
             // b46
             // 
+            this.b46.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b46.Location = new System.Drawing.Point(267, 147);
             this.b46.Name = "b46";
             this.b46.Size = new System.Drawing.Size(38, 30);
@@ -963,6 +1029,7 @@ namespace Kino
             // 
             // b70
             // 
+            this.b70.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b70.Location = new System.Drawing.Point(3, 255);
             this.b70.Name = "b70";
             this.b70.Size = new System.Drawing.Size(38, 30);
@@ -972,6 +1039,7 @@ namespace Kino
             // 
             // b22
             // 
+            this.b22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b22.Location = new System.Drawing.Point(91, 75);
             this.b22.Name = "b22";
             this.b22.Size = new System.Drawing.Size(38, 30);
@@ -981,6 +1049,7 @@ namespace Kino
             // 
             // b69
             // 
+            this.b69.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b69.Location = new System.Drawing.Point(399, 219);
             this.b69.Name = "b69";
             this.b69.Size = new System.Drawing.Size(38, 30);
@@ -990,6 +1059,7 @@ namespace Kino
             // 
             // b45
             // 
+            this.b45.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b45.Location = new System.Drawing.Point(223, 147);
             this.b45.Name = "b45";
             this.b45.Size = new System.Drawing.Size(38, 30);
@@ -999,6 +1069,7 @@ namespace Kino
             // 
             // b68
             // 
+            this.b68.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b68.Location = new System.Drawing.Point(355, 219);
             this.b68.Name = "b68";
             this.b68.Size = new System.Drawing.Size(38, 30);
@@ -1008,6 +1079,7 @@ namespace Kino
             // 
             // b07
             // 
+            this.b07.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b07.Location = new System.Drawing.Point(311, 3);
             this.b07.Name = "b07";
             this.b07.Size = new System.Drawing.Size(38, 30);
@@ -1017,6 +1089,7 @@ namespace Kino
             // 
             // b67
             // 
+            this.b67.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b67.Location = new System.Drawing.Point(311, 219);
             this.b67.Name = "b67";
             this.b67.Size = new System.Drawing.Size(38, 30);
@@ -1026,6 +1099,7 @@ namespace Kino
             // 
             // b44
             // 
+            this.b44.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b44.Location = new System.Drawing.Point(179, 147);
             this.b44.Name = "b44";
             this.b44.Size = new System.Drawing.Size(38, 30);
@@ -1035,6 +1109,7 @@ namespace Kino
             // 
             // b66
             // 
+            this.b66.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b66.Location = new System.Drawing.Point(267, 219);
             this.b66.Name = "b66";
             this.b66.Size = new System.Drawing.Size(38, 30);
@@ -1044,6 +1119,7 @@ namespace Kino
             // 
             // b21
             // 
+            this.b21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b21.Location = new System.Drawing.Point(47, 75);
             this.b21.Name = "b21";
             this.b21.Size = new System.Drawing.Size(38, 30);
@@ -1053,6 +1129,7 @@ namespace Kino
             // 
             // b65
             // 
+            this.b65.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b65.Location = new System.Drawing.Point(223, 219);
             this.b65.Name = "b65";
             this.b65.Size = new System.Drawing.Size(38, 30);
@@ -1062,6 +1139,7 @@ namespace Kino
             // 
             // b43
             // 
+            this.b43.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b43.Location = new System.Drawing.Point(135, 147);
             this.b43.Name = "b43";
             this.b43.Size = new System.Drawing.Size(38, 30);
@@ -1071,6 +1149,7 @@ namespace Kino
             // 
             // b64
             // 
+            this.b64.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b64.Location = new System.Drawing.Point(179, 219);
             this.b64.Name = "b64";
             this.b64.Size = new System.Drawing.Size(38, 30);
@@ -1080,6 +1159,7 @@ namespace Kino
             // 
             // b15
             // 
+            this.b15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b15.Location = new System.Drawing.Point(223, 39);
             this.b15.Name = "b15";
             this.b15.Size = new System.Drawing.Size(38, 30);
@@ -1089,6 +1169,7 @@ namespace Kino
             // 
             // b63
             // 
+            this.b63.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b63.Location = new System.Drawing.Point(135, 219);
             this.b63.Name = "b63";
             this.b63.Size = new System.Drawing.Size(38, 30);
@@ -1098,6 +1179,7 @@ namespace Kino
             // 
             // b42
             // 
+            this.b42.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b42.Location = new System.Drawing.Point(91, 147);
             this.b42.Name = "b42";
             this.b42.Size = new System.Drawing.Size(38, 30);
@@ -1107,6 +1189,7 @@ namespace Kino
             // 
             // b62
             // 
+            this.b62.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b62.Location = new System.Drawing.Point(91, 219);
             this.b62.Name = "b62";
             this.b62.Size = new System.Drawing.Size(38, 30);
@@ -1116,6 +1199,7 @@ namespace Kino
             // 
             // b20
             // 
+            this.b20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b20.Location = new System.Drawing.Point(3, 75);
             this.b20.Name = "b20";
             this.b20.Size = new System.Drawing.Size(38, 30);
@@ -1125,6 +1209,7 @@ namespace Kino
             // 
             // b61
             // 
+            this.b61.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b61.Location = new System.Drawing.Point(47, 219);
             this.b61.Name = "b61";
             this.b61.Size = new System.Drawing.Size(38, 30);
@@ -1134,6 +1219,7 @@ namespace Kino
             // 
             // b41
             // 
+            this.b41.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b41.Location = new System.Drawing.Point(47, 147);
             this.b41.Name = "b41";
             this.b41.Size = new System.Drawing.Size(38, 30);
@@ -1143,6 +1229,7 @@ namespace Kino
             // 
             // b60
             // 
+            this.b60.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b60.Location = new System.Drawing.Point(3, 219);
             this.b60.Name = "b60";
             this.b60.Size = new System.Drawing.Size(38, 30);
@@ -1152,6 +1239,7 @@ namespace Kino
             // 
             // b06
             // 
+            this.b06.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b06.Location = new System.Drawing.Point(267, 3);
             this.b06.Name = "b06";
             this.b06.Size = new System.Drawing.Size(38, 30);
@@ -1161,6 +1249,7 @@ namespace Kino
             // 
             // b40
             // 
+            this.b40.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b40.Location = new System.Drawing.Point(3, 147);
             this.b40.Name = "b40";
             this.b40.Size = new System.Drawing.Size(38, 30);
@@ -1170,6 +1259,7 @@ namespace Kino
             // 
             // b14
             // 
+            this.b14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b14.Location = new System.Drawing.Point(179, 39);
             this.b14.Name = "b14";
             this.b14.Size = new System.Drawing.Size(38, 30);
@@ -1179,6 +1269,7 @@ namespace Kino
             // 
             // b39
             // 
+            this.b39.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b39.Location = new System.Drawing.Point(399, 111);
             this.b39.Name = "b39";
             this.b39.Size = new System.Drawing.Size(38, 30);
@@ -1188,6 +1279,7 @@ namespace Kino
             // 
             // b05
             // 
+            this.b05.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b05.Location = new System.Drawing.Point(223, 3);
             this.b05.Name = "b05";
             this.b05.Size = new System.Drawing.Size(38, 30);
@@ -1197,6 +1289,7 @@ namespace Kino
             // 
             // b37
             // 
+            this.b37.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b37.Location = new System.Drawing.Point(311, 111);
             this.b37.Name = "b37";
             this.b37.Size = new System.Drawing.Size(38, 30);
@@ -1206,6 +1299,7 @@ namespace Kino
             // 
             // b13
             // 
+            this.b13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b13.Location = new System.Drawing.Point(135, 39);
             this.b13.Name = "b13";
             this.b13.Size = new System.Drawing.Size(38, 30);
@@ -1215,6 +1309,7 @@ namespace Kino
             // 
             // b36
             // 
+            this.b36.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b36.Location = new System.Drawing.Point(267, 111);
             this.b36.Name = "b36";
             this.b36.Size = new System.Drawing.Size(38, 30);
@@ -1224,6 +1319,7 @@ namespace Kino
             // 
             // b04
             // 
+            this.b04.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b04.Location = new System.Drawing.Point(179, 3);
             this.b04.Name = "b04";
             this.b04.Size = new System.Drawing.Size(38, 30);
@@ -1233,6 +1329,7 @@ namespace Kino
             // 
             // b35
             // 
+            this.b35.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b35.Location = new System.Drawing.Point(223, 111);
             this.b35.Name = "b35";
             this.b35.Size = new System.Drawing.Size(38, 30);
@@ -1242,6 +1339,7 @@ namespace Kino
             // 
             // b12
             // 
+            this.b12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b12.Location = new System.Drawing.Point(91, 39);
             this.b12.Name = "b12";
             this.b12.Size = new System.Drawing.Size(38, 30);
@@ -1251,6 +1349,7 @@ namespace Kino
             // 
             // b34
             // 
+            this.b34.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b34.Location = new System.Drawing.Point(179, 111);
             this.b34.Name = "b34";
             this.b34.Size = new System.Drawing.Size(38, 30);
@@ -1260,6 +1359,7 @@ namespace Kino
             // 
             // b03
             // 
+            this.b03.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b03.Location = new System.Drawing.Point(135, 3);
             this.b03.Name = "b03";
             this.b03.Size = new System.Drawing.Size(38, 30);
@@ -1269,6 +1369,7 @@ namespace Kino
             // 
             // b33
             // 
+            this.b33.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b33.Location = new System.Drawing.Point(135, 111);
             this.b33.Name = "b33";
             this.b33.Size = new System.Drawing.Size(38, 30);
@@ -1278,6 +1379,7 @@ namespace Kino
             // 
             // b11
             // 
+            this.b11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b11.Location = new System.Drawing.Point(47, 39);
             this.b11.Name = "b11";
             this.b11.Size = new System.Drawing.Size(38, 30);
@@ -1287,6 +1389,7 @@ namespace Kino
             // 
             // b32
             // 
+            this.b32.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b32.Location = new System.Drawing.Point(91, 111);
             this.b32.Name = "b32";
             this.b32.Size = new System.Drawing.Size(38, 30);
@@ -1296,6 +1399,7 @@ namespace Kino
             // 
             // b02
             // 
+            this.b02.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b02.Location = new System.Drawing.Point(91, 3);
             this.b02.Name = "b02";
             this.b02.Size = new System.Drawing.Size(38, 30);
@@ -1305,6 +1409,7 @@ namespace Kino
             // 
             // b31
             // 
+            this.b31.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b31.Location = new System.Drawing.Point(47, 111);
             this.b31.Name = "b31";
             this.b31.Size = new System.Drawing.Size(38, 30);
@@ -1314,6 +1419,7 @@ namespace Kino
             // 
             // b10
             // 
+            this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b10.Location = new System.Drawing.Point(3, 39);
             this.b10.Name = "b10";
             this.b10.Size = new System.Drawing.Size(38, 30);
@@ -1323,6 +1429,7 @@ namespace Kino
             // 
             // b30
             // 
+            this.b30.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b30.Location = new System.Drawing.Point(3, 111);
             this.b30.Name = "b30";
             this.b30.Size = new System.Drawing.Size(38, 30);
@@ -1332,6 +1439,7 @@ namespace Kino
             // 
             // b01
             // 
+            this.b01.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b01.Location = new System.Drawing.Point(47, 3);
             this.b01.Name = "b01";
             this.b01.Size = new System.Drawing.Size(38, 30);
@@ -1341,6 +1449,7 @@ namespace Kino
             // 
             // b00
             // 
+            this.b00.Cursor = System.Windows.Forms.Cursors.Hand;
             this.b00.Location = new System.Drawing.Point(3, 3);
             this.b00.Name = "b00";
             this.b00.Size = new System.Drawing.Size(38, 30);
@@ -1420,11 +1529,106 @@ namespace Kino
             this.label10.TabIndex = 38;
             this.label10.Text = "10";
             // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDate.Location = new System.Drawing.Point(531, 101);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(139, 37);
+            this.labelDate.TabIndex = 38;
+            this.labelDate.Text = "Выберите дату:";
+            // 
+            // labelFilm
+            // 
+            this.labelFilm.AutoSize = true;
+            this.labelFilm.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFilm.Location = new System.Drawing.Point(531, 187);
+            this.labelFilm.Name = "labelFilm";
+            this.labelFilm.Size = new System.Drawing.Size(155, 37);
+            this.labelFilm.TabIndex = 39;
+            this.labelFilm.Text = "Выберите фильм:";
+            // 
+            // buttonFree
+            // 
+            this.buttonFree.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.buttonFree.Location = new System.Drawing.Point(507, 281);
+            this.buttonFree.Name = "buttonFree";
+            this.buttonFree.Size = new System.Drawing.Size(38, 30);
+            this.buttonFree.TabIndex = 40;
+            this.buttonFree.UseVisualStyleBackColor = true;
+            // 
+            // buttonOccupied
+            // 
+            this.buttonOccupied.Location = new System.Drawing.Point(507, 327);
+            this.buttonOccupied.Name = "buttonOccupied";
+            this.buttonOccupied.Size = new System.Drawing.Size(38, 30);
+            this.buttonOccupied.TabIndex = 41;
+            this.buttonOccupied.UseVisualStyleBackColor = true;
+            // 
+            // buttonChosen
+            // 
+            this.buttonChosen.Location = new System.Drawing.Point(507, 372);
+            this.buttonChosen.Name = "buttonChosen";
+            this.buttonChosen.Size = new System.Drawing.Size(38, 30);
+            this.buttonChosen.TabIndex = 42;
+            this.buttonChosen.UseVisualStyleBackColor = true;
+            // 
+            // buttonBuyTicket
+            // 
+            this.buttonBuyTicket.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonBuyTicket.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonBuyTicket.Location = new System.Drawing.Point(507, 416);
+            this.buttonBuyTicket.Name = "buttonBuyTicket";
+            this.buttonBuyTicket.Size = new System.Drawing.Size(189, 67);
+            this.buttonBuyTicket.TabIndex = 43;
+            this.buttonBuyTicket.Text = "Купить билет";
+            this.buttonBuyTicket.UseVisualStyleBackColor = true;
+            // 
+            // labelFree
+            // 
+            this.labelFree.AutoSize = true;
+            this.labelFree.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFree.Location = new System.Drawing.Point(551, 278);
+            this.labelFree.Name = "labelFree";
+            this.labelFree.Size = new System.Drawing.Size(89, 37);
+            this.labelFree.TabIndex = 44;
+            this.labelFree.Text = "- свободно";
+            // 
+            // labelOccupied
+            // 
+            this.labelOccupied.AutoSize = true;
+            this.labelOccupied.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelOccupied.Location = new System.Drawing.Point(551, 322);
+            this.labelOccupied.Name = "labelOccupied";
+            this.labelOccupied.Size = new System.Drawing.Size(79, 37);
+            this.labelOccupied.TabIndex = 45;
+            this.labelOccupied.Text = "- занято";
+            // 
+            // labelChosen
+            // 
+            this.labelChosen.AutoSize = true;
+            this.labelChosen.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChosen.Location = new System.Drawing.Point(552, 367);
+            this.labelChosen.Name = "labelChosen";
+            this.labelChosen.Size = new System.Drawing.Size(91, 37);
+            this.labelChosen.TabIndex = 46;
+            this.labelChosen.Text = "- выбрано";
+            // 
             // BuyTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 599);
+            this.Controls.Add(this.labelChosen);
+            this.Controls.Add(this.labelOccupied);
+            this.Controls.Add(this.labelFree);
+            this.Controls.Add(this.buttonBuyTicket);
+            this.Controls.Add(this.buttonChosen);
+            this.Controls.Add(this.buttonOccupied);
+            this.Controls.Add(this.buttonFree);
+            this.Controls.Add(this.labelFilm);
+            this.Controls.Add(this.labelDate);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.comboBoxSelectFilmTicket);
             this.Controls.Add(this.dateTimePickerTicket);
@@ -1450,6 +1654,7 @@ namespace Kino
             this.groupBox.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1575,5 +1780,14 @@ namespace Kino
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.Label labelFilm;
+        private System.Windows.Forms.Button buttonFree;
+        private System.Windows.Forms.Button buttonOccupied;
+        private System.Windows.Forms.Button buttonChosen;
+        private System.Windows.Forms.Button buttonBuyTicket;
+        private System.Windows.Forms.Label labelFree;
+        private System.Windows.Forms.Label labelOccupied;
+        private System.Windows.Forms.Label labelChosen;
     }
 }
