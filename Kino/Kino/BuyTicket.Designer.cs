@@ -236,9 +236,10 @@ namespace Kino
             this.dateTimePickerTicket.Location = new System.Drawing.Point(507, 149);
             this.dateTimePickerTicket.MinDate = new System.DateTime(2021, 6, 6, 0, 0, 0, 0);
             this.dateTimePickerTicket.Name = "dateTimePickerTicket";
-            this.dateTimePickerTicket.Size = new System.Drawing.Size(189, 26);
+            this.dateTimePickerTicket.Size = new System.Drawing.Size(198, 26);
             this.dateTimePickerTicket.TabIndex = 30;
             this.dateTimePickerTicket.TabStop = false;
+            this.dateTimePickerTicket.ValueChanged += new System.EventHandler(this.dateTimePickerTicket_ValueChanged);
             // 
             // comboBoxSelectFilmTicket
             // 
@@ -247,7 +248,7 @@ namespace Kino
             this.comboBoxSelectFilmTicket.FormattingEnabled = true;
             this.comboBoxSelectFilmTicket.Location = new System.Drawing.Point(507, 235);
             this.comboBoxSelectFilmTicket.Name = "comboBoxSelectFilmTicket";
-            this.comboBoxSelectFilmTicket.Size = new System.Drawing.Size(189, 28);
+            this.comboBoxSelectFilmTicket.Size = new System.Drawing.Size(198, 28);
             this.comboBoxSelectFilmTicket.TabIndex = 31;
             // 
             // line1
@@ -466,6 +467,7 @@ namespace Kino
             this.b99.TabIndex = 103;
             this.b99.Text = "10";
             this.b99.UseVisualStyleBackColor = true;
+            this.b99.Click += new System.EventHandler(this.b99_Click);
             // 
             // b59
             // 
@@ -476,6 +478,7 @@ namespace Kino
             this.b59.TabIndex = 63;
             this.b59.Text = "10";
             this.b59.UseVisualStyleBackColor = true;
+            this.b59.Click += new System.EventHandler(this.b59_Click);
             // 
             // b98
             // 
@@ -486,6 +489,7 @@ namespace Kino
             this.b98.TabIndex = 77;
             this.b98.Text = "9";
             this.b98.UseVisualStyleBackColor = true;
+            this.b98.Click += new System.EventHandler(this.b98_Click);
             // 
             // b29
             // 
@@ -507,6 +511,7 @@ namespace Kino
             this.b97.TabIndex = 102;
             this.b97.Text = "8";
             this.b97.UseVisualStyleBackColor = true;
+            this.b97.Click += new System.EventHandler(this.b97_Click);
             // 
             // b58
             // 
@@ -517,6 +522,7 @@ namespace Kino
             this.b58.TabIndex = 62;
             this.b58.Text = "9";
             this.b58.UseVisualStyleBackColor = true;
+            this.b58.Click += new System.EventHandler(this.b58_Click);
             // 
             // b96
             // 
@@ -527,6 +533,7 @@ namespace Kino
             this.b96.TabIndex = 105;
             this.b96.Text = "7";
             this.b96.UseVisualStyleBackColor = true;
+            this.b96.Click += new System.EventHandler(this.b96_Click);
             // 
             // b19
             // 
@@ -548,6 +555,7 @@ namespace Kino
             this.b95.TabIndex = 78;
             this.b95.Text = "6";
             this.b95.UseVisualStyleBackColor = true;
+            this.b95.Click += new System.EventHandler(this.b95_Click);
             // 
             // b57
             // 
@@ -569,6 +577,7 @@ namespace Kino
             this.b94.TabIndex = 91;
             this.b94.Text = "5";
             this.b94.UseVisualStyleBackColor = true;
+            this.b94.Click += new System.EventHandler(this.b94_Click);
             // 
             // b28
             // 
@@ -590,6 +599,7 @@ namespace Kino
             this.b93.TabIndex = 107;
             this.b93.Text = "4";
             this.b93.UseVisualStyleBackColor = true;
+            this.b93.Click += new System.EventHandler(this.b93_Click);
             // 
             // b56
             // 
@@ -611,6 +621,7 @@ namespace Kino
             this.b92.TabIndex = 79;
             this.b92.Text = "3";
             this.b92.UseVisualStyleBackColor = true;
+            this.b92.Click += new System.EventHandler(this.b92_Click);
             // 
             // b09
             // 
@@ -632,6 +643,7 @@ namespace Kino
             this.b91.TabIndex = 104;
             this.b91.Text = "2";
             this.b91.UseVisualStyleBackColor = true;
+            this.b91.Click += new System.EventHandler(this.b91_Click);
             // 
             // b55
             // 
@@ -653,6 +665,7 @@ namespace Kino
             this.b90.TabIndex = 108;
             this.b90.Text = "1";
             this.b90.UseVisualStyleBackColor = true;
+            this.b90.Click += new System.EventHandler(this.b90_Click);
             // 
             // b27
             // 
@@ -674,6 +687,7 @@ namespace Kino
             this.b89.TabIndex = 80;
             this.b89.Text = "10";
             this.b89.UseVisualStyleBackColor = true;
+            this.b89.Click += new System.EventHandler(this.b89_Click);
             // 
             // b54
             // 
@@ -695,6 +709,7 @@ namespace Kino
             this.b88.TabIndex = 111;
             this.b88.Text = "9";
             this.b88.UseVisualStyleBackColor = true;
+            this.b88.Click += new System.EventHandler(this.b88_Click);
             // 
             // b18
             // 
@@ -716,6 +731,7 @@ namespace Kino
             this.b87.TabIndex = 81;
             this.b87.Text = "8";
             this.b87.UseVisualStyleBackColor = true;
+            this.b87.Click += new System.EventHandler(this.b87_Click);
             // 
             // b53
             // 
@@ -737,6 +753,7 @@ namespace Kino
             this.b86.TabIndex = 106;
             this.b86.Text = "7";
             this.b86.UseVisualStyleBackColor = true;
+            this.b86.Click += new System.EventHandler(this.b86_Click);
             // 
             // b26
             // 
@@ -758,6 +775,7 @@ namespace Kino
             this.b85.TabIndex = 94;
             this.b85.Text = "6";
             this.b85.UseVisualStyleBackColor = true;
+            this.b85.Click += new System.EventHandler(this.b85_Click);
             // 
             // b52
             // 
@@ -779,6 +797,7 @@ namespace Kino
             this.b84.TabIndex = 73;
             this.b84.Text = "5";
             this.b84.UseVisualStyleBackColor = true;
+            this.b84.Click += new System.EventHandler(this.b84_Click);
             // 
             // b25
             // 
@@ -800,6 +819,7 @@ namespace Kino
             this.b83.TabIndex = 89;
             this.b83.Text = "4";
             this.b83.UseVisualStyleBackColor = true;
+            this.b83.Click += new System.EventHandler(this.b83_Click);
             // 
             // b51
             // 
@@ -821,6 +841,7 @@ namespace Kino
             this.b82.TabIndex = 97;
             this.b82.Text = "3";
             this.b82.UseVisualStyleBackColor = true;
+            this.b82.Click += new System.EventHandler(this.b82_Click);
             // 
             // b17
             // 
@@ -842,6 +863,7 @@ namespace Kino
             this.b81.TabIndex = 109;
             this.b81.Text = "2";
             this.b81.UseVisualStyleBackColor = true;
+            this.b81.Click += new System.EventHandler(this.b81_Click);
             // 
             // b50
             // 
@@ -863,6 +885,7 @@ namespace Kino
             this.b80.TabIndex = 74;
             this.b80.Text = "1";
             this.b80.UseVisualStyleBackColor = true;
+            this.b80.Click += new System.EventHandler(this.b80_Click);
             // 
             // b24
             // 
@@ -884,6 +907,7 @@ namespace Kino
             this.b79.TabIndex = 99;
             this.b79.Text = "10";
             this.b79.UseVisualStyleBackColor = true;
+            this.b79.Click += new System.EventHandler(this.b79_Click);
             // 
             // b38
             // 
@@ -905,6 +929,7 @@ namespace Kino
             this.b77.TabIndex = 90;
             this.b77.Text = "8";
             this.b77.UseVisualStyleBackColor = true;
+            this.b77.Click += new System.EventHandler(this.b77_Click);
             // 
             // b78
             // 
@@ -915,6 +940,7 @@ namespace Kino
             this.b78.TabIndex = 75;
             this.b78.Text = "9";
             this.b78.UseVisualStyleBackColor = true;
+            this.b78.Click += new System.EventHandler(this.b78_Click);
             // 
             // b49
             // 
@@ -936,6 +962,7 @@ namespace Kino
             this.b76.TabIndex = 100;
             this.b76.Text = "7";
             this.b76.UseVisualStyleBackColor = true;
+            this.b76.Click += new System.EventHandler(this.b76_Click);
             // 
             // b08
             // 
@@ -957,6 +984,7 @@ namespace Kino
             this.b75.TabIndex = 110;
             this.b75.Text = "6";
             this.b75.UseVisualStyleBackColor = true;
+            this.b75.Click += new System.EventHandler(this.b75_Click);
             // 
             // b48
             // 
@@ -978,6 +1006,7 @@ namespace Kino
             this.b74.TabIndex = 76;
             this.b74.Text = "5";
             this.b74.UseVisualStyleBackColor = true;
+            this.b74.Click += new System.EventHandler(this.b74_Click);
             // 
             // b23
             // 
@@ -999,6 +1028,7 @@ namespace Kino
             this.b73.TabIndex = 93;
             this.b73.Text = "4";
             this.b73.UseVisualStyleBackColor = true;
+            this.b73.Click += new System.EventHandler(this.b73_Click);
             // 
             // b47
             // 
@@ -1020,6 +1050,7 @@ namespace Kino
             this.b72.TabIndex = 88;
             this.b72.Text = "3";
             this.b72.UseVisualStyleBackColor = true;
+            this.b72.Click += new System.EventHandler(this.b72_Click);
             // 
             // b16
             // 
@@ -1041,6 +1072,7 @@ namespace Kino
             this.b71.TabIndex = 72;
             this.b71.Text = "2";
             this.b71.UseVisualStyleBackColor = true;
+            this.b71.Click += new System.EventHandler(this.b71_Click);
             // 
             // b46
             // 
@@ -1062,6 +1094,7 @@ namespace Kino
             this.b70.TabIndex = 95;
             this.b70.Text = "1";
             this.b70.UseVisualStyleBackColor = true;
+            this.b70.Click += new System.EventHandler(this.b70_Click);
             // 
             // b22
             // 
@@ -1083,6 +1116,7 @@ namespace Kino
             this.b69.TabIndex = 87;
             this.b69.Text = "10";
             this.b69.UseVisualStyleBackColor = true;
+            this.b69.Click += new System.EventHandler(this.b69_Click);
             // 
             // b45
             // 
@@ -1104,6 +1138,7 @@ namespace Kino
             this.b68.TabIndex = 96;
             this.b68.Text = "9";
             this.b68.UseVisualStyleBackColor = true;
+            this.b68.Click += new System.EventHandler(this.b68_Click);
             // 
             // b07
             // 
@@ -1125,6 +1160,7 @@ namespace Kino
             this.b67.TabIndex = 85;
             this.b67.Text = "8";
             this.b67.UseVisualStyleBackColor = true;
+            this.b67.Click += new System.EventHandler(this.b67_Click);
             // 
             // b44
             // 
@@ -1146,6 +1182,7 @@ namespace Kino
             this.b66.TabIndex = 98;
             this.b66.Text = "7";
             this.b66.UseVisualStyleBackColor = true;
+            this.b66.Click += new System.EventHandler(this.b66_Click);
             // 
             // b21
             // 
@@ -1167,6 +1204,7 @@ namespace Kino
             this.b65.TabIndex = 84;
             this.b65.Text = "6";
             this.b65.UseVisualStyleBackColor = true;
+            this.b65.Click += new System.EventHandler(this.b65_Click);
             // 
             // b43
             // 
@@ -1188,6 +1226,7 @@ namespace Kino
             this.b64.TabIndex = 101;
             this.b64.Text = "5";
             this.b64.UseVisualStyleBackColor = true;
+            this.b64.Click += new System.EventHandler(this.b64_Click);
             // 
             // b15
             // 
@@ -1209,6 +1248,7 @@ namespace Kino
             this.b63.TabIndex = 83;
             this.b63.Text = "4";
             this.b63.UseVisualStyleBackColor = true;
+            this.b63.Click += new System.EventHandler(this.b63_Click);
             // 
             // b42
             // 
@@ -1230,6 +1270,7 @@ namespace Kino
             this.b62.TabIndex = 92;
             this.b62.Text = "3";
             this.b62.UseVisualStyleBackColor = true;
+            this.b62.Click += new System.EventHandler(this.b62_Click);
             // 
             // b20
             // 
@@ -1251,6 +1292,7 @@ namespace Kino
             this.b61.TabIndex = 86;
             this.b61.Text = "2";
             this.b61.UseVisualStyleBackColor = true;
+            this.b61.Click += new System.EventHandler(this.b61_Click);
             // 
             // b41
             // 
@@ -1272,6 +1314,7 @@ namespace Kino
             this.b60.TabIndex = 82;
             this.b60.Text = "1";
             this.b60.UseVisualStyleBackColor = true;
+            this.b60.Click += new System.EventHandler(this.b60_Click);
             // 
             // b06
             // 
@@ -1473,7 +1516,7 @@ namespace Kino
             // 
             // b10
             // 
-            this.b10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.b10.Cursor = System.Windows.Forms.Cursors.Default;
             this.b10.Location = new System.Drawing.Point(3, 39);
             this.b10.Name = "b10";
             this.b10.Size = new System.Drawing.Size(38, 30);
@@ -1591,7 +1634,7 @@ namespace Kino
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelDate.Location = new System.Drawing.Point(531, 101);
+            this.labelDate.Location = new System.Drawing.Point(540, 101);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(139, 37);
             this.labelDate.TabIndex = 38;
@@ -1601,7 +1644,7 @@ namespace Kino
             // 
             this.labelFilm.AutoSize = true;
             this.labelFilm.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelFilm.Location = new System.Drawing.Point(531, 187);
+            this.labelFilm.Location = new System.Drawing.Point(534, 187);
             this.labelFilm.Name = "labelFilm";
             this.labelFilm.Size = new System.Drawing.Size(155, 37);
             this.labelFilm.TabIndex = 39;
@@ -1636,13 +1679,14 @@ namespace Kino
             // 
             this.buttonBuyTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBuyTicket.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBuyTicket.Location = new System.Drawing.Point(507, 416);
+            this.buttonBuyTicket.Location = new System.Drawing.Point(507, 417);
             this.buttonBuyTicket.Name = "buttonBuyTicket";
-            this.buttonBuyTicket.Size = new System.Drawing.Size(189, 67);
+            this.buttonBuyTicket.Size = new System.Drawing.Size(198, 67);
             this.buttonBuyTicket.TabIndex = 43;
             this.buttonBuyTicket.Text = "Купить билет";
             this.buttonBuyTicket.UseVisualStyleBackColor = true;
             this.buttonBuyTicket.Click += new System.EventHandler(this.buttonBuyTicket_Click);
+            this.buttonBuyTicket.MouseHover += new System.EventHandler(this.buttonBuyTicket_MouseHover);
             // 
             // labelFree
             // 
@@ -1678,7 +1722,7 @@ namespace Kino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 599);
+            this.ClientSize = new System.Drawing.Size(724, 599);
             this.Controls.Add(this.labelChosen);
             this.Controls.Add(this.labelOccupied);
             this.Controls.Add(this.labelFree);
@@ -1700,7 +1744,9 @@ namespace Kino
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(740, 638);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(740, 638);
             this.Name = "BuyTicket";
             this.Text = "Кинотеатр \"Звёздный\" - Купить билет";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

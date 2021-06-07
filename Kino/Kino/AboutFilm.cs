@@ -133,5 +133,10 @@ namespace Kino
             BuyTicket form = new BuyTicket();
             form.ShowDialog();
         }
+
+        private void buttonBuyTicketAbout_MouseHover(object sender, EventArgs e)
+        {
+            buttonBuyTicketAbout.Select();
+        }
     }
 }

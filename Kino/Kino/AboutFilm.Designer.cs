@@ -71,6 +71,7 @@ namespace Kino
             this.buttonBuyTicketAbout.Text = "Купить билет";
             this.buttonBuyTicketAbout.UseVisualStyleBackColor = true;
             this.buttonBuyTicketAbout.Click += new System.EventHandler(this.buttonBuyTicketAbout_Click);
+            this.buttonBuyTicketAbout.MouseHover += new System.EventHandler(this.buttonBuyTicketAbout_MouseHover);
             // 
             // posterPictureBox
             // 

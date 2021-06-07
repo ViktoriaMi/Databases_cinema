@@ -339,5 +339,20 @@ namespace Kino
                 }
             }
         }
+
+        private void adminButton_MouseHover(object sender, EventArgs e)
+        {
+            adminButton.Select();
+        }
+
+        private void clientButton_MouseHover(object sender, EventArgs e)
+        {
+            clientButton.Select();
+        }
+
+        private void RegistrationButton_MouseHover(object sender, EventArgs e)
+        {
+            RegistrationButton.Select();
+        }
     }
 }
