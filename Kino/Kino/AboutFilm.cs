@@ -23,6 +23,10 @@ namespace Kino
             comboBoxSelectFilm.MaxDropDownItems = 9;
 
             buttonBuyTicketAbout.Select();
+            buttonBuyTicketAbout.Image = Kino.Properties.Resources.tickets;
+            buttonBuyTicketAbout.TextImageRelation = TextImageRelation.ImageBeforeText;
+            buttonBuyTicketAbout.TextAlign = ContentAlignment.MiddleRight;
+            buttonBuyTicketAbout.ImageAlign = ContentAlignment.MiddleCenter;
 
             textBoxFilmDesc.ReadOnly = true;
 

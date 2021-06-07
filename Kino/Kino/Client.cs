@@ -25,7 +25,7 @@ namespace Kino
             //this.StartPosition = FormStartPosition.CenterScreen;
             //TabControl.SelectTab(tabPage_Registration);
 
-            buttonUpdate.Select();
+            buttonBuyTicket.Select();
             outputSheduleForClient();
         }
         public void outputSheduleForClient()

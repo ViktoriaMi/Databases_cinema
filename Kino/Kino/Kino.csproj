@@ -131,7 +131,10 @@
     <Content Include="imgs\kinolenta.png" />
     <Content Include="imgs\kinolenta2.png" />
     <Content Include="imgs\lock.png" />
+    <None Include="imgs\ticket.png" />
+    <None Include="imgs\tickets.png" />
     <Content Include="imgs\unlock.png" />
+    <None Include="Resources\ticket.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
