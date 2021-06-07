@@ -16,18 +16,31 @@ namespace Kino
         {
             InitializeComponent();
 
-            designTableLayoutPanel();
+            formDesign();
         }
 
-        public void designTableLayoutPanel()
+        public void formDesign()
         {
+            // КАЛЕНДАРЬ
+
+            dateTimePickerTicket.MinDate = DateTime.Today;
+            dateTimePickerTicket.MaxDate = dateTimePickerTicket.MinDate.AddDays(2);
+
+            // ВЫПАДАЮЩИЙ СПИСОК - COMBOBOX
+
+
+
+            // ТАБЛИЦА МЕСТ - TABLE_LAYOUT_PANEL
+
             tableLayoutPanel.AutoScroll = false;
             tableLayoutPanel.AllowDrop = false;
-            //tableLayoutPanel.Controls.Add(b00, 0, 0);
+
 
             int w = tableLayoutPanel.Width;
             int h = tableLayoutPanel.Height;
 
+            
+            
         }
     }
 }
