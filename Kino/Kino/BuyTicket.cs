@@ -15,6 +15,19 @@ namespace Kino
         public BuyTicket()
         {
             InitializeComponent();
+
+            designTableLayoutPanel();
+        }
+
+        public void designTableLayoutPanel()
+        {
+            tableLayoutPanel.AutoScroll = false;
+            tableLayoutPanel.AllowDrop = false;
+            //tableLayoutPanel.Controls.Add(b00, 0, 0);
+
+            int w = tableLayoutPanel.Width;
+            int h = tableLayoutPanel.Height;
+
         }
     }
 }
