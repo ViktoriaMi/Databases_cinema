@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="imgs\1.bmp" />
     <Content Include="imgs\1.jpg" />
     <Content Include="imgs\2.jpg" />
     <Content Include="imgs\3.jpg" />

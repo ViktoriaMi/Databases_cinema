@@ -21,29 +21,32 @@ namespace Kino
 
             comboBoxSelectFilm.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSelectFilm.MaxDropDownItems = 9;
+
             buttonBuyTicketAbout.Select();
-            //textBoxFilmDesc.BorderStyle = BorderStyle.None;
+
             textBoxFilmDesc.ReadOnly = true;
-            //textBoxFilmDesc.Enabled = false;
-            //textBoxFilmDesc.ForeColor = Color.Black;
+
             showInfoAboutFilm(dataGridViewShedule);
         }
 
         public void showInfoAboutFilm (DataGridView dataGridViewShedule)
         {
             DB db = new DB();
+            // получаем все названия фильмов, доступных на 3 дня
             MySqlCommand myCom = new MySqlCommand("SELECT * FROM movieSelection;",
                 db.getConnection());
 
-            db.OpenConnection();
-
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            db.OpenConnection();
+            
             dataAdapter.SelectCommand = myCom;
             DataTable table = new DataTable();
             dataAdapter.Fill(table);
 
             db.CloseConnection();
 
+            // передаем названия фильмов в массив строк
+            // и добавляем их в combobox
             string[] films = new string[table.Rows.Count];
             for (int i = 0; i < table.Rows.Count; i++)
             {
@@ -51,39 +54,41 @@ namespace Kino
                 comboBoxSelectFilm.Items.Add(films[i]);
             }
 
-            comboBoxSelectFilm.SelectedIndex = 0;
-
-            // проверяем, что выбрана какая-либо из ячеек 1-го столбца
+            // проверяем, что выбрана какая-либо одна из ячеек 1-го столбца
             if (dataGridViewShedule.GetCellCount(DataGridViewElementStates.Selected) == 1
                 && dataGridViewShedule.CurrentCell.ColumnIndex == 0)
             {
+                //MessageBox.Show("выделена одна ячейка 1-го столбца");
+
                 // извлекаем название фильма из выбранной ячейки
                 string selectCell = dataGridViewShedule.CurrentCell.Value.ToString();
 
-                // если название фильма не равно активному тексту в comboBox
-                if (selectCell != comboBoxSelectFilm.Text)
+                int cnt = comboBoxSelectFilm.Items.Count;
+                for (int i = 0; i < cnt; i++)
                 {
-                    for (int i = 0; i < comboBoxSelectFilm.Items.Count; i++)
+                    // если название фильма совпадает с каким-либо из item-ов comboBox
+                    if (selectCell == comboBoxSelectFilm.GetItemText(comboBoxSelectFilm.Items[i]))
                     {
-                        // если название фильма совпадает с каким-либо из item-ов comboBox
-                        if (selectCell == comboBoxSelectFilm.GetItemText(comboBoxSelectFilm.Items[i]))
-                            comboBoxSelectFilm.SelectedIndex = i;
-                    }
+                        comboBoxSelectFilm.SelectedIndex = i;
+                        return;
+                    } 
                 }
-                //MessageBox.Show("выделена ячейка 1-го столбца");
             }
-
-            changeInfoAboutFilm();
-
-            //posterPictureBox.Image = Properties.Resources._1;
+            else
+            {
+                comboBoxSelectFilm.SelectedIndex = 0;
+                return;
+            }
         }
 
-        public void changeInfoAboutFilm ()
+        private void comboBoxSelectFilm_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //MessageBox.Show("мы внури SelectedIndexChanged");
             string curMovieTitle = comboBoxSelectFilm.Text;
 
             DB db = new DB();
-            MySqlCommand myCom = new MySqlCommand("CALL selectDesc(@nameFilm);",
+            // извлекаем из базы описание и постер фильма по названию
+            MySqlCommand myCom = new MySqlCommand("CALL selectDescAndPoster(@nameFilm);",
                 db.getConnection());
             myCom.Parameters.Add("@nameFilm", MySqlDbType.VarChar).Value = curMovieTitle;
 
@@ -96,23 +101,33 @@ namespace Kino
 
             db.CloseConnection();
 
-            textBoxFilmDesc.Text = table.Rows[0][0].ToString();
+            try
+            {
+                // заполняем описание фильма
+                textBoxFilmDesc.Text = table.Rows[0][0].ToString();
+                //string str = String.Concat("imgs/", table.Rows[0][1].ToString());
+                string pict = table.Rows[0][1].ToString();
+                string path = String.Concat(Environment.CurrentDirectory, "\\", pict);
+
+                Bitmap image1; // фото загрузки в pictureBox
+                image1 = new Bitmap(path); // инициализация файл с фото
+                posterPictureBox.Image = image1;
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.ToString());
+            }
+        }
+
+        private void textBoxFilmDesc_Enter(object sender, EventArgs e)
+        {
+            buttonBuyTicketAbout.Select();
         }
 
         private void buttonBuyTicketAbout_Click(object sender, EventArgs e)
         {
             BuyTicket form = new BuyTicket();
             form.ShowDialog();
-        }
-
-        private void comboBoxSelectFilm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            changeInfoAboutFilm();
-        }
-
-        private void textBoxFilmDesc_Enter(object sender, EventArgs e)
-        {
-            buttonBuyTicketAbout.Select();
         }
     }
 }
