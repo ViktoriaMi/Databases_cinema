@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace Kino
 {
@@ -17,6 +20,57 @@ namespace Kino
             InitializeComponent();
 
             formDesign();
+            loadFilms();
+
+            b03.BackColor = Color.DarkMagenta;
+            b05.BackColor = Color.DarkMagenta;
+            b06.BackColor = Color.DarkMagenta;
+            b07.BackColor = Color.DarkMagenta;
+            b13.BackColor = Color.DarkMagenta;
+            b14.BackColor = Color.DarkMagenta;
+            b15.BackColor = Color.DarkMagenta;
+            b16.BackColor = Color.DarkMagenta;
+            b18.BackColor = Color.DarkMagenta;
+            b22.BackColor = Color.DarkMagenta;
+            b23.BackColor = Color.DarkMagenta;
+            b24.BackColor = Color.DarkMagenta;
+            b26.BackColor = Color.DarkMagenta;
+            b27.BackColor = Color.DarkMagenta;
+            b31.BackColor = Color.DarkMagenta;
+            b32.BackColor = Color.DarkMagenta;
+            b34.BackColor = Color.DarkMagenta;
+            b35.BackColor = Color.DarkMagenta;
+            b37.BackColor = Color.DarkMagenta;
+            b39.BackColor = Color.DarkMagenta;
+            b42.BackColor = Color.DarkMagenta;
+            b43.BackColor = Color.DarkMagenta;
+            b44.BackColor = Color.DarkMagenta;
+            b45.BackColor = Color.DarkMagenta;
+            b46.BackColor = Color.DarkMagenta;
+            b47.BackColor = Color.DarkMagenta;
+            b51.BackColor = Color.DarkMagenta;
+            b52.BackColor = Color.DarkMagenta;
+            b53.BackColor = Color.DarkMagenta;
+            b54.BackColor = Color.DarkMagenta;
+            b55.BackColor = Color.DarkMagenta;
+            b56.BackColor = Color.DarkMagenta;
+            b57.BackColor = Color.DarkMagenta;
+            b62.BackColor = Color.DarkMagenta;
+            b63.BackColor = Color.DarkMagenta;
+            b64.BackColor = Color.DarkMagenta;
+            b65.BackColor = Color.DarkMagenta;
+            b66.BackColor = Color.DarkMagenta;
+            b67.BackColor = Color.DarkMagenta;
+            b68.BackColor = Color.DarkMagenta;
+            b75.BackColor = Color.DarkMagenta;
+            b76.BackColor = Color.DarkMagenta;
+            b80.BackColor = Color.DarkMagenta;
+            b82.BackColor = Color.DarkMagenta;
+            b83.BackColor = Color.DarkMagenta;
+            b84.BackColor = Color.DarkMagenta;
+            b88.BackColor = Color.DarkMagenta;
+            b95.BackColor = Color.DarkMagenta;
+            b94.BackColor = Color.DarkMagenta;
         }
 
         public void formDesign()
@@ -431,8 +485,8 @@ namespace Kino
             b99.FlatStyle = FlatStyle.Flat;
             b99.FlatAppearance.BorderColor = Color.Gray;
 
-            int w = tableLayoutPanel.Width;
-            int h = tableLayoutPanel.Height;
+            //int w = tableLayoutPanel.Width;
+            //int h = tableLayoutPanel.Height;
 
             // КНОПКИ СПРАВА
 
@@ -446,16 +500,528 @@ namespace Kino
 
             buttonOccupied.BackColor = Color.DarkMagenta;
             buttonOccupied.FlatStyle = FlatStyle.Flat;
-            //buttonOccupied.FlatAppearance.BorderColor = Color.DarkMagenta;
             buttonOccupied.FlatAppearance.BorderColor = Color.Gray;
 
             buttonChosen.BackColor = Color.BlueViolet;
             buttonChosen.FlatStyle = FlatStyle.Flat;
-            //buttonChosen.FlatAppearance.BorderColor = Color.BlueViolet;
             buttonChosen.FlatAppearance.BorderColor = Color.Gray;
 
             // КНОПКА КУПИТЬ
             buttonBuyTicket.Select();
+            buttonBuyTicket.Image = Kino.Properties.Resources.tickets;
+            buttonBuyTicket.TextImageRelation = TextImageRelation.ImageBeforeText;
+            buttonBuyTicket.TextAlign = ContentAlignment.MiddleRight;
+            buttonBuyTicket.ImageAlign = ContentAlignment.MiddleCenter;
         }
+
+        public void loadFilms ()
+        {
+            comboBoxSelectFilmTicket.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSelectFilmTicket.MaxDropDownItems = 9;
+
+            DB db = new DB();
+            // получаем все названия фильмов, доступных на 3 дня
+            MySqlCommand myCom = new MySqlCommand("SELECT * FROM movieSelection;",
+                db.getConnection());
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            db.OpenConnection();
+
+            dataAdapter.SelectCommand = myCom;
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            db.CloseConnection();
+
+            // передаем названия фильмов в массив строк
+            // и добавляем их в combobox
+            string[] films = new string[table.Rows.Count];
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                films[i] = table.Rows[i][0].ToString();
+                comboBoxSelectFilmTicket.Items.Add(films[i]);
+            }
+
+            comboBoxSelectFilmTicket.SelectedIndex = 0;
+        }
+
+        private void buttonBuyTicket_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Покупка прошла успешно! Билеты отправлены на вашу электронную почту.", "Покупка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+        }
+
+        private void b00_Click(object sender, EventArgs e)
+        {
+            if (b00.BackColor == Color.LightGray)
+                b00.BackColor = Color.BlueViolet;
+            else if (b00.BackColor == Color.BlueViolet)
+                b00.BackColor = Color.LightGray;
+            else if (b00.BackColor == Color.DarkMagenta)
+                b00.Cursor = Cursors.Default;
+        }
+
+        private void b01_Click(object sender, EventArgs e)
+        {
+            if (b01.BackColor == Color.LightGray)
+                b01.BackColor = Color.BlueViolet;
+            else if (b01.BackColor == Color.BlueViolet)
+                b01.BackColor = Color.LightGray;
+        }
+
+        private void b02_Click(object sender, EventArgs e)
+        {
+            if (b02.BackColor == Color.LightGray)
+                b02.BackColor = Color.BlueViolet;
+            else if (b02.BackColor == Color.BlueViolet)
+                b02.BackColor = Color.LightGray;
+        }
+
+        private void b03_Click(object sender, EventArgs e)
+        {
+            if (b03.BackColor == Color.LightGray)
+                b03.BackColor = Color.BlueViolet;
+            else if (b03.BackColor == Color.BlueViolet)
+                b03.BackColor = Color.LightGray;
+        }
+
+        private void b04_Click(object sender, EventArgs e)
+        {
+            if (b04.BackColor == Color.LightGray)
+                b04.BackColor = Color.BlueViolet;
+            else if (b04.BackColor == Color.BlueViolet)
+                b04.BackColor = Color.LightGray;
+        }
+
+        private void b05_Click(object sender, EventArgs e)
+        {
+            if (b05.BackColor == Color.LightGray)
+                b05.BackColor = Color.BlueViolet;
+            else if (b05.BackColor == Color.BlueViolet)
+                b05.BackColor = Color.LightGray;
+        }
+
+        private void b06_Click(object sender, EventArgs e)
+        {
+            if (b06.BackColor == Color.LightGray)
+                b06.BackColor = Color.BlueViolet;
+            else if (b06.BackColor == Color.BlueViolet)
+                b06.BackColor = Color.LightGray;
+        }
+
+        private void b07_Click(object sender, EventArgs e)
+        {
+            if (b07.BackColor == Color.LightGray)
+                b07.BackColor = Color.BlueViolet;
+            else if (b07.BackColor == Color.BlueViolet)
+                b07.BackColor = Color.LightGray;
+        }
+
+        private void b08_Click(object sender, EventArgs e)
+        {
+            if (b08.BackColor == Color.LightGray)
+                b08.BackColor = Color.BlueViolet;
+            else if (b08.BackColor == Color.BlueViolet)
+                b08.BackColor = Color.LightGray;
+        }
+
+        private void b09_Click(object sender, EventArgs e)
+        {
+            if (b09.BackColor == Color.LightGray)
+                b09.BackColor = Color.BlueViolet;
+            else if (b09.BackColor == Color.BlueViolet)
+                b09.BackColor = Color.LightGray;
+        }
+
+        private void b10_Click(object sender, EventArgs e)
+        {
+            if (b10.BackColor == Color.LightGray)
+                b10.BackColor = Color.BlueViolet;
+            else if (b10.BackColor == Color.BlueViolet)
+                b10.BackColor = Color.LightGray;
+        }
+
+        private void b11_Click(object sender, EventArgs e)
+        {
+            if (b11.BackColor == Color.LightGray)
+                b11.BackColor = Color.BlueViolet;
+            else if (b11.BackColor == Color.BlueViolet)
+                b11.BackColor = Color.LightGray;
+        }
+
+        private void b12_Click(object sender, EventArgs e)
+        {
+            if (b12.BackColor == Color.LightGray)
+                b12.BackColor = Color.BlueViolet;
+            else if (b12.BackColor == Color.BlueViolet)
+                b12.BackColor = Color.LightGray;
+        }
+
+        private void b13_Click(object sender, EventArgs e)
+        {
+            if (b13.BackColor == Color.LightGray)
+                b13.BackColor = Color.BlueViolet;
+            else if (b13.BackColor == Color.BlueViolet)
+                b13.BackColor = Color.LightGray;
+        }
+
+        private void b14_Click(object sender, EventArgs e)
+        {
+            if (b14.BackColor == Color.LightGray)
+                b14.BackColor = Color.BlueViolet;
+            else if (b14.BackColor == Color.BlueViolet)
+                b14.BackColor = Color.LightGray;
+        }
+
+        private void b15_Click(object sender, EventArgs e)
+        {
+            if (b15.BackColor == Color.LightGray)
+                b15.BackColor = Color.BlueViolet;
+            else if (b15.BackColor == Color.BlueViolet)
+                b15.BackColor = Color.LightGray;
+        }
+
+        private void b16_Click(object sender, EventArgs e)
+        {
+            if (b16.BackColor == Color.LightGray)
+                b16.BackColor = Color.BlueViolet;
+            else if (b16.BackColor == Color.BlueViolet)
+                b16.BackColor = Color.LightGray;
+        }
+
+        private void b17_Click(object sender, EventArgs e)
+        {
+            if (b17.BackColor == Color.LightGray)
+                b17.BackColor = Color.BlueViolet;
+            else if (b17.BackColor == Color.BlueViolet)
+                b17.BackColor = Color.LightGray;
+        }
+
+        private void b18_Click(object sender, EventArgs e)
+        {
+            if (b18.BackColor == Color.LightGray)
+                b18.BackColor = Color.BlueViolet;
+            else if (b18.BackColor == Color.BlueViolet)
+                b18.BackColor = Color.LightGray;
+        }
+
+        private void b19_Click(object sender, EventArgs e)
+        {
+            if (b19.BackColor == Color.LightGray)
+                b19.BackColor = Color.BlueViolet;
+            else if (b19.BackColor == Color.BlueViolet)
+                b19.BackColor = Color.LightGray;
+        }
+
+        private void b20_Click(object sender, EventArgs e)
+        {
+            if (b20.BackColor == Color.LightGray)
+                b20.BackColor = Color.BlueViolet;
+            else if (b20.BackColor == Color.BlueViolet)
+                b20.BackColor = Color.LightGray;
+        }
+
+        private void b21_Click(object sender, EventArgs e)
+        {
+            if (b21.BackColor == Color.LightGray)
+                b21.BackColor = Color.BlueViolet;
+            else if (b21.BackColor == Color.BlueViolet)
+                b21.BackColor = Color.LightGray;
+        }
+
+        private void b22_Click(object sender, EventArgs e)
+        {
+            if (b22.BackColor == Color.LightGray)
+                b22.BackColor = Color.BlueViolet;
+            else if (b22.BackColor == Color.BlueViolet)
+                b22.BackColor = Color.LightGray;
+        }
+
+        private void b23_Click(object sender, EventArgs e)
+        {
+            if (b23.BackColor == Color.LightGray)
+                b23.BackColor = Color.BlueViolet;
+            else if (b23.BackColor == Color.BlueViolet)
+                b23.BackColor = Color.LightGray;
+        }
+
+        private void b24_Click(object sender, EventArgs e)
+        {
+            if (b24.BackColor == Color.LightGray)
+                b24.BackColor = Color.BlueViolet;
+            else if (b24.BackColor == Color.BlueViolet)
+                b24.BackColor = Color.LightGray;
+        }
+
+        private void b25_Click(object sender, EventArgs e)
+        {
+            if (b25.BackColor == Color.LightGray)
+                b25.BackColor = Color.BlueViolet;
+            else if (b25.BackColor == Color.BlueViolet)
+                b25.BackColor = Color.LightGray;
+        }
+
+        private void b26_Click(object sender, EventArgs e)
+        {
+            if (b26.BackColor == Color.LightGray)
+                b26.BackColor = Color.BlueViolet;
+            else if (b26.BackColor == Color.BlueViolet)
+                b26.BackColor = Color.LightGray;
+        }
+
+        private void b27_Click(object sender, EventArgs e)
+        {
+            if (b27.BackColor == Color.LightGray)
+                b27.BackColor = Color.BlueViolet;
+            else if (b27.BackColor == Color.BlueViolet)
+                b27.BackColor = Color.LightGray;
+        }
+
+        private void b28_Click(object sender, EventArgs e)
+        {
+            if (b28.BackColor == Color.LightGray)
+                b28.BackColor = Color.BlueViolet;
+            else if (b28.BackColor == Color.BlueViolet)
+                b28.BackColor = Color.LightGray;
+        }
+
+        private void b29_Click(object sender, EventArgs e)
+        {
+            if (b29.BackColor == Color.LightGray)
+                b29.BackColor = Color.BlueViolet;
+            else if (b29.BackColor == Color.BlueViolet)
+                b29.BackColor = Color.LightGray;
+        }
+
+        private void b30_Click(object sender, EventArgs e)
+        {
+            if (b30.BackColor == Color.LightGray)
+                b30.BackColor = Color.BlueViolet;
+            else if (b30.BackColor == Color.BlueViolet)
+                b30.BackColor = Color.LightGray;
+        }
+
+        private void b31_Click(object sender, EventArgs e)
+        {
+            if (b31.BackColor == Color.LightGray)
+                b31.BackColor = Color.BlueViolet;
+            else if (b31.BackColor == Color.BlueViolet)
+                b31.BackColor = Color.LightGray;
+        }
+
+        private void b32_Click(object sender, EventArgs e)
+        {
+            if (b32.BackColor == Color.LightGray)
+                b32.BackColor = Color.BlueViolet;
+            else if (b32.BackColor == Color.BlueViolet)
+                b32.BackColor = Color.LightGray;
+        }
+
+        private void b33_Click(object sender, EventArgs e)
+        {
+            if (b33.BackColor == Color.LightGray)
+                b33.BackColor = Color.BlueViolet;
+            else if (b33.BackColor == Color.BlueViolet)
+                b33.BackColor = Color.LightGray;
+        }
+
+        private void b34_Click(object sender, EventArgs e)
+        {
+            if (b34.BackColor == Color.LightGray)
+                b34.BackColor = Color.BlueViolet;
+            else if (b34.BackColor == Color.BlueViolet)
+                b34.BackColor = Color.LightGray;
+        }
+
+        private void b35_Click(object sender, EventArgs e)
+        {
+            if (b35.BackColor == Color.LightGray)
+                b35.BackColor = Color.BlueViolet;
+            else if (b35.BackColor == Color.BlueViolet)
+                b35.BackColor = Color.LightGray;
+        }
+
+        private void b36_Click(object sender, EventArgs e)
+        {
+            if (b36.BackColor == Color.LightGray)
+                b36.BackColor = Color.BlueViolet;
+            else if (b36.BackColor == Color.BlueViolet)
+                b36.BackColor = Color.LightGray;
+        }
+
+        private void b37_Click(object sender, EventArgs e)
+        {
+            if (b37.BackColor == Color.LightGray)
+                b37.BackColor = Color.BlueViolet;
+            else if (b37.BackColor == Color.BlueViolet)
+                b37.BackColor = Color.LightGray;
+        }
+
+        private void b38_Click(object sender, EventArgs e)
+        {
+            if (b38.BackColor == Color.LightGray)
+                b38.BackColor = Color.BlueViolet;
+            else if (b38.BackColor == Color.BlueViolet)
+                b38.BackColor = Color.LightGray;
+        }
+
+        private void b39_Click(object sender, EventArgs e)
+        {
+            if (b39.BackColor == Color.LightGray)
+                b39.BackColor = Color.BlueViolet;
+            else if (b39.BackColor == Color.BlueViolet)
+                b39.BackColor = Color.LightGray;
+        }
+
+        private void b40_Click(object sender, EventArgs e)
+        {
+            if (b40.BackColor == Color.LightGray)
+                b40.BackColor = Color.BlueViolet;
+            else if (b40.BackColor == Color.BlueViolet)
+                b40.BackColor = Color.LightGray;
+        }
+
+        private void b41_Click(object sender, EventArgs e)
+        {
+            if (b41.BackColor == Color.LightGray)
+                b41.BackColor = Color.BlueViolet;
+            else if (b41.BackColor == Color.BlueViolet)
+                b41.BackColor = Color.LightGray;
+        }
+
+        private void b42_Click(object sender, EventArgs e)
+        {
+            if (b42.BackColor == Color.LightGray)
+                b42.BackColor = Color.BlueViolet;
+            else if (b42.BackColor == Color.BlueViolet)
+                b42.BackColor = Color.LightGray;
+        }
+
+        private void b43_Click(object sender, EventArgs e)
+        {
+            if (b43.BackColor == Color.LightGray)
+                b43.BackColor = Color.BlueViolet;
+            else if (b43.BackColor == Color.BlueViolet)
+                b43.BackColor = Color.LightGray;
+        }
+
+        private void b44_Click(object sender, EventArgs e)
+        {
+            if (b44.BackColor == Color.LightGray)
+                b44.BackColor = Color.BlueViolet;
+            else if (b44.BackColor == Color.BlueViolet)
+                b44.BackColor = Color.LightGray;
+        }
+
+        private void b45_Click(object sender, EventArgs e)
+        {
+            if (b45.BackColor == Color.LightGray)
+                b45.BackColor = Color.BlueViolet;
+            else if (b45.BackColor == Color.BlueViolet)
+                b45.BackColor = Color.LightGray;
+        }
+
+        private void b46_Click(object sender, EventArgs e)
+        {
+            if (b46.BackColor == Color.LightGray)
+                b46.BackColor = Color.BlueViolet;
+            else if (b46.BackColor == Color.BlueViolet)
+                b46.BackColor = Color.LightGray;
+        }
+
+        private void b47_Click(object sender, EventArgs e)
+        {
+            if (b47.BackColor == Color.LightGray)
+                b47.BackColor = Color.BlueViolet;
+            else if (b47.BackColor == Color.BlueViolet)
+                b47.BackColor = Color.LightGray;
+        }
+
+        private void b48_Click(object sender, EventArgs e)
+        {
+            if (b48.BackColor == Color.LightGray)
+                b48.BackColor = Color.BlueViolet;
+            else if (b48.BackColor == Color.BlueViolet)
+                b48.BackColor = Color.LightGray;
+        }
+
+        private void b49_Click(object sender, EventArgs e)
+        {
+            if (b49.BackColor == Color.LightGray)
+                b49.BackColor = Color.BlueViolet;
+            else if (b49.BackColor == Color.BlueViolet)
+                b49.BackColor = Color.LightGray;
+        }
+
+        private void b50_Click(object sender, EventArgs e)
+        {
+            if (b50.BackColor == Color.LightGray)
+                b50.BackColor = Color.BlueViolet;
+            else if (b50.BackColor == Color.BlueViolet)
+                b50.BackColor = Color.LightGray;
+        }
+
+        private void b51_Click(object sender, EventArgs e)
+        {
+            if (b51.BackColor == Color.LightGray)
+                b51.BackColor = Color.BlueViolet;
+            else if (b51.BackColor == Color.BlueViolet)
+                b51.BackColor = Color.LightGray;
+        }
+
+        private void b52_Click(object sender, EventArgs e)
+        {
+            if (b52.BackColor == Color.LightGray)
+                b52.BackColor = Color.BlueViolet;
+            else if (b52.BackColor == Color.BlueViolet)
+                b52.BackColor = Color.LightGray;
+        }
+
+        private void b53_Click(object sender, EventArgs e)
+        {
+            if (b53.BackColor == Color.LightGray)
+                b53.BackColor = Color.BlueViolet;
+            else if (b53.BackColor == Color.BlueViolet)
+                b53.BackColor = Color.LightGray;
+        }
+
+        private void b54_Click(object sender, EventArgs e)
+        {
+            if (b54.BackColor == Color.LightGray)
+                b54.BackColor = Color.BlueViolet;
+            else if (b54.BackColor == Color.BlueViolet)
+                b54.BackColor = Color.LightGray;
+        }
+
+        private void b55_Click(object sender, EventArgs e)
+        {
+            if (b55.BackColor == Color.LightGray)
+                b55.BackColor = Color.BlueViolet;
+            else if (b55.BackColor == Color.BlueViolet)
+                b55.BackColor = Color.LightGray;
+        }
+
+        private void b56_Click(object sender, EventArgs e)
+        {
+            if (b56.BackColor == Color.LightGray)
+                b56.BackColor = Color.BlueViolet;
+            else if (b56.BackColor == Color.BlueViolet)
+                b56.BackColor = Color.LightGray;
+        }
+
+        private void b57_Click(object sender, EventArgs e)
+        {
+            if (b57.BackColor == Color.LightGray)
+                b57.BackColor = Color.BlueViolet;
+            else if (b57.BackColor == Color.BlueViolet)
+                b57.BackColor = Color.LightGray;
+        }
+
+        //private void b03_MouseHover(object sender, EventArgs e)
+        //{
+        //if (b03.BackColor == Color.DarkMagenta)
+        //b03.Cursor = Cursors.Default;
+        //}
     }
 }

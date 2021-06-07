@@ -34,6 +34,7 @@ namespace Kino
             this.textBoxFilmDesc = new System.Windows.Forms.TextBox();
             this.buttonBuyTicketAbout = new System.Windows.Forms.Button();
             this.posterPictureBox = new System.Windows.Forms.PictureBox();
+            this.labelFilm = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.posterPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +43,7 @@ namespace Kino
             this.comboBoxSelectFilm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxSelectFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxSelectFilm.FormattingEnabled = true;
-            this.comboBoxSelectFilm.Location = new System.Drawing.Point(392, 12);
+            this.comboBoxSelectFilm.Location = new System.Drawing.Point(392, 64);
             this.comboBoxSelectFilm.Name = "comboBoxSelectFilm";
             this.comboBoxSelectFilm.Size = new System.Drawing.Size(320, 28);
             this.comboBoxSelectFilm.TabIndex = 27;
@@ -51,10 +52,10 @@ namespace Kino
             // textBoxFilmDesc
             // 
             this.textBoxFilmDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxFilmDesc.Location = new System.Drawing.Point(392, 62);
+            this.textBoxFilmDesc.Location = new System.Drawing.Point(392, 118);
             this.textBoxFilmDesc.Multiline = true;
             this.textBoxFilmDesc.Name = "textBoxFilmDesc";
-            this.textBoxFilmDesc.Size = new System.Drawing.Size(320, 337);
+            this.textBoxFilmDesc.Size = new System.Drawing.Size(320, 302);
             this.textBoxFilmDesc.TabIndex = 28;
             this.textBoxFilmDesc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxFilmDesc.Enter += new System.EventHandler(this.textBoxFilmDesc_Enter);
@@ -63,9 +64,9 @@ namespace Kino
             // 
             this.buttonBuyTicketAbout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonBuyTicketAbout.Font = new System.Drawing.Font("Bad Script", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonBuyTicketAbout.Location = new System.Drawing.Point(392, 427);
+            this.buttonBuyTicketAbout.Location = new System.Drawing.Point(392, 447);
             this.buttonBuyTicketAbout.Name = "buttonBuyTicketAbout";
-            this.buttonBuyTicketAbout.Size = new System.Drawing.Size(320, 105);
+            this.buttonBuyTicketAbout.Size = new System.Drawing.Size(320, 85);
             this.buttonBuyTicketAbout.TabIndex = 29;
             this.buttonBuyTicketAbout.Text = "Купить билет";
             this.buttonBuyTicketAbout.UseVisualStyleBackColor = true;
@@ -81,11 +82,22 @@ namespace Kino
             this.posterPictureBox.TabIndex = 26;
             this.posterPictureBox.TabStop = false;
             // 
+            // labelFilm
+            // 
+            this.labelFilm.AutoSize = true;
+            this.labelFilm.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFilm.Location = new System.Drawing.Point(477, 12);
+            this.labelFilm.Name = "labelFilm";
+            this.labelFilm.Size = new System.Drawing.Size(155, 37);
+            this.labelFilm.TabIndex = 40;
+            this.labelFilm.Text = "Выберите фильм:";
+            // 
             // AboutFilm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 546);
+            this.Controls.Add(this.labelFilm);
             this.Controls.Add(this.buttonBuyTicketAbout);
             this.Controls.Add(this.textBoxFilmDesc);
             this.Controls.Add(this.comboBoxSelectFilm);
@@ -110,5 +122,6 @@ namespace Kino
         private System.Windows.Forms.ComboBox comboBoxSelectFilm;
         private System.Windows.Forms.TextBox textBoxFilmDesc;
         private System.Windows.Forms.Button buttonBuyTicketAbout;
+        private System.Windows.Forms.Label labelFilm;
     }
 }
