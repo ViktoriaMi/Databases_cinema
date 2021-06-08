@@ -78,6 +78,7 @@ namespace Kino
             // 
             this.TabControl.Controls.Add(this.tabPage_Enter);
             this.TabControl.Controls.Add(this.tabPage_Registration);
+            this.TabControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.TabControl.Location = new System.Drawing.Point(-2, -1);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
@@ -154,7 +155,7 @@ namespace Kino
             // 
             this.clientButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.clientButton.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.clientButton.Location = new System.Drawing.Point(227, 319);
+            this.clientButton.Location = new System.Drawing.Point(227, 323);
             this.clientButton.Name = "clientButton";
             this.clientButton.Size = new System.Drawing.Size(159, 50);
             this.clientButton.TabIndex = 24;
@@ -187,7 +188,7 @@ namespace Kino
             // 
             this.adminButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.adminButton.Font = new System.Drawing.Font("Bad Script", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.adminButton.Location = new System.Drawing.Point(40, 319);
+            this.adminButton.Location = new System.Drawing.Point(40, 323);
             this.adminButton.Name = "adminButton";
             this.adminButton.Size = new System.Drawing.Size(159, 50);
             this.adminButton.TabIndex = 19;
@@ -246,7 +247,7 @@ namespace Kino
             this.tabPage_Registration.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_Registration.Size = new System.Drawing.Size(426, 504);
             this.tabPage_Registration.TabIndex = 1;
-            this.tabPage_Registration.Text = "Регистрация";
+            this.tabPage_Registration.Text = "Регистрация клиента";
             // 
             // RegistrationButton
             // 
@@ -312,7 +313,7 @@ namespace Kino
             // pictureBox12
             // 
             this.pictureBox12.Image = global::Kino.Properties.Resources.unlock;
-            this.pictureBox12.Location = new System.Drawing.Point(38, 228);
+            this.pictureBox12.Location = new System.Drawing.Point(38, 226);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(44, 44);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
