@@ -19,23 +19,30 @@ namespace Kino
         {
             InitializeComponent();
 
+            // ВКЛАДКА РЕДАКТИРОВАНИЕ РАСПИСАНИЯ
+
             dateTimePickerShedule.MinDate = DateTime.Today;
             dateTimePickerShedule.MaxDate = dateTimePickerShedule.MinDate.AddDays(29);
 
             buttonUpdate.Select();
-
-            //dataGridViewShedule.Enabled = false;
-            //dataGridViewShedule.AllowDrop = false;
-
-            //if (dataGridViewShedule.Rows.Count >= 5)
-            //dataGridViewShedule.AllowUserToAddRows = false;
-            //dataGridViewShedule.allo
 
             dataGridViewShedule.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewShedule.MultiSelect = false;
             dataGridViewShedule.BackgroundColor = Color.WhiteSmoke;
 
             outputSheduleForAdmin();
+
+            // ВКЛАДКА ДОБАВЛЕНИЕ ФИЛЬМА
+
+            comboBoxAgeLimit.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAgeLimit.MaxDropDownItems = 5;
+
+            comboBoxAgeLimit.Items.Add("0+");
+            comboBoxAgeLimit.Items.Add("6+");
+            comboBoxAgeLimit.Items.Add("12+");
+            comboBoxAgeLimit.Items.Add("16+");
+            comboBoxAgeLimit.Items.Add("18+");
+            comboBoxAgeLimit.SelectedIndex = 0;
         }
 
         public void outputSheduleForAdmin()
@@ -493,6 +500,335 @@ namespace Kino
             MessageBox.Show("Данные были успешно добавлены.", "Добавление",
                 MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "")
+            {
+                MessageBox.Show("Пожалуйста, введите название фильма!", "Добавить фильм",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+            }
+            else if (textBoxDescription.Text == "")
+            {
+                MessageBox.Show("Пожалуйста, введите описание фильма!", "Добавить фильм",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+            }
+            else if (textBoxDescription.Text.Length >= 750)
+            {
+                MessageBox.Show("Слишком большое описание фильма. Пожалуйста, введите менее 750 знаков.",
+                    "Добавить фильм",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                string filmName = textBoxName.Text;
+                string filmDescription = textBoxDescription.Text;
+                string ageLimit = comboBoxAgeLimit.Text;
+
+                DB db = new DB();
+
+                if (textBoxPeriod.Text == "" || textBoxPoster.Text == "")
+                {
+                    // ПРОВЕРИТЬ НА ПУСТОТУ ПО ОДИНОЧКЕ
+
+                    if (textBoxPeriod.Text == "")
+                    {
+                        DataTable table = new DataTable();
+                        MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                        MySqlCommand myCom = new MySqlCommand("SELECT * FROM фильм WHERE Название = @name", db.getConnection());
+
+                        myCom.Parameters.Add("@name", MySqlDbType.VarChar).Value = filmName;
+
+                        dataAdapter.SelectCommand = myCom;
+                        dataAdapter.Fill(table);
+
+                        if (table.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Фильм с таким названием уже существует!", "Добавить фильм",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                        }
+                        else
+                        {
+                            // делаем запрос на добавление в БД Названия, Описания, Возраста, Постера
+                            MySqlCommand myCom2 =
+                                new MySqlCommand("INSERT INTO Фильм (Название, Описание, Возрастное_огр, Постер) VALUES (@name, @desc, @age, @poster);",
+                                db.getConnection());
+
+                            string poster = textBoxPoster.Text;
+
+                            myCom2.Parameters.AddWithValue("name", filmName);
+                            myCom2.Parameters.AddWithValue("desc", filmDescription);
+                            myCom2.Parameters.AddWithValue("age", ageLimit);
+                            myCom2.Parameters.AddWithValue("poster", poster);
+
+                            db.OpenConnection();
+
+                            try
+                            {
+                                if (myCom2.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Фильм был успешно добавлен.", "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                        MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+
+                                    textBoxName.Text = "";
+                                    textBoxDescription.Text = "";
+                                    textBoxPeriod.Text = "";
+                                    textBoxPoster.Text = "";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Не удалось добавить фильм.", "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+                                }
+                            }
+                            catch (Exception e1)
+                            {
+                                MessageBox.Show(e1.Message, "Добавить фильм",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1);
+                            }
+                        }
+                    }
+                    else if (textBoxPoster.Text == "")
+                    {
+                        DataTable table = new DataTable();
+                        MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                        MySqlCommand myCom = new MySqlCommand("SELECT * FROM фильм WHERE Название = @name", db.getConnection());
+
+                        myCom.Parameters.Add("@name", MySqlDbType.VarChar).Value = filmName;
+
+                        dataAdapter.SelectCommand = myCom;
+                        dataAdapter.Fill(table);
+
+                        if (table.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Фильм с таким названием уже существует!", "Добавить фильм",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                        }
+                        else
+                        {
+                            // делаем запрос на добавление в БД Названия, Описания, Возраста, Продолжительности
+                            string strPeriod = textBoxPeriod.Text;
+                            int intPeriod;
+                            if (int.TryParse(strPeriod, out intPeriod))
+                            {
+                                if (intPeriod >= 60 && intPeriod <= 130)
+                                {
+                                    MySqlCommand myCom2 =
+                                        new MySqlCommand("INSERT INTO Фильм (Название, Описание, Возрастное_огр, Продолжительность) VALUES (@name, @desc, @age, @period);",
+                                        db.getConnection());
+
+                                    myCom2.Parameters.AddWithValue("name", filmName);
+                                    myCom2.Parameters.AddWithValue("desc", filmDescription);
+                                    myCom2.Parameters.AddWithValue("age", ageLimit);
+                                    myCom2.Parameters.AddWithValue("period", strPeriod);
+
+                                    db.OpenConnection();
+
+                                    try
+                                    {
+                                        if (myCom2.ExecuteNonQuery() == 1)
+                                        {
+                                            MessageBox.Show("Фильм был успешно добавлен.", "Добавить фильм",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                                MessageBoxDefaultButton.Button1);
+                                            db.CloseConnection();
+
+                                            textBoxName.Text = "";
+                                            textBoxDescription.Text = "";
+                                            textBoxPeriod.Text = "";
+                                            textBoxPoster.Text = "";
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Не удалось добавить фильм.", "Добавить фильм",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                                MessageBoxDefaultButton.Button1);
+                                                db.CloseConnection();
+                                        }
+                                    }
+                                    catch (Exception e1)
+                                    {
+                                        MessageBox.Show(e1.Message, "Добавить фильм",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                            MessageBoxDefaultButton.Button1);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Пожалуйста, введите продолжительность фильма от 60 до 130 минут.",
+                                    "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Пожалуйста, введите продолжительность фильма в виде числа. " +
+                                    "Продолжительность должна быть от 60 до 130 минут.", "Добавить фильм",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1);
+                                textBoxPeriod.Text = "";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        DataTable table = new DataTable();
+                        MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                        MySqlCommand myCom = new MySqlCommand("SELECT * FROM фильм WHERE Название = @name", db.getConnection());
+
+                        myCom.Parameters.Add("@name", MySqlDbType.VarChar).Value = filmName;
+
+                        dataAdapter.SelectCommand = myCom;
+                        dataAdapter.Fill(table);
+
+                        if (table.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Фильм с таким названием уже существует!", "Добавить фильм",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                        }
+                        else
+                        {
+                            MySqlCommand myCom2 =
+                                new MySqlCommand("INSERT INTO Фильм (Название, Описание, Возрастное_огр) VALUES (@name, @desc, @age);",
+                                db.getConnection());
+
+                            myCom2.Parameters.AddWithValue("name", filmName);
+                            myCom2.Parameters.AddWithValue("desc", filmDescription);
+                            myCom2.Parameters.AddWithValue("age", ageLimit);
+
+                            db.OpenConnection();
+
+                            try
+                            {
+                                if (myCom2.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Фильм был успешно добавлен.", "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                        MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+
+                                    textBoxName.Text = "";
+                                    textBoxDescription.Text = "";
+                                    textBoxPeriod.Text = "";
+                                    textBoxPoster.Text = "";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Не удалось добавить фильм.", "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+                                }
+                            }
+                            catch (Exception e1)
+                            {
+                                MessageBox.Show(e1.Message, "Добавить фильм",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string strPeriod = textBoxPeriod.Text;
+                    int intPeriod;
+                    if (int.TryParse(strPeriod, out intPeriod))
+                    {
+                        if (intPeriod >= 60 && intPeriod <= 130)
+                        {
+                            DataTable table = new DataTable();
+                            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                            MySqlCommand myCom = new MySqlCommand("SELECT * FROM фильм WHERE Название = @name", db.getConnection());
+
+                            myCom.Parameters.Add("@name", MySqlDbType.VarChar).Value = filmName;
+
+                            dataAdapter.SelectCommand = myCom;
+                            dataAdapter.Fill(table);
+
+                            if (table.Rows.Count > 0)
+                            {
+                                MessageBox.Show("Фильм с таким названием уже существует!", "Добавить фильм",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1);
+                            }
+                            else
+                            {
+                                string poster = String.Concat(textBoxPoster.Text, ".jpg");
+
+                                MySqlCommand myCom2 =
+                                new MySqlCommand("INSERT INTO Фильм (Название, Описание, Возрастное_огр, Продолжительность, Постер) VALUES (@name, @desc, @age, @period, @poster);",
+                                db.getConnection());
+
+                                myCom2.Parameters.AddWithValue("name", filmName);
+                                myCom2.Parameters.AddWithValue("desc", filmDescription);
+                                myCom2.Parameters.AddWithValue("age", ageLimit);
+                                myCom2.Parameters.AddWithValue("period", intPeriod);
+                                myCom2.Parameters.AddWithValue("poster", poster);
+
+                                db.OpenConnection();
+
+                                try
+                                {
+                                    if (myCom2.ExecuteNonQuery() == 1)
+                                    {
+                                        MessageBox.Show("Фильм был успешно добавлен.", "Добавить фильм",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                            MessageBoxDefaultButton.Button1);
+                                        db.CloseConnection();
+
+                                        textBoxName.Text = "";
+                                        textBoxDescription.Text = "";
+                                        textBoxPeriod.Text = "";
+                                        textBoxPoster.Text = "";
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Не удалось добавить фильм.", "Добавить фильм",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                            MessageBoxDefaultButton.Button1);
+                                        db.CloseConnection();
+                                    }
+                                }
+                                catch (Exception e1)
+                                {
+                                    MessageBox.Show(e1.Message, "Добавить фильм",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пожалуйста, введите продолжительность фильма от 60 до 130 минут.", 
+                                "Добавить фильм",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пожалуйста, введите продолжительность фильма в виде числа. " +
+                            "Продолжительность должна быть от 60 до 130 минут.", "Добавить фильм",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                        textBoxPeriod.Text = "";
+                    }
+                }
+            }
         }
     }
 }
