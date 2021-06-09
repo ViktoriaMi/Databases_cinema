@@ -60,12 +60,21 @@ namespace Kino
             this.textBoxPoster = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelChooseFilm = new System.Windows.Forms.Label();
+            this.comboBoxChooseFilm = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridViewRemoveFilm = new System.Windows.Forms.DataGridView();
+            this.buttonRemoveFilm = new System.Windows.Forms.Button();
+            this.buttonUpdChanges = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageEditShedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShedule)).BeginInit();
             this.tabPageAddFilm.SuspendLayout();
+            this.tabPageEditFilm.SuspendLayout();
+            this.tabPageDeleteFilm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRemoveFilm)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -192,6 +201,7 @@ namespace Kino
             // dataGridViewShedule
             // 
             this.dataGridViewShedule.AllowUserToAddRows = false;
+            this.dataGridViewShedule.AllowUserToDeleteRows = false;
             this.dataGridViewShedule.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewShedule.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -259,6 +269,9 @@ namespace Kino
             // tabPageEditFilm
             // 
             this.tabPageEditFilm.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageEditFilm.Controls.Add(this.comboBoxChooseFilm);
+            this.tabPageEditFilm.Controls.Add(this.labelChooseFilm);
+            this.tabPageEditFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPageEditFilm.Location = new System.Drawing.Point(4, 22);
             this.tabPageEditFilm.Name = "tabPageEditFilm";
             this.tabPageEditFilm.Padding = new System.Windows.Forms.Padding(3);
@@ -269,6 +282,11 @@ namespace Kino
             // tabPageDeleteFilm
             // 
             this.tabPageDeleteFilm.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageDeleteFilm.Controls.Add(this.buttonUpdChanges);
+            this.tabPageDeleteFilm.Controls.Add(this.buttonRemoveFilm);
+            this.tabPageDeleteFilm.Controls.Add(this.dataGridViewRemoveFilm);
+            this.tabPageDeleteFilm.Controls.Add(this.label3);
+            this.tabPageDeleteFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPageDeleteFilm.Location = new System.Drawing.Point(4, 22);
             this.tabPageDeleteFilm.Name = "tabPageDeleteFilm";
             this.tabPageDeleteFilm.Padding = new System.Windows.Forms.Padding(3);
@@ -392,6 +410,64 @@ namespace Kino
             this.label2.TabIndex = 12;
             this.label2.Text = ".jpg";
             // 
+            // labelChooseFilm
+            // 
+            this.labelChooseFilm.AutoSize = true;
+            this.labelChooseFilm.Location = new System.Drawing.Point(29, 23);
+            this.labelChooseFilm.Name = "labelChooseFilm";
+            this.labelChooseFilm.Size = new System.Drawing.Size(113, 15);
+            this.labelChooseFilm.TabIndex = 0;
+            this.labelChooseFilm.Text = "Выберите фильм:";
+            // 
+            // comboBoxChooseFilm
+            // 
+            this.comboBoxChooseFilm.FormattingEnabled = true;
+            this.comboBoxChooseFilm.Location = new System.Drawing.Point(32, 54);
+            this.comboBoxChooseFilm.Name = "comboBoxChooseFilm";
+            this.comboBoxChooseFilm.Size = new System.Drawing.Size(170, 23);
+            this.comboBoxChooseFilm.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(77, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(212, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Выберите фильм, кликнув по нему:";
+            // 
+            // dataGridViewRemoveFilm
+            // 
+            this.dataGridViewRemoveFilm.AllowUserToAddRows = false;
+            this.dataGridViewRemoveFilm.AllowUserToDeleteRows = false;
+            this.dataGridViewRemoveFilm.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewRemoveFilm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRemoveFilm.Location = new System.Drawing.Point(80, 81);
+            this.dataGridViewRemoveFilm.Name = "dataGridViewRemoveFilm";
+            this.dataGridViewRemoveFilm.ReadOnly = true;
+            this.dataGridViewRemoveFilm.Size = new System.Drawing.Size(313, 260);
+            this.dataGridViewRemoveFilm.TabIndex = 1;
+            // 
+            // buttonRemoveFilm
+            // 
+            this.buttonRemoveFilm.Location = new System.Drawing.Point(445, 109);
+            this.buttonRemoveFilm.Name = "buttonRemoveFilm";
+            this.buttonRemoveFilm.Size = new System.Drawing.Size(220, 72);
+            this.buttonRemoveFilm.TabIndex = 2;
+            this.buttonRemoveFilm.Text = "Удалить фильм";
+            this.buttonRemoveFilm.UseVisualStyleBackColor = true;
+            this.buttonRemoveFilm.Click += new System.EventHandler(this.buttonRemoveFilm_Click);
+            // 
+            // buttonUpdChanges
+            // 
+            this.buttonUpdChanges.Location = new System.Drawing.Point(445, 227);
+            this.buttonUpdChanges.Name = "buttonUpdChanges";
+            this.buttonUpdChanges.Size = new System.Drawing.Size(220, 72);
+            this.buttonUpdChanges.TabIndex = 3;
+            this.buttonUpdChanges.Text = "Обновить данные";
+            this.buttonUpdChanges.UseVisualStyleBackColor = true;
+            this.buttonUpdChanges.Click += new System.EventHandler(this.buttonUpdChanges_Click);
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,6 +489,11 @@ namespace Kino
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShedule)).EndInit();
             this.tabPageAddFilm.ResumeLayout(false);
             this.tabPageAddFilm.PerformLayout();
+            this.tabPageEditFilm.ResumeLayout(false);
+            this.tabPageEditFilm.PerformLayout();
+            this.tabPageDeleteFilm.ResumeLayout(false);
+            this.tabPageDeleteFilm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRemoveFilm)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -448,5 +529,11 @@ namespace Kino
         private System.Windows.Forms.TextBox textBoxPoster;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelChooseFilm;
+        private System.Windows.Forms.ComboBox comboBoxChooseFilm;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridViewRemoveFilm;
+        private System.Windows.Forms.Button buttonUpdChanges;
+        private System.Windows.Forms.Button buttonRemoveFilm;
     }
 }

@@ -43,6 +43,24 @@ namespace Kino
             comboBoxAgeLimit.Items.Add("16+");
             comboBoxAgeLimit.Items.Add("18+");
             comboBoxAgeLimit.SelectedIndex = 0;
+
+            // ВКЛАДКА РЕДАКТИРОВАНИЕ ФИЛЬМА
+            comboBoxChooseFilm.DropDownStyle = ComboBoxStyle.DropDownList;
+            //comboBoxChooseFilm.MaxDropDownItems = 9;
+
+            // ВКЛАДКА УДАЛЕНИЕ ФИЛЬМА
+            fillingGridForRemove();
+            dataGridViewRemoveFilm.BackgroundColor = Color.WhiteSmoke;
+            dataGridViewRemoveFilm.ScrollBars = ScrollBars.Vertical;
+            dataGridViewRemoveFilm.AllowDrop = false;
+            dataGridViewRemoveFilm.AllowUserToResizeColumns = false;
+            foreach (DataGridViewColumn column in dataGridViewRemoveFilm.Columns)
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            dataGridViewRemoveFilm.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewRemoveFilm.MultiSelect = false;
+            dataGridViewRemoveFilm.Columns[0].Visible = false;
+            dataGridViewRemoveFilm.Columns[1].Width = 270;
+            dataGridViewRemoveFilm.Height = 260;
         }
 
         public void outputSheduleForAdmin()
@@ -66,12 +84,10 @@ namespace Kino
 
             dataGridViewShedule.AllowUserToResizeRows = false;
 
-            //dataGridViewShedule.Columns[0].Width = 35;
             dataGridViewShedule.Columns[1].Width = 140;
             dataGridViewShedule.Columns[3].Width = 60;
             dataGridViewShedule.Columns[4].Width = 85;
 
-            //dataGridViewShedule.Columns[0].HeaderText = "№";
             dataGridViewShedule.Columns[1].HeaderText = "Название фильма";
             dataGridViewShedule.Columns[4].HeaderText = "Цена, руб";
 
@@ -828,6 +844,66 @@ namespace Kino
                         textBoxPeriod.Text = "";
                     }
                 }
+            }
+        }
+
+        public void fillingGridForRemove()
+        {
+            DB db = new DB();
+
+            MySqlCommand myCom = new MySqlCommand("SELECT №_фильма, Название FROM Фильм;",
+                db.getConnection());
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            db.OpenConnection();
+
+            dataAdapter.SelectCommand = myCom;
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+            dataGridViewRemoveFilm.DataSource = table;
+
+            db.CloseConnection();
+        }
+
+        private void buttonUpdChanges_Click(object sender, EventArgs e)
+        {
+            fillingGridForRemove();
+        }
+
+        private void buttonRemoveFilm_Click(object sender, EventArgs e)
+        {
+            string[] str = new string[dataGridViewRemoveFilm.Columns.Count];
+
+            // получаем номер выделенной строки
+            int numStr = dataGridViewRemoveFilm.CurrentCell.RowIndex;
+
+            // кладем в массив строк выделенную строку в DataGridView
+            for (int i = 0; i < dataGridViewRemoveFilm.ColumnCount; i++)
+                str[i] = dataGridViewRemoveFilm[i, numStr].Value.ToString();
+
+            try
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить фильм? " +
+                    "Это действие нельзя будет отменить.",
+                    "Удаление", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    DB db = new DB();
+                    MySqlCommand myCom = new MySqlCommand("DELETE FROM Фильм WHERE №_фильма = @id",
+                        db.getConnection());
+                    myCom.Parameters.AddWithValue("id", str[0]);
+
+                    db.OpenConnection();
+                    myCom.ExecuteNonQuery();
+                    db.CloseConnection();
+
+                    MessageBox.Show("Фильм был успешно удален.", "Удаление",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show(e1.Message);
             }
         }
     }
