@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS Сеанс_дата (
 
 CREATE TABLE IF NOT EXISTS Сеанс_время (
 	id_сеанс_время INT NOT NULL AUTO_INCREMENT UNIQUE,
-    id_сеанс_дата INT NOT NULL,
+    id_сеанс_дата INT NULL,
     Время TIME NULL,
     PRIMARY KEY (id_сеанс_время),
     INDEX fk_Сеанс_время_дата (id_сеанс_дата ASC) VISIBLE,
@@ -514,7 +514,7 @@ DROP PROCEDURE IF EXISTS sheduleForAdmin;
 DELIMITER //
 CREATE PROCEDURE `sheduleForAdmin` (IN yDate DATE)
 BEGIN
-	SELECT фильм.№_фильма, фильм.Название, Сеанс_время.Время, Билет.Цена
+	SELECT фильм.№_фильма, фильм.Название, Сеанс_время.id_сеанс_время, Сеанс_время.Время, Билет.Цена
 	FROM Фильм
 	JOIN Сеанс_дата
 		ON Фильм.№_фильма = Сеанс_дата.№_фильма
@@ -527,19 +527,30 @@ BEGIN
 	ORDER BY Фильм.№_фильма;
 END //
 DELIMITER ;
-#CALL sheduleForAdmin("2021-06-08");
+# CALL sheduleForAdmin("2021-06-09");
 
 # изменить название фильма в базе по его id
 DROP PROCEDURE IF EXISTS updateFilm;
 DELIMITER //
 CREATE PROCEDURE `updateFilm` (IN numFilm INT, IN nameFilm VARCHAR(30))
 BEGIN
-	UPDATE Фильм 
-		SET Название = nameFilm 
+	UPDATE Фильм
+		SET Название = nameFilm
 			WHERE №_фильма = numFilm;
 END //
 DELIMITER ;
 #CALL updateFilm(1, "Кукарача");
 
+# изменить время показа фильма по id_сеанс_время
+-- DROP PROCEDURE IF EXISTS updateTimeFilm;
+-- DELIMITER //
+-- CREATE PROCEDURE `updateTimeFilm` (IN numTime INT, IN newTime TIME)
+-- BEGIN
+-- 	UPDATE Сеанс_время
+-- 		SET Время = newTime
+-- 			WHERE id_сеанс_время = numTime;
+-- END //
+-- DELIMITER ;
+#CALL updateTimeFilm(1, "9:25");
 
 #SELECT Название FROM Фильм;

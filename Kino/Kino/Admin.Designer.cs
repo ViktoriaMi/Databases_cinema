@@ -34,8 +34,11 @@ namespace Kino
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.buttonAddSave = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonDeleteSave = new System.Windows.Forms.Button();
             this.buttonSaveEdit = new System.Windows.Forms.Button();
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
@@ -45,6 +48,8 @@ namespace Kino
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShedule)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,14 +60,17 @@ namespace Kino
             this.tabControl1.Location = new System.Drawing.Point(1, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(819, 423);
+            this.tabControl1.Size = new System.Drawing.Size(777, 404);
             this.tabControl1.TabIndex = 34;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.pictureBox3);
+            this.tabPage1.Controls.Add(this.buttonAddSave);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.buttonDeleteSave);
             this.tabPage1.Controls.Add(this.buttonSaveEdit);
-            this.tabPage1.Controls.Add(this.buttonDelete);
             this.tabPage1.Controls.Add(this.buttonEdit);
             this.tabPage1.Controls.Add(this.buttonAdd);
             this.tabPage1.Controls.Add(this.buttonUpdate);
@@ -72,62 +80,93 @@ namespace Kino
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(811, 397);
+            this.tabPage1.Size = new System.Drawing.Size(769, 378);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Редактирование расписания";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Kino.Properties.Resources.arrow;
+            this.pictureBox3.Location = new System.Drawing.Point(543, 106);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 46;
+            this.pictureBox3.TabStop = false;
+            // 
+            // buttonAddSave
+            // 
+            this.buttonAddSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddSave.Location = new System.Drawing.Point(586, 98);
+            this.buttonAddSave.Name = "buttonAddSave";
+            this.buttonAddSave.Size = new System.Drawing.Size(143, 46);
+            this.buttonAddSave.TabIndex = 45;
+            this.buttonAddSave.Text = "Сохранить изменения";
+            this.buttonAddSave.UseVisualStyleBackColor = true;
+            this.buttonAddSave.Click += new System.EventHandler(this.buttonAddSave_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Kino.Properties.Resources.arrow;
+            this.pictureBox1.Location = new System.Drawing.Point(543, 173);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 43;
+            this.pictureBox1.TabStop = false;
+            // 
+            // buttonDeleteSave
+            // 
+            this.buttonDeleteSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDeleteSave.Location = new System.Drawing.Point(386, 229);
+            this.buttonDeleteSave.Name = "buttonDeleteSave";
+            this.buttonDeleteSave.Size = new System.Drawing.Size(143, 46);
+            this.buttonDeleteSave.TabIndex = 42;
+            this.buttonDeleteSave.Text = "Удалить сеанс";
+            this.buttonDeleteSave.UseVisualStyleBackColor = true;
+            this.buttonDeleteSave.Click += new System.EventHandler(this.buttonDeleteSave_Click);
             // 
             // buttonSaveEdit
             // 
             this.buttonSaveEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSaveEdit.Location = new System.Drawing.Point(569, 167);
+            this.buttonSaveEdit.Location = new System.Drawing.Point(586, 165);
             this.buttonSaveEdit.Name = "buttonSaveEdit";
-            this.buttonSaveEdit.Size = new System.Drawing.Size(164, 46);
+            this.buttonSaveEdit.Size = new System.Drawing.Size(143, 46);
             this.buttonSaveEdit.TabIndex = 41;
             this.buttonSaveEdit.Text = "Сохранить изменения";
             this.buttonSaveEdit.UseVisualStyleBackColor = true;
             this.buttonSaveEdit.Click += new System.EventHandler(this.buttonSaveEdit_Click);
             // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDelete.Location = new System.Drawing.Point(387, 230);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(162, 46);
-            this.buttonDelete.TabIndex = 40;
-            this.buttonDelete.Text = "Удалить";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
             // buttonEdit
             // 
             this.buttonEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonEdit.Location = new System.Drawing.Point(387, 167);
+            this.buttonEdit.Location = new System.Drawing.Point(386, 165);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(162, 46);
+            this.buttonEdit.Size = new System.Drawing.Size(143, 46);
             this.buttonEdit.TabIndex = 39;
-            this.buttonEdit.Text = "Редактировать";
+            this.buttonEdit.Text = "Редактировать сеанс";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonAdd
             // 
             this.buttonAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAdd.Location = new System.Drawing.Point(387, 99);
+            this.buttonAdd.Location = new System.Drawing.Point(386, 98);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(162, 46);
+            this.buttonAdd.Size = new System.Drawing.Size(143, 46);
             this.buttonAdd.TabIndex = 38;
-            this.buttonAdd.Text = "Добавить";
+            this.buttonAdd.Text = "Добавить сеанс";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonUpdate
             // 
             this.buttonUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonUpdate.Location = new System.Drawing.Point(35, 294);
+            this.buttonUpdate.Location = new System.Drawing.Point(35, 297);
             this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(162, 36);
+            this.buttonUpdate.Size = new System.Drawing.Size(326, 46);
             this.buttonUpdate.TabIndex = 37;
-            this.buttonUpdate.Text = "Обновить";
+            this.buttonUpdate.Text = "Обновить данные";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
@@ -157,12 +196,14 @@ namespace Kino
             this.dataGridViewShedule.Name = "dataGridViewShedule";
             this.dataGridViewShedule.Size = new System.Drawing.Size(326, 177);
             this.dataGridViewShedule.TabIndex = 36;
+            this.dataGridViewShedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewShedule_CellContentClick);
+            this.dataGridViewShedule.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewShedule_CellValueChanged);
             this.dataGridViewShedule.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewShedule_DataError);
             // 
             // dateTimePickerShedule
             // 
             this.dateTimePickerShedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerShedule.Location = new System.Drawing.Point(232, 36);
+            this.dateTimePickerShedule.Location = new System.Drawing.Point(197, 36);
             this.dateTimePickerShedule.MinDate = new System.DateTime(2021, 6, 6, 0, 0, 0, 0);
             this.dateTimePickerShedule.Name = "dateTimePickerShedule";
             this.dateTimePickerShedule.Size = new System.Drawing.Size(164, 24);
@@ -186,7 +227,7 @@ namespace Kino
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(811, 397);
+            this.tabPage2.Size = new System.Drawing.Size(769, 378);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Редактирование фильма";
             // 
@@ -194,7 +235,7 @@ namespace Kino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 425);
+            this.ClientSize = new System.Drawing.Size(779, 406);
             this.Controls.Add(this.tabControl1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -206,6 +247,8 @@ namespace Kino
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewShedule)).EndInit();
             this.ResumeLayout(false);
 
@@ -215,7 +258,6 @@ namespace Kino
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonUpdate;
@@ -224,5 +266,9 @@ namespace Kino
         private System.Windows.Forms.Label labelChoiceDate;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button buttonSaveEdit;
+        private System.Windows.Forms.Button buttonDeleteSave;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonAddSave;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

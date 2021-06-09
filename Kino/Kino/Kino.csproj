@@ -126,6 +126,7 @@
     <Content Include="imgs\3.jpg" />
     <Content Include="imgs\4.jpg" />
     <Content Include="imgs\5.jpg" />
+    <None Include="imgs\arrow.png" />
     <Content Include="imgs\email.png" />
     <Content Include="imgs\icon.ico" />
     <Content Include="imgs\kinolenta.png" />
