@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS Сеанс_дата (
     CONSTRAINT fk_Сеанс_дата_фильм
 	FOREIGN KEY (№_фильма)
 	REFERENCES Фильм (№_фильма)
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS Сеанс_время (
     CONSTRAINT fk_Сеанс_время
 	FOREIGN KEY (id_сеанс_дата)
 	REFERENCES Сеанс_дата (id_сеанс_дата)
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS Билет (
     CONSTRAINT fk_Билет_сеансВремя
 	FOREIGN KEY (id_сеанс_время)
 	REFERENCES Сеанс_время (id_сеанс_время)
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS Покупка (
 	ON UPDATE CASCADE,
     FOREIGN KEY (№_билета)
 	REFERENCES Билет (№_билета)
-	ON DELETE RESTRICT
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -198,7 +198,6 @@ INSERT INTO Фильм (Название, Описание, Возрастное
 # триггер по добавлению в сеанс_время
 DELIMITER $$
 DROP TRIGGER IF EXISTS after_insert_time$$
-
 CREATE
 	TRIGGER after_insert_time AFTER INSERT
 	ON Сеанс_время
@@ -216,7 +215,6 @@ DELIMITER ;
 # триггер по добавлению в сеанс_дату
 DELIMITER $$
 DROP TRIGGER IF EXISTS after_insert_date$$
-
 CREATE
 	TRIGGER after_insert_date AFTER INSERT 
 	ON Сеанс_дата
@@ -244,17 +242,17 @@ DELIMITER ;
 -- DELIMITER ;
 
 INSERT INTO Сеанс_дата (№_фильма, Дата) VALUES
-(1, "2021-06-07"),
-(2, "2021-06-07"),
-(4, "2021-06-07"),
+(1, "2021-06-09"),
+(2, "2021-06-09"),
+(4, "2021-06-09"),
 
-(1, "2021-06-08"),
-(2, "2021-06-08"),
-(3, "2021-06-08"),
+(1, "2021-06-10"),
+(2, "2021-06-10"),
+(3, "2021-06-10"),
 
-(3, "2021-06-09"),
-(5, "2021-06-09"),
-(6, "2021-06-09");
+(3, "2021-06-11"),
+(5, "2021-06-11"),
+(6, "2021-06-11");
 
 DROP PROCEDURE update_сеанс_время;
 DELIMITER //
@@ -328,7 +326,7 @@ CREATE VIEW raspisanie AS SELECT фильм.Название, фильм.воз�
 	WHERE Сеанс_дата.дата >= curdate() AND Сеанс_дата.дата <= DATE_ADD(curdate(), INTERVAL 2 DAY)
     GROUP BY сеанс_время.время
 	ORDER BY Сеанс_дата.Дата;
-# SELECT * FROM raspisanie;
+#SELECT * FROM raspisanie;
 
 # выбираем все фильмы, доступные на текущую дату и еще 2 дня
 DROP VIEW IF EXISTS movieSelection;
@@ -339,6 +337,16 @@ CREATE VIEW movieSelection AS SELECT фильм.Название
 	WHERE Сеанс_дата.дата >= curdate() AND Сеанс_дата.дата <= DATE_ADD(curdate(), INTERVAL 2 DAY)
     GROUP BY фильм.Название;
 #SELECT * FROM movieSelection;
+
+# выбираем все фильмы, доступные на текущую дату
+DROP VIEW IF EXISTS movieSelectionToday;
+CREATE VIEW movieSelectionToday AS SELECT фильм.Название
+	FROM Фильм
+	JOIN Сеанс_дата
+		ON Фильм.№_фильма = Сеанс_дата.№_фильма
+	WHERE Сеанс_дата.дата = curdate()
+    GROUP BY фильм.Название;
+#SELECT * FROM movieSelectionToday;
 
 DROP VIEW IF EXISTS raspisanieToday;
 CREATE VIEW raspisanieToday AS SELECT фильм.Название, фильм.возрастное_огр AS Возраст, фильм.Продолжительность, Сеанс_время.Время, Билет.Цена
@@ -465,3 +473,73 @@ BEGIN
 END //
 DELIMITER ;
 #CALL selectDescAndPoster("Амнезия");
+
+# получаем фильмы, доступные на определенную дату
+DROP PROCEDURE IF EXISTS selectFilmByDate;
+DELIMITER //
+CREATE PROCEDURE `selectFilmByDate` (IN дата DATE)
+BEGIN
+	SELECT фильм.Название
+	FROM Фильм
+	JOIN Сеанс_дата
+		ON Фильм.№_фильма = Сеанс_дата.№_фильма
+	WHERE Сеанс_дата.дата = дата
+    GROUP BY фильм.Название;
+END //
+DELIMITER ;
+#CALL selectFilmByDate("2021-06-08");
+
+# расписание для админа
+-- DROP PROCEDURE IF EXISTS sheduleForAdmin;
+-- DELIMITER //
+-- CREATE PROCEDURE `sheduleForAdmin` (IN дата DATE)
+-- BEGIN
+-- 	SELECT фильм.Название, Сеанс_время.Время, Билет.Цена
+-- 	FROM Сеанс_время
+--     JOIN Сеанс_дата
+-- 		ON Сеанс_дата.id_сеанс_дата = Сеанс_время.id_сеанс_время
+-- 	JOIN Фильм
+-- 		ON Фильм.№_фильма = Сеанс_дата.№_фильма
+-- 	JOIN Билет
+-- 		ON Сеанс_время.id_сеанс_время = Билет.id_сеанс_время
+-- 	WHERE Сеанс_дата.дата = дата;
+--     #GROUP BY сеанс_время.время
+--     #ORDER BY Фильм.Название;
+-- END //
+-- DELIMITER ;
+#CALL sheduleForAdmin("2021-06-08");
+
+# расписание для админа
+DROP PROCEDURE IF EXISTS sheduleForAdmin;
+DELIMITER //
+CREATE PROCEDURE `sheduleForAdmin` (IN yDate DATE)
+BEGIN
+	SELECT фильм.№_фильма, фильм.Название, Сеанс_время.Время, Билет.Цена
+	FROM Фильм
+	JOIN Сеанс_дата
+		ON Фильм.№_фильма = Сеанс_дата.№_фильма
+	JOIN Сеанс_время
+		ON Сеанс_дата.id_сеанс_дата = Сеанс_время.id_сеанс_дата
+	JOIN Билет
+		ON Сеанс_время.id_сеанс_время = Билет.id_сеанс_время
+	WHERE Сеанс_дата.дата = yDate
+    GROUP BY сеанс_время.время
+	ORDER BY Фильм.№_фильма;
+END //
+DELIMITER ;
+#CALL sheduleForAdmin("2021-06-08");
+
+# изменить название фильма в базе по его id
+DROP PROCEDURE IF EXISTS updateFilm;
+DELIMITER //
+CREATE PROCEDURE `updateFilm` (IN numFilm INT, IN nameFilm VARCHAR(30))
+BEGIN
+	UPDATE Фильм 
+		SET Название = nameFilm 
+			WHERE №_фильма = numFilm;
+END //
+DELIMITER ;
+#CALL updateFilm(1, "Кукарача");
+
+
+#SELECT Название FROM Фильм;
