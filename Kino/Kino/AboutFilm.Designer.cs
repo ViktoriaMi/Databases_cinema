@@ -75,7 +75,7 @@ namespace Kino
             // 
             // posterPictureBox
             // 
-            this.posterPictureBox.Image = global::Kino.Properties.Resources._1;
+            this.posterPictureBox.Image = global::Kino.Properties.Resources.popcorn;
             this.posterPictureBox.Location = new System.Drawing.Point(12, 12);
             this.posterPictureBox.Name = "posterPictureBox";
             this.posterPictureBox.Size = new System.Drawing.Size(355, 520);

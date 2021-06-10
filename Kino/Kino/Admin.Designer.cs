@@ -33,6 +33,7 @@ namespace Kino
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageEditShedule = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.buttonAddSave = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -45,28 +46,41 @@ namespace Kino
             this.dateTimePickerShedule = new System.Windows.Forms.DateTimePicker();
             this.labelChoiceDate = new System.Windows.Forms.Label();
             this.tabPageAddFilm = new System.Windows.Forms.TabPage();
-            this.tabPageEditFilm = new System.Windows.Forms.TabPage();
-            this.tabPageDeleteFilm = new System.Windows.Forms.TabPage();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelDescription = new System.Windows.Forms.Label();
-            this.labelAgeLimit = new System.Windows.Forms.Label();
-            this.labelPeriod = new System.Windows.Forms.Label();
-            this.labelPoster = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.comboBoxAgeLimit = new System.Windows.Forms.ComboBox();
-            this.textBoxPeriod = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxPoster = new System.Windows.Forms.TextBox();
-            this.buttonSave = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelChooseFilm = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxPoster = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPeriod = new System.Windows.Forms.TextBox();
+            this.comboBoxAgeLimit = new System.Windows.Forms.ComboBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.labelPoster = new System.Windows.Forms.Label();
+            this.labelPeriod = new System.Windows.Forms.Label();
+            this.labelAgeLimit = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.tabPageEditFilm = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxNewName = new System.Windows.Forms.TextBox();
+            this.checkBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.buttonSaveEditing = new System.Windows.Forms.Button();
+            this.textBoxEditPoster = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxEditPeriod = new System.Windows.Forms.TextBox();
+            this.comboBoxEditAge = new System.Windows.Forms.ComboBox();
+            this.textBoxEditDescription = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.comboBoxChooseFilm = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dataGridViewRemoveFilm = new System.Windows.Forms.DataGridView();
-            this.buttonRemoveFilm = new System.Windows.Forms.Button();
+            this.labelChooseFilm = new System.Windows.Forms.Label();
+            this.tabPageDeleteFilm = new System.Windows.Forms.TabPage();
             this.buttonUpdChanges = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.buttonRemoveFilm = new System.Windows.Forms.Button();
+            this.dataGridViewRemoveFilm = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageEditShedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -112,6 +126,15 @@ namespace Kino
             this.tabPageEditShedule.Size = new System.Drawing.Size(749, 378);
             this.tabPageEditShedule.TabIndex = 0;
             this.tabPageEditShedule.Text = "Редактирование расписания";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(293, 15);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Выберите строку для изменения, кликнув по ней:";
             // 
             // pictureBox3
             // 
@@ -269,9 +292,140 @@ namespace Kino
             this.tabPageAddFilm.TabIndex = 1;
             this.tabPageAddFilm.Text = "Добавление фильма";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(235, 252);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = ".jpg";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSave.Location = new System.Drawing.Point(48, 294);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(216, 55);
+            this.buttonSave.TabIndex = 11;
+            this.buttonSave.Text = "Добавить фильм";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // textBoxPoster
+            // 
+            this.textBoxPoster.Location = new System.Drawing.Point(48, 249);
+            this.textBoxPoster.Name = "textBoxPoster";
+            this.textBoxPoster.Size = new System.Drawing.Size(174, 21);
+            this.textBoxPoster.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(228, 184);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = ", мин";
+            // 
+            // textBoxPeriod
+            // 
+            this.textBoxPeriod.Location = new System.Drawing.Point(48, 181);
+            this.textBoxPeriod.Name = "textBoxPeriod";
+            this.textBoxPeriod.Size = new System.Drawing.Size(174, 21);
+            this.textBoxPeriod.TabIndex = 8;
+            // 
+            // comboBoxAgeLimit
+            // 
+            this.comboBoxAgeLimit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxAgeLimit.FormattingEnabled = true;
+            this.comboBoxAgeLimit.Location = new System.Drawing.Point(48, 118);
+            this.comboBoxAgeLimit.Name = "comboBoxAgeLimit";
+            this.comboBoxAgeLimit.Size = new System.Drawing.Size(216, 23);
+            this.comboBoxAgeLimit.TabIndex = 7;
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(315, 56);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(403, 293);
+            this.textBoxDescription.TabIndex = 6;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(48, 56);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(216, 21);
+            this.textBoxName.TabIndex = 5;
+            // 
+            // labelPoster
+            // 
+            this.labelPoster.AutoSize = true;
+            this.labelPoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPoster.Location = new System.Drawing.Point(47, 227);
+            this.labelPoster.Name = "labelPoster";
+            this.labelPoster.Size = new System.Drawing.Size(169, 15);
+            this.labelPoster.TabIndex = 4;
+            this.labelPoster.Text = "Введите название постера:";
+            // 
+            // labelPeriod
+            // 
+            this.labelPeriod.AutoSize = true;
+            this.labelPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPeriod.Location = new System.Drawing.Point(45, 160);
+            this.labelPeriod.Name = "labelPeriod";
+            this.labelPeriod.Size = new System.Drawing.Size(183, 15);
+            this.labelPeriod.TabIndex = 3;
+            this.labelPeriod.Text = "Введите продолжительность:";
+            // 
+            // labelAgeLimit
+            // 
+            this.labelAgeLimit.AutoSize = true;
+            this.labelAgeLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAgeLimit.Location = new System.Drawing.Point(45, 97);
+            this.labelAgeLimit.Name = "labelAgeLimit";
+            this.labelAgeLimit.Size = new System.Drawing.Size(217, 15);
+            this.labelAgeLimit.TabIndex = 2;
+            this.labelAgeLimit.Text = "Выберите возрастное ограничение:";
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDescription.Location = new System.Drawing.Point(312, 35);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(118, 15);
+            this.labelDescription.TabIndex = 1;
+            this.labelDescription.Text = "Введите описание:";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.Location = new System.Drawing.Point(47, 35);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(118, 15);
+            this.labelName.TabIndex = 0;
+            this.labelName.Text = "Введите название:";
+            // 
             // tabPageEditFilm
             // 
             this.tabPageEditFilm.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageEditFilm.Controls.Add(this.label11);
+            this.tabPageEditFilm.Controls.Add(this.textBoxNewName);
+            this.tabPageEditFilm.Controls.Add(this.checkBox);
+            this.tabPageEditFilm.Controls.Add(this.label5);
+            this.tabPageEditFilm.Controls.Add(this.buttonSaveEditing);
+            this.tabPageEditFilm.Controls.Add(this.textBoxEditPoster);
+            this.tabPageEditFilm.Controls.Add(this.label6);
+            this.tabPageEditFilm.Controls.Add(this.textBoxEditPeriod);
+            this.tabPageEditFilm.Controls.Add(this.comboBoxEditAge);
+            this.tabPageEditFilm.Controls.Add(this.textBoxEditDescription);
+            this.tabPageEditFilm.Controls.Add(this.label7);
+            this.tabPageEditFilm.Controls.Add(this.label8);
+            this.tabPageEditFilm.Controls.Add(this.label9);
+            this.tabPageEditFilm.Controls.Add(this.label10);
             this.tabPageEditFilm.Controls.Add(this.comboBoxChooseFilm);
             this.tabPageEditFilm.Controls.Add(this.labelChooseFilm);
             this.tabPageEditFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -281,6 +435,156 @@ namespace Kino
             this.tabPageEditFilm.Size = new System.Drawing.Size(749, 378);
             this.tabPageEditFilm.TabIndex = 2;
             this.tabPageEditFilm.Text = "Редактирование фильма";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(38, 109);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(156, 15);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Введите новое название:";
+            // 
+            // textBoxNewName
+            // 
+            this.textBoxNewName.Location = new System.Drawing.Point(41, 127);
+            this.textBoxNewName.Name = "textBoxNewName";
+            this.textBoxNewName.Size = new System.Drawing.Size(216, 21);
+            this.textBoxNewName.TabIndex = 25;
+            // 
+            // checkBox
+            // 
+            this.checkBox.AutoSize = true;
+            this.checkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox.Location = new System.Drawing.Point(37, 85);
+            this.checkBox.MaximumSize = new System.Drawing.Size(220, 20);
+            this.checkBox.MinimumSize = new System.Drawing.Size(220, 20);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(220, 20);
+            this.checkBox.TabIndex = 24;
+            this.checkBox.Text = "Редактировать название:";
+            this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(228, 277);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 15);
+            this.label5.TabIndex = 23;
+            this.label5.Text = ".jpg";
+            // 
+            // buttonSaveEditing
+            // 
+            this.buttonSaveEditing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSaveEditing.Location = new System.Drawing.Point(41, 303);
+            this.buttonSaveEditing.Name = "buttonSaveEditing";
+            this.buttonSaveEditing.Size = new System.Drawing.Size(216, 43);
+            this.buttonSaveEditing.TabIndex = 22;
+            this.buttonSaveEditing.Text = "Сохранить изменения";
+            this.buttonSaveEditing.UseVisualStyleBackColor = true;
+            this.buttonSaveEditing.Click += new System.EventHandler(this.buttonSaveEditing_Click);
+            // 
+            // textBoxEditPoster
+            // 
+            this.textBoxEditPoster.Location = new System.Drawing.Point(41, 274);
+            this.textBoxEditPoster.Name = "textBoxEditPoster";
+            this.textBoxEditPoster.Size = new System.Drawing.Size(174, 21);
+            this.textBoxEditPoster.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(221, 229);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 15);
+            this.label6.TabIndex = 20;
+            this.label6.Text = ", мин";
+            // 
+            // textBoxEditPeriod
+            // 
+            this.textBoxEditPeriod.Location = new System.Drawing.Point(41, 226);
+            this.textBoxEditPeriod.Name = "textBoxEditPeriod";
+            this.textBoxEditPeriod.Size = new System.Drawing.Size(174, 21);
+            this.textBoxEditPeriod.TabIndex = 19;
+            // 
+            // comboBoxEditAge
+            // 
+            this.comboBoxEditAge.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxEditAge.FormattingEnabled = true;
+            this.comboBoxEditAge.Location = new System.Drawing.Point(41, 177);
+            this.comboBoxEditAge.Name = "comboBoxEditAge";
+            this.comboBoxEditAge.Size = new System.Drawing.Size(216, 23);
+            this.comboBoxEditAge.TabIndex = 18;
+            // 
+            // textBoxEditDescription
+            // 
+            this.textBoxEditDescription.Location = new System.Drawing.Point(308, 53);
+            this.textBoxEditDescription.Multiline = true;
+            this.textBoxEditDescription.Name = "textBoxEditDescription";
+            this.textBoxEditDescription.Size = new System.Drawing.Size(403, 293);
+            this.textBoxEditDescription.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(38, 253);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(118, 15);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Название постера:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(38, 205);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 15);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Продолжительность:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(38, 156);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(156, 15);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Возрастное ограничение:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(305, 32);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 15);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Описание:";
+            // 
+            // comboBoxChooseFilm
+            // 
+            this.comboBoxChooseFilm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxChooseFilm.FormattingEnabled = true;
+            this.comboBoxChooseFilm.Location = new System.Drawing.Point(41, 53);
+            this.comboBoxChooseFilm.Name = "comboBoxChooseFilm";
+            this.comboBoxChooseFilm.Size = new System.Drawing.Size(216, 23);
+            this.comboBoxChooseFilm.TabIndex = 1;
+            this.comboBoxChooseFilm.SelectedIndexChanged += new System.EventHandler(this.comboBoxChooseFilm_SelectedIndexChanged);
+            // 
+            // labelChooseFilm
+            // 
+            this.labelChooseFilm.AutoSize = true;
+            this.labelChooseFilm.Location = new System.Drawing.Point(38, 32);
+            this.labelChooseFilm.Name = "labelChooseFilm";
+            this.labelChooseFilm.Size = new System.Drawing.Size(113, 15);
+            this.labelChooseFilm.TabIndex = 0;
+            this.labelChooseFilm.Text = "Выберите фильм:";
             // 
             // tabPageDeleteFilm
             // 
@@ -297,148 +601,27 @@ namespace Kino
             this.tabPageDeleteFilm.TabIndex = 3;
             this.tabPageDeleteFilm.Text = "Удаление фильма";
             // 
-            // labelName
+            // buttonUpdChanges
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(47, 35);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(118, 15);
-            this.labelName.TabIndex = 0;
-            this.labelName.Text = "Введите название:";
+            this.buttonUpdChanges.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonUpdChanges.Location = new System.Drawing.Point(445, 227);
+            this.buttonUpdChanges.Name = "buttonUpdChanges";
+            this.buttonUpdChanges.Size = new System.Drawing.Size(220, 72);
+            this.buttonUpdChanges.TabIndex = 3;
+            this.buttonUpdChanges.Text = "Обновить данные";
+            this.buttonUpdChanges.UseVisualStyleBackColor = true;
+            this.buttonUpdChanges.Click += new System.EventHandler(this.buttonUpdChanges_Click);
             // 
-            // labelDescription
+            // buttonRemoveFilm
             // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelDescription.Location = new System.Drawing.Point(312, 35);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(118, 15);
-            this.labelDescription.TabIndex = 1;
-            this.labelDescription.Text = "Введите описание:";
-            // 
-            // labelAgeLimit
-            // 
-            this.labelAgeLimit.AutoSize = true;
-            this.labelAgeLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAgeLimit.Location = new System.Drawing.Point(45, 97);
-            this.labelAgeLimit.Name = "labelAgeLimit";
-            this.labelAgeLimit.Size = new System.Drawing.Size(217, 15);
-            this.labelAgeLimit.TabIndex = 2;
-            this.labelAgeLimit.Text = "Выберите возрастное ограничение:";
-            // 
-            // labelPeriod
-            // 
-            this.labelPeriod.AutoSize = true;
-            this.labelPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPeriod.Location = new System.Drawing.Point(45, 160);
-            this.labelPeriod.Name = "labelPeriod";
-            this.labelPeriod.Size = new System.Drawing.Size(183, 15);
-            this.labelPeriod.TabIndex = 3;
-            this.labelPeriod.Text = "Введите продолжительность:";
-            // 
-            // labelPoster
-            // 
-            this.labelPoster.AutoSize = true;
-            this.labelPoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPoster.Location = new System.Drawing.Point(47, 227);
-            this.labelPoster.Name = "labelPoster";
-            this.labelPoster.Size = new System.Drawing.Size(169, 15);
-            this.labelPoster.TabIndex = 4;
-            this.labelPoster.Text = "Введите название постера:";
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Location = new System.Drawing.Point(48, 56);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(216, 21);
-            this.textBoxName.TabIndex = 5;
-            // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(315, 56);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(403, 293);
-            this.textBoxDescription.TabIndex = 6;
-            // 
-            // comboBoxAgeLimit
-            // 
-            this.comboBoxAgeLimit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboBoxAgeLimit.FormattingEnabled = true;
-            this.comboBoxAgeLimit.Location = new System.Drawing.Point(48, 118);
-            this.comboBoxAgeLimit.Name = "comboBoxAgeLimit";
-            this.comboBoxAgeLimit.Size = new System.Drawing.Size(216, 23);
-            this.comboBoxAgeLimit.TabIndex = 7;
-            // 
-            // textBoxPeriod
-            // 
-            this.textBoxPeriod.Location = new System.Drawing.Point(48, 181);
-            this.textBoxPeriod.Name = "textBoxPeriod";
-            this.textBoxPeriod.Size = new System.Drawing.Size(174, 21);
-            this.textBoxPeriod.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(228, 184);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = ", мин";
-            // 
-            // textBoxPoster
-            // 
-            this.textBoxPoster.Location = new System.Drawing.Point(48, 249);
-            this.textBoxPoster.Name = "textBoxPoster";
-            this.textBoxPoster.Size = new System.Drawing.Size(174, 21);
-            this.textBoxPoster.TabIndex = 10;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSave.Location = new System.Drawing.Point(48, 294);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(216, 55);
-            this.buttonSave.TabIndex = 11;
-            this.buttonSave.Text = "Добавить фильм";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(235, 252);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 15);
-            this.label2.TabIndex = 12;
-            this.label2.Text = ".jpg";
-            // 
-            // labelChooseFilm
-            // 
-            this.labelChooseFilm.AutoSize = true;
-            this.labelChooseFilm.Location = new System.Drawing.Point(29, 23);
-            this.labelChooseFilm.Name = "labelChooseFilm";
-            this.labelChooseFilm.Size = new System.Drawing.Size(113, 15);
-            this.labelChooseFilm.TabIndex = 0;
-            this.labelChooseFilm.Text = "Выберите фильм:";
-            // 
-            // comboBoxChooseFilm
-            // 
-            this.comboBoxChooseFilm.FormattingEnabled = true;
-            this.comboBoxChooseFilm.Location = new System.Drawing.Point(32, 54);
-            this.comboBoxChooseFilm.Name = "comboBoxChooseFilm";
-            this.comboBoxChooseFilm.Size = new System.Drawing.Size(170, 23);
-            this.comboBoxChooseFilm.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(77, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(212, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Выберите фильм, кликнув по нему:";
+            this.buttonRemoveFilm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRemoveFilm.Location = new System.Drawing.Point(445, 109);
+            this.buttonRemoveFilm.Name = "buttonRemoveFilm";
+            this.buttonRemoveFilm.Size = new System.Drawing.Size(220, 72);
+            this.buttonRemoveFilm.TabIndex = 2;
+            this.buttonRemoveFilm.Text = "Удалить фильм";
+            this.buttonRemoveFilm.UseVisualStyleBackColor = true;
+            this.buttonRemoveFilm.Click += new System.EventHandler(this.buttonRemoveFilm_Click);
             // 
             // dataGridViewRemoveFilm
             // 
@@ -452,36 +635,14 @@ namespace Kino
             this.dataGridViewRemoveFilm.Size = new System.Drawing.Size(313, 260);
             this.dataGridViewRemoveFilm.TabIndex = 1;
             // 
-            // buttonRemoveFilm
+            // label3
             // 
-            this.buttonRemoveFilm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRemoveFilm.Location = new System.Drawing.Point(445, 109);
-            this.buttonRemoveFilm.Name = "buttonRemoveFilm";
-            this.buttonRemoveFilm.Size = new System.Drawing.Size(220, 72);
-            this.buttonRemoveFilm.TabIndex = 2;
-            this.buttonRemoveFilm.Text = "Удалить фильм";
-            this.buttonRemoveFilm.UseVisualStyleBackColor = true;
-            this.buttonRemoveFilm.Click += new System.EventHandler(this.buttonRemoveFilm_Click);
-            // 
-            // buttonUpdChanges
-            // 
-            this.buttonUpdChanges.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonUpdChanges.Location = new System.Drawing.Point(445, 227);
-            this.buttonUpdChanges.Name = "buttonUpdChanges";
-            this.buttonUpdChanges.Size = new System.Drawing.Size(220, 72);
-            this.buttonUpdChanges.TabIndex = 3;
-            this.buttonUpdChanges.Text = "Обновить данные";
-            this.buttonUpdChanges.UseVisualStyleBackColor = true;
-            this.buttonUpdChanges.Click += new System.EventHandler(this.buttonUpdChanges_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(293, 15);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Выберите строку для изменения, кликнув по ней:";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(77, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(212, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Выберите фильм, кликнув по нему:";
             // 
             // Admin
             // 
@@ -551,5 +712,19 @@ namespace Kino
         private System.Windows.Forms.Button buttonUpdChanges;
         private System.Windows.Forms.Button buttonRemoveFilm;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonSaveEditing;
+        private System.Windows.Forms.TextBox textBoxEditPoster;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxEditPeriod;
+        private System.Windows.Forms.ComboBox comboBoxEditAge;
+        private System.Windows.Forms.TextBox textBoxEditDescription;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox checkBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBoxNewName;
     }
 }

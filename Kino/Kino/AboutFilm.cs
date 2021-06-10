@@ -119,7 +119,11 @@ namespace Kino
             }
             catch (Exception e1)
             {
-                MessageBox.Show(e1.ToString());
+                //MessageBox.Show(e1.ToString());
+                MessageBox.Show("Не получилось найти постер к этому фильму.",
+                    "О фильме",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 

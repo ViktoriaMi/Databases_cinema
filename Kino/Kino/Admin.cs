@@ -32,6 +32,44 @@ namespace Kino
 
             outputSheduleForAdmin();
             buttonAddSave.Enabled = false;
+            if (dataGridViewShedule.RowCount < 1)
+            {
+                buttonEdit.Enabled = false;
+                buttonSaveEdit.Enabled = false;
+                buttonDeleteSave.Enabled = false;
+            }
+            else if (dataGridViewShedule.RowCount == 6)
+            {
+                string[] str = new string[dataGridViewShedule.Columns.Count];
+
+                // кладем в массив строк выделенную строку в DataGridView
+                for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                    str[i] = dataGridViewShedule[i, 5].Value.ToString();
+
+                if (str[1] == "" || str[3] == "")
+                {
+                    dataGridViewShedule.AllowUserToAddRows = false;
+                    buttonAdd.Enabled = false;
+                    buttonAddSave.Enabled = true;
+                }
+                else
+                {
+                    buttonAddSave.Enabled = false;
+                }
+            }
+            else
+            {
+                buttonAddSave.Enabled = false;
+            }
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
+            {
+                buttonAdd.Enabled = false;
+                buttonAddSave.Enabled = false;
+            }
 
             // ВКЛАДКА ДОБАВЛЕНИЕ ФИЛЬМА
 
@@ -47,9 +85,33 @@ namespace Kino
 
             // ВКЛАДКА РЕДАКТИРОВАНИЕ ФИЛЬМА
             comboBoxChooseFilm.DropDownStyle = ComboBoxStyle.DropDownList;
-            //comboBoxChooseFilm.MaxDropDownItems = 9;
+            comboBoxEditAge.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            comboBoxEditAge.MaxDropDownItems = 5;
+
+            comboBoxEditAge.Items.Add("0+");
+            comboBoxEditAge.Items.Add("6+");
+            comboBoxEditAge.Items.Add("12+");
+            comboBoxEditAge.Items.Add("16+");
+            comboBoxEditAge.Items.Add("18+");
+            comboBoxEditAge.SelectedIndex = 0;
+
+            // отключаем описание, флажок, новое имя
+            textBoxEditDescription.Enabled = false;
+            checkBox.Enabled = false;
+            textBoxNewName.Enabled = false;
+            // отключаем возраст, продолжительность, постер
+            comboBoxEditAge.Enabled = false;
+            textBoxEditPeriod.Enabled = false;
+            textBoxEditPoster.Enabled = false;
+
+            fillingComboBoxChooseFilm();
+            string[] info = getAllInfoAboutFilmFromDB();
+            fillingFields(info);
+            enableFields();
 
             // ВКЛАДКА УДАЛЕНИЕ ФИЛЬМА
+
             fillingGridForRemove();
             dataGridViewRemoveFilm.BackgroundColor = Color.WhiteSmoke;
             dataGridViewRemoveFilm.ScrollBars = ScrollBars.Vertical;
@@ -105,8 +167,8 @@ namespace Kino
 
             dataGridViewShedule.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            foreach (DataGridViewColumn column in dataGridViewShedule.Columns)
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            //foreach (DataGridViewColumn column in dataGridViewShedule.Columns)
+                //column.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             // объявляем все ячейки недоступными для редактирования
             for (int i = 0; i < dataGridViewShedule.RowCount; i++)
@@ -116,6 +178,15 @@ namespace Kino
             dataGridViewShedule.Columns[0].Visible = false;
             dataGridViewShedule.Columns[2].Visible = false;
 
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
+            {
+                buttonAdd.Enabled = false;
+                buttonAddSave.Enabled = false;
+            }
             if (dataGridViewShedule.Rows.Count >= 6)
             {
                 buttonAdd.Enabled = false;
@@ -180,11 +251,22 @@ namespace Kino
                 for (int j = 0; j < dataGridViewShedule.ColumnCount; j++)
                     dataGridViewShedule.Rows[i].Cells[j].ReadOnly = true;
 
-            //dataGridViewShedule.SelectedRows
-            int numStr = dataGridViewShedule.CurrentCell.RowIndex;
+            if (dataGridViewShedule.CurrentCell == null)
+            {
+                MessageBox.Show("Нельзя редактировать пустую строку. " +
+                    "Пожалуйста, выберите строку или добавьте новый сеанс.",
+                    "Редактирование",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                int numStr = dataGridViewShedule.CurrentCell.RowIndex;
 
-            //dataGridViewShedule.Rows[numStr].Cells[1].ReadOnly = false;
-            dataGridViewShedule.Rows[numStr].Cells[3].ReadOnly = false;
+                //dataGridViewShedule.Rows[numStr].Cells[1].ReadOnly = false;
+                dataGridViewShedule.Rows[numStr].Cells[3].ReadOnly = false;
+            }
+            //dataGridViewShedule.SelectedRows
         }
 
         private void dateTimePickerShedule_ValueChanged(object sender, EventArgs e)
@@ -198,90 +280,113 @@ namespace Kino
 
             dataGridViewShedule.AllowUserToAddRows = false;
 
-            if (dataGridViewShedule.RowCount == 0)
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
             {
-                buttonEdit.Enabled = false;
-                buttonSaveEdit.Enabled = false;
-                buttonDeleteSave.Enabled = false;
-
-                buttonAdd.Enabled = true;
-                buttonAddSave.Enabled = false;
-
-                dataGridViewShedule.AllowUserToAddRows = true;
-            }
-            else if (dataGridViewShedule.RowCount > 0 && dataGridViewShedule.RowCount < 6)
-            {
-                buttonEdit.Enabled = true;
-                buttonSaveEdit.Enabled = true;
-                buttonDeleteSave.Enabled = true;
-
-                buttonAdd.Enabled = true;
-                buttonAddSave.Enabled = false;
-
-                dataGridViewShedule.AllowUserToAddRows = true;
-            }
-            else if (dataGridViewShedule.RowCount >= 6)
-            {
-                buttonEdit.Enabled = true;
-                buttonSaveEdit.Enabled = true;
-                buttonDeleteSave.Enabled = true;
-
                 buttonAdd.Enabled = false;
                 buttonAddSave.Enabled = false;
+            }
+            else
+            {
+                if (dataGridViewShedule.RowCount == 0)
+                {
+                    buttonEdit.Enabled = false;
+                    buttonSaveEdit.Enabled = false;
+                    buttonDeleteSave.Enabled = false;
 
-                dataGridViewShedule.AllowUserToAddRows = false;
+                    buttonAdd.Enabled = true;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = true;
+                }
+                else if (dataGridViewShedule.RowCount > 0 && dataGridViewShedule.RowCount < 6)
+                {
+                    buttonEdit.Enabled = true;
+                    buttonSaveEdit.Enabled = true;
+                    buttonDeleteSave.Enabled = true;
+
+                    buttonAdd.Enabled = true;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = true;
+                }
+                else if (dataGridViewShedule.RowCount >= 6)
+                {
+                    buttonEdit.Enabled = true;
+                    buttonSaveEdit.Enabled = true;
+                    buttonDeleteSave.Enabled = true;
+
+                    buttonAdd.Enabled = false;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = false;
+                }
             }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             outputSheduleForAdmin();
-
-            dataGridViewShedule.AllowUserToAddRows = false;
-
-            if (dataGridViewShedule.RowCount == 0)
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
             {
-                buttonEdit.Enabled = false;
-                buttonSaveEdit.Enabled = false;
-                buttonDeleteSave.Enabled = false;
-
-                buttonAdd.Enabled = true;
-                buttonAddSave.Enabled = false;
-
-                dataGridViewShedule.AllowUserToAddRows = true;
-            }
-            else if (dataGridViewShedule.RowCount > 0 && dataGridViewShedule.RowCount < 6)
-            {
-                buttonEdit.Enabled = true;
-                buttonSaveEdit.Enabled = true;
-                buttonDeleteSave.Enabled = true;
-
-                buttonAdd.Enabled = true;
-                buttonAddSave.Enabled = false;
-
-                dataGridViewShedule.AllowUserToAddRows = true;
-            }
-            else if (dataGridViewShedule.RowCount >= 6)
-            {
-                buttonEdit.Enabled = true;
-                buttonSaveEdit.Enabled = true;
-                buttonDeleteSave.Enabled = true;
-
                 buttonAdd.Enabled = false;
                 buttonAddSave.Enabled = false;
-
-                dataGridViewShedule.AllowUserToAddRows = false;
             }
             else
             {
-                buttonEdit.Enabled = false;
-                buttonSaveEdit.Enabled = false;
-                buttonDeleteSave.Enabled = false;
-
-                buttonAdd.Enabled = false;
-                buttonAddSave.Enabled = false;
-
                 dataGridViewShedule.AllowUserToAddRows = false;
+
+                if (dataGridViewShedule.RowCount == 0)
+                {
+                    buttonEdit.Enabled = false;
+                    buttonSaveEdit.Enabled = false;
+                    buttonDeleteSave.Enabled = false;
+
+                    buttonAdd.Enabled = true;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = true;
+                }
+                else if (dataGridViewShedule.RowCount > 0 && dataGridViewShedule.RowCount < 6)
+                {
+                    buttonEdit.Enabled = true;
+                    buttonSaveEdit.Enabled = true;
+                    buttonDeleteSave.Enabled = true;
+
+                    buttonAdd.Enabled = true;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = true;
+                }
+                else if (dataGridViewShedule.RowCount >= 6)
+                {
+                    buttonEdit.Enabled = true;
+                    buttonSaveEdit.Enabled = true;
+                    buttonDeleteSave.Enabled = true;
+
+                    buttonAdd.Enabled = false;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = false;
+                }
+                else
+                {
+                    buttonEdit.Enabled = false;
+                    buttonSaveEdit.Enabled = false;
+                    buttonDeleteSave.Enabled = false;
+
+                    buttonAdd.Enabled = false;
+                    buttonAddSave.Enabled = false;
+
+                    dataGridViewShedule.AllowUserToAddRows = false;
+                }
             }
         }
 
@@ -300,133 +405,145 @@ namespace Kino
                 for (int j = 0; j < dataGridViewShedule.ColumnCount; j++)
                     dataGridViewShedule.Rows[i].Cells[j].ReadOnly = true;
 
-            // получаем номер выделенной строки
-            int numStr = dataGridViewShedule.CurrentCell.RowIndex;
-
-            if (numStr == 0)
+            if (dataGridViewShedule.CurrentCell == null)
             {
-                string[] str = new string[dataGridViewShedule.ColumnCount];
-
-                // кладем в массив строк выделенную строку в DataGridView
-                for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
-                {
-                    str[i] = dataGridViewShedule[i, numStr].Value.ToString();
-                }
-
-                DB db = new DB();
-
-                try
-                {
-                    db.OpenConnection();
-
-                    MySqlCommand commUpdateTimeFilm =
-                    new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
-                    db.getConnection());
-
-                    commUpdateTimeFilm.Parameters.AddWithValue("newTime", str[3]);
-                    commUpdateTimeFilm.Parameters.AddWithValue("numberTime", str[2]);
-
-                    commUpdateTimeFilm.ExecuteNonQuery();
-
-                    if (commUpdateTimeFilm.ExecuteNonQuery() == 1)
-                    {
-                        MessageBox.Show("Время показа фильма было успешно изменено.",
-                            "Редактирование времени показа",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Недопустимое значение для времени.",
-                            "Редактирование времени показа",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                            MessageBoxDefaultButton.Button1);
-                    }
-
-                    db.CloseConnection();
-                }
-                catch (Exception e1)
-                {
-                    //MessageBox.Show(e1.ToString());
-
-                    //MessageBox.Show("Тут что-то не так со временем",
-                    //"Редактирование времени",
-                    //MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    //MessageBoxDefaultButton.Button1);
-
-                    MessageBox.Show("Недопустимое значение для времени.",
-                        "Редактирование времени показа",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1);
-
-                    //dataGridViewShedule.Rows.RemoveAt()
-                    db.CloseConnection();
-                }
+                MessageBox.Show("Нельзя редактировать пустую строку. " +
+                    "Пожалуйста, выберите строку или добавьте новый сеанс.",
+                    "Редактирование",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
             }
             else
             {
-                string[] str1 = new string[dataGridViewShedule.ColumnCount];
-                string[] str2 = new string[dataGridViewShedule.ColumnCount];
+                // получаем номер выделенной строки
+                int numStr = dataGridViewShedule.CurrentCell.RowIndex;
 
-                // считываем редактированные данные в массив строк
-                for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                if (numStr == 0)
                 {
-                    str1[i] = dataGridViewShedule[i, numStr - 1].Value.ToString();
-                }
+                    string[] str = new string[dataGridViewShedule.ColumnCount];
 
-                // считываем редактированные данные в массив строк
-                for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
-                {
-                    str2[i] = dataGridViewShedule[i, numStr].Value.ToString();
-                }
-
-                DB db = new DB();
-
-                try
-                {
-                    db.OpenConnection();
-
-                    MySqlCommand commUpdateTimeFilm1 =
-                    new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
-                    db.getConnection());
-
-                    commUpdateTimeFilm1.Parameters.AddWithValue("newTime", str1[3]);
-                    commUpdateTimeFilm1.Parameters.AddWithValue("numberTime", str1[2]);
-
-                    MySqlCommand commUpdateTimeFilm2 =
-                    new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
-                    db.getConnection());
-
-                    commUpdateTimeFilm2.Parameters.AddWithValue("newTime", str2[3]);
-                    commUpdateTimeFilm2.Parameters.AddWithValue("numberTime", str2[2]);
-
-                    if (commUpdateTimeFilm1.ExecuteNonQuery() == 1 && commUpdateTimeFilm2.ExecuteNonQuery() == 1)
+                    // кладем в массив строк выделенную строку в DataGridView
+                    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
                     {
-                        MessageBox.Show("Время показа фильма было успешно изменено.",
-                            "Редактирование времени показа",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1);
+                        str[i] = dataGridViewShedule[i, numStr].Value.ToString();
                     }
-                    else
+
+                    DB db = new DB();
+
+                    try
+                    {
+                        db.OpenConnection();
+
+                        MySqlCommand commUpdateTimeFilm =
+                        new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
+                        db.getConnection());
+
+                        commUpdateTimeFilm.Parameters.AddWithValue("newTime", str[3]);
+                        commUpdateTimeFilm.Parameters.AddWithValue("numberTime", str[2]);
+
+                        commUpdateTimeFilm.ExecuteNonQuery();
+
+                        if (commUpdateTimeFilm.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Время показа фильма было успешно изменено.",
+                                "Редактирование времени показа",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Недопустимое значение для времени.",
+                                "Редактирование времени показа",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1);
+                        }
+
+                        db.CloseConnection();
+                    }
+                    catch (Exception e1)
+                    {
+                        //MessageBox.Show(e1.ToString());
+
+                        //MessageBox.Show("Тут что-то не так со временем",
+                        //"Редактирование времени",
+                        //MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                        //MessageBoxDefaultButton.Button1);
+
+                        MessageBox.Show("Недопустимое значение для времени.",
+                            "Редактирование времени показа",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+
+                        //dataGridViewShedule.Rows.RemoveAt()
+                        db.CloseConnection();
+                    }
+                }
+                else
+                {
+                    string[] str1 = new string[dataGridViewShedule.ColumnCount];
+                    string[] str2 = new string[dataGridViewShedule.ColumnCount];
+
+                    // считываем редактированные данные в массив строк
+                    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                    {
+                        str1[i] = dataGridViewShedule[i, numStr - 1].Value.ToString();
+                    }
+
+                    // считываем редактированные данные в массив строк
+                    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                    {
+                        str2[i] = dataGridViewShedule[i, numStr].Value.ToString();
+                    }
+
+                    DB db = new DB();
+
+                    try
+                    {
+                        db.OpenConnection();
+
+                        MySqlCommand commUpdateTimeFilm1 =
+                        new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
+                        db.getConnection());
+
+                        commUpdateTimeFilm1.Parameters.AddWithValue("newTime", str1[3]);
+                        commUpdateTimeFilm1.Parameters.AddWithValue("numberTime", str1[2]);
+
+                        MySqlCommand commUpdateTimeFilm2 =
+                        new MySqlCommand("CALL update_сеанс_время(@newTime, @numberTime);",
+                        db.getConnection());
+
+                        commUpdateTimeFilm2.Parameters.AddWithValue("newTime", str2[3]);
+                        commUpdateTimeFilm2.Parameters.AddWithValue("numberTime", str2[2]);
+
+                        if (commUpdateTimeFilm1.ExecuteNonQuery() == 1 && commUpdateTimeFilm2.ExecuteNonQuery() == 1)
+                        {
+                            MessageBox.Show("Время показа фильма было успешно изменено.",
+                                "Редактирование времени показа",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Недопустимое значение для времени.",
+                                "Редактирование времени показа",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                MessageBoxDefaultButton.Button1);
+                        }
+
+                        db.CloseConnection();
+                    }
+                    catch (Exception e1)
                     {
                         MessageBox.Show("Недопустимое значение для времени.",
                             "Редактирование времени показа",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1);
+
+                        db.CloseConnection();
                     }
-
-                    db.CloseConnection();
-                }
-                catch (Exception e1)
-                {
-                    MessageBox.Show("Недопустимое значение для времени.",
-                        "Редактирование времени показа",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1);
-
-                    db.CloseConnection();
                 }
             }
+            
             if (dataGridViewShedule.RowCount < 6)
             {
                 buttonAdd.Enabled = true;
@@ -438,39 +555,56 @@ namespace Kino
         {
             if (dataGridViewShedule.SelectedRows.Count > 0)
             {
-                // получаем номер выделенной строки
-                int numStr = dataGridViewShedule.CurrentCell.RowIndex;
-
-                string[] str = new string[dataGridViewShedule.ColumnCount];
-
-                // кладем в массив строк выделенную строку в DataGridView
-                for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
-                    str[i] = dataGridViewShedule[i, numStr].Value.ToString();
-
-                try
+                if (dataGridViewShedule.CurrentCell == null)
                 {
-                    if (MessageBox.Show("Вы действительно хотите удалить запись? Это действие нельзя будет отменить",
-                    "Удаление", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (dataGridViewShedule.SelectedRows.Count == 1)
                     {
-                        DB db = new DB();
-                        MySqlCommand myCom = new MySqlCommand("DELETE FROM сеанс_время WHERE id_сеанс_время = @id",
-                            db.getConnection());
-                        myCom.Parameters.AddWithValue("id", str[2]);
-
-                        db.OpenConnection();
-                        myCom.ExecuteNonQuery();
-                        db.CloseConnection();
-
-                        MessageBox.Show("Сеанс был успешно удален.", "Удаление",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        outputSheduleForAdmin();
+                        buttonEdit.Enabled = false;
+                        buttonSaveEdit.Enabled = false;
+                        buttonDeleteSave.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Нельзя удалить пустую строку.", "Удаление",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                catch (Exception e1)
+                else
                 {
-                    MessageBox.Show(e1.ToString());
+                    // получаем номер выделенной строки
+                    int numStr = dataGridViewShedule.CurrentCell.RowIndex;
+
+                    string[] str = new string[dataGridViewShedule.ColumnCount];
+
+                    // кладем в массив строк выделенную строку в DataGridView
+                    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                        str[i] = dataGridViewShedule[i, numStr].Value.ToString();
+
+                    try
+                    {
+                        if (MessageBox.Show("Вы действительно хотите удалить запись? Это действие нельзя будет отменить",
+                        "Удаление", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            DB db = new DB();
+                            MySqlCommand myCom = new MySqlCommand("DELETE FROM сеанс_время WHERE id_сеанс_время = @id",
+                                db.getConnection());
+                            myCom.Parameters.AddWithValue("id", str[2]);
+
+                            db.OpenConnection();
+                            myCom.ExecuteNonQuery();
+                            db.CloseConnection();
+
+                            MessageBox.Show("Сеанс был успешно удален.", "Удаление",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            outputSheduleForAdmin();
+                        }
+                    }
+                    catch (Exception e1)
+                    {
+                        MessageBox.Show(e1.ToString());
+                    }
                 }
             }
 
@@ -478,30 +612,74 @@ namespace Kino
             {
                 buttonAdd.Enabled = true;
                 buttonAddSave.Enabled = true;
+                if (dataGridViewShedule.RowCount < 1)
+                {
+                    buttonEdit.Enabled = false;
+                    buttonSaveEdit.Enabled = false;
+                    buttonDeleteSave.Enabled = false;
+                }
             }
         }
 
         private void dataGridViewShedule_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewShedule.RowCount > 0)
+            //if (dataGridViewShedule.RowCount > 0)
+            //{
+            //buttonEdit.Enabled = true;
+            //buttonSaveEdit.Enabled = true;
+            //buttonDeleteSave.Enabled = true;
+            //}
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
             {
-                buttonEdit.Enabled = true;
-                buttonSaveEdit.Enabled = true;
-                buttonDeleteSave.Enabled = true;
-            }
-
-            if (dataGridViewShedule.RowCount >= 6)
-            {
-                dataGridViewShedule.AllowUserToAddRows = false;
-
                 buttonAdd.Enabled = false;
                 buttonAddSave.Enabled = false;
+            }
+            else
+            {
+                if (dataGridViewShedule.RowCount >= 6)
+                {
+                    if (dataGridViewShedule.RowCount == 6)
+                    {
+                        string[] str = new string[dataGridViewShedule.Columns.Count];
+
+                        // кладем в массив строк выделенную строку в DataGridView
+                        for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
+                            str[i] = dataGridViewShedule[i, 5].Value.ToString();
+
+                        if (str[1] == "" || str[3] == "")
+                        {
+                            dataGridViewShedule.AllowUserToAddRows = false;
+                            buttonAdd.Enabled = false;
+                            buttonAddSave.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        dataGridViewShedule.AllowUserToAddRows = false;
+
+                        buttonAdd.Enabled = false;
+                        buttonAddSave.Enabled = false;
+                    }
+                }
             }
         }
 
         private void dataGridViewShedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewShedule.RowCount > 0)
+            DateTime tomorrow = DateTime.Today, dayAfterTomorrow = DateTime.Today;
+            tomorrow = tomorrow.AddDays(1);
+            dayAfterTomorrow = dayAfterTomorrow.AddDays(2);
+            if (dateTimePickerShedule.Value == DateTime.Today || dateTimePickerShedule.Value == tomorrow
+                || dateTimePickerShedule.Value == dayAfterTomorrow)
+            {
+                buttonAdd.Enabled = false;
+                buttonAddSave.Enabled = false;
+            }
+            else if (dataGridViewShedule.RowCount > 0)
             {
                 buttonEdit.Enabled = true;
                 buttonSaveEdit.Enabled = true;
@@ -529,9 +707,6 @@ namespace Kino
                     for (int j = 0; j < dataGridViewShedule.ColumnCount-1; j++)
                         dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
             }
-            // если выделена 1-ая строка
-            //else if (dataGridViewShedule.CurrentCell.RowIndex == 0)
-            //{
             else
             {
                 int numStr = dataGridViewShedule.CurrentCell.RowIndex;
@@ -562,207 +737,153 @@ namespace Kino
                 }
                 else
                 {
-                    DB db = new DB();
-
-                    DataTable table = new DataTable();
-                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-                    MySqlCommand myCom = new MySqlCommand("CALL getNumFilm(@nameFilm);",
-                        db.getConnection());
-
-                    //myCom.Parameters.Add("@nameFilm", MySqlDbType.VarChar).Value = str[1];
-                    myCom.Parameters.AddWithValue("nameFilm", str[1]);
-
-                    dataAdapter.SelectCommand = myCom;
-                    dataAdapter.Fill(table);
-
-                    // если фильма с таким названием нет в БД
-                    if (table.Rows.Count == 0)
+                    if (TimeSpan.TryParse(str[3], out TimeSpan ts))
                     {
-                        MessageBox.Show("Фильма с таким названием не существует, мы не можем добавить для него сеанс." +
-                            "\nЧтобы добавить фильм, пожалуйста, перейдите на вкладку \"Добавление фильма\".", "Добавление сеанса",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1);
-                        for (int i = 0; i < dataGridViewShedule.RowCount; i++)
-                            for (int j = 0; j < dataGridViewShedule.ColumnCount - 1; j++)
-                                dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
-                    }
-                    else
-                    {
-                        string numberFilm = table.Rows[0].ItemArray[0].ToString();
-                        string yDate = dateFromFormToString(dateTimePickerShedule.Value);
+                        DB db = new DB();
 
-                        MySqlCommand myCom3 =
-                                new MySqlCommand("INSERT INTO Сеанс_дата (№_фильма, Дата) VALUES (@numFilm, @date);",
-                                db.getConnection());
-
-                        string poster = textBoxPoster.Text;
-
-                        myCom3.Parameters.AddWithValue("numFilm", numberFilm);
-                        myCom3.Parameters.AddWithValue("date", yDate);
-
-                        db.OpenConnection();
-
-                        //try
-                        //{
-                        if (myCom3.ExecuteNonQuery() == 1)
-                        {
-                            //MessageBox.Show("Мы добавили запись в сеанс_дату!!!", "Добавить сеанс",
-                                //MessageBoxButtons.OK, MessageBoxIcon.Information,
-                                //MessageBoxDefaultButton.Button1);
-                            db.CloseConnection();
-
-                            // пункт 3, получаем новый id_сеанс_дата
-                            DataTable table2 = new DataTable();
-                            MySqlDataAdapter dataAdapter2 = new MySqlDataAdapter();
-                            MySqlCommand myCom4 = new MySqlCommand("SELECT MAX(id_сеанс_дата) FROM Сеанс_дата", db.getConnection());
-
-                            dataAdapter2.SelectCommand = myCom4;
-                            dataAdapter2.Fill(table2);
-
-                            string idSessionDate = table2.Rows[0].ItemArray[0].ToString();
-
-                            db.OpenConnection();
-                            ////////////////////////////////////////////////////////
-
-                            MySqlCommand commUpdateTimeSession =
-                            new MySqlCommand("CALL updTimeSession(@newTime, @numberTime);",
+                        DataTable table = new DataTable();
+                        MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+                        MySqlCommand myCom = new MySqlCommand("CALL getNumFilm(@nameFilm);",
                             db.getConnection());
 
-                            commUpdateTimeSession.Parameters.AddWithValue("newTime", str[3]);
-                            commUpdateTimeSession.Parameters.AddWithValue("numberTime", idSessionDate);
+                        //myCom.Parameters.Add("@nameFilm", MySqlDbType.VarChar).Value = str[1];
+                        myCom.Parameters.AddWithValue("nameFilm", str[1]);
 
-                            if (commUpdateTimeSession.ExecuteNonQuery() == 2)
-                            {
-                                MessageBox.Show("Новый сеанс был успешно добавлен.",
-                                    "Добавление сеанса",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information,
-                                    MessageBoxDefaultButton.Button1);
+                        dataAdapter.SelectCommand = myCom;
+                        dataAdapter.Fill(table);
 
-                                buttonAddSave.Enabled = false;
-                            }
-                            //////////////////////////////////////////////////
-                            ///
-                            else
-                            {
-                                MessageBox.Show("При добавлении нового сеанса возникла ошибка. " +
-                                    "Сеанс не был добавлен.",
-                                    "Добавление сеанса",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                                    MessageBoxDefaultButton.Button1);
-                            }
+                        // если фильма с таким названием нет в БД
+                        if (table.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Фильма с таким названием не существует, мы не можем добавить для него сеанс." +
+                                "\nЧтобы добавить фильм, пожалуйста, перейдите на вкладку \"Добавление фильма\".", "Добавление сеанса",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                            for (int i = 0; i < dataGridViewShedule.RowCount; i++)
+                                for (int j = 0; j < dataGridViewShedule.ColumnCount - 1; j++)
+                                    dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
                         }
                         else
                         {
-                            MessageBox.Show("Упс! Мы не смогли добавить запись в табл. Сеанс_дата.",
-                                "Добавить сеанс", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                                MessageBoxDefaultButton.Button1);
-                            db.CloseConnection();
-                        }
-                        //}
-                        //catch (Exception e1)
-                        //{
-                            //MessageBox.Show(e1.Message, "Добавить сеанс",
-                                //MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                                //MessageBoxDefaultButton.Button1);
-                        //}
+                            // ПРОВЕРКА НА ДИАПАЗОН ВРЕМЕНИ ОТ 09:00 до 23:59
+                            TimeSpan tsFrom = new TimeSpan(8, 59, 0);
+                            TimeSpan tsTo = new TimeSpan(0, 0, 0);
+                            if (TimeSpan.Parse(str[3]) <= tsFrom && TimeSpan.Parse(str[3]) >= tsTo)
+                            {
+                                MessageBox.Show("Недопустимое начало сеанса. " +
+                                    "Пожалуйста, укажите время в промежутке от 09:00 до 23:59.",
+                                    "Добавление сеанса",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1);
 
-                        //MessageBox.Show("Добавляем сеанс...", "Добавление сеанса",
-                        //MessageBoxButtons.OK, MessageBoxIcon.Information,
-                        //MessageBoxDefaultButton.Button1);
+                                dataGridViewShedule.Rows[dataGridViewShedule.SelectedRows[0].Index].Cells[1].ReadOnly = false;
+                                dataGridViewShedule.Rows[dataGridViewShedule.SelectedRows[0].Index].Cells[3].ReadOnly = false;
+                            }
+                            else
+                            {
+                                // Здесь начиналась бы проверка для трех значений цены:
+                                // 180/200/220 в завис. от времени
 
-                        if (dataGridViewShedule.RowCount > 6)
-                        {
-                            buttonAdd.Enabled = false;
-                            buttonAddSave.Enabled = false;
+                                string numberFilm = table.Rows[0].ItemArray[0].ToString();
+                                string yDate = dateFromFormToString(dateTimePickerShedule.Value);
+
+                                MySqlCommand myCom3 =
+                                    new MySqlCommand("INSERT INTO Сеанс_дата (№_фильма, Дата) VALUES (@numFilm, @date);",
+                                    db.getConnection());
+
+                                string poster = textBoxPoster.Text;
+
+                                myCom3.Parameters.AddWithValue("numFilm", numberFilm);
+                                myCom3.Parameters.AddWithValue("date", yDate);
+
+                                db.OpenConnection();
+
+                                //try
+                                //{
+                                if (myCom3.ExecuteNonQuery() == 1)
+                                {
+                                    //MessageBox.Show("Мы добавили запись в сеанс_дату!!!", "Добавить сеанс",
+                                    //MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                    //MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+
+                                    // пункт 3, получаем новый id_сеанс_дата
+                                    DataTable table2 = new DataTable();
+                                    MySqlDataAdapter dataAdapter2 = new MySqlDataAdapter();
+                                    MySqlCommand myCom4 = new MySqlCommand("SELECT MAX(id_сеанс_дата) FROM Сеанс_дата", db.getConnection());
+
+                                    dataAdapter2.SelectCommand = myCom4;
+                                    dataAdapter2.Fill(table2);
+
+                                    string idSessionDate = table2.Rows[0].ItemArray[0].ToString();
+
+                                    db.OpenConnection();
+                                    ////////////////////////////////////////////////////////
+                                    //else
+                                    //{
+                                    MySqlCommand commUpdateTimeSession =
+                                        new MySqlCommand("CALL updTimeSession(@newTime, @numberTime);",
+                                    db.getConnection());
+
+                                    commUpdateTimeSession.Parameters.AddWithValue("newTime", str[3]);
+                                    commUpdateTimeSession.Parameters.AddWithValue("numberTime", idSessionDate);
+
+                                    try
+                                    {
+                                        if (commUpdateTimeSession.ExecuteNonQuery() == 2)
+                                        {
+                                            MessageBox.Show("Новый сеанс был успешно добавлен.",
+                                                "Добавление сеанса",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                                MessageBoxDefaultButton.Button1);
+
+                                            buttonAddSave.Enabled = false;
+                                        }
+                                        //////////////////////////////////////////////////
+                                        ///
+                                        else
+                                        {
+                                            MessageBox.Show("При добавлении нового сеанса возникла ошибка. " +
+                                                "Сеанс не был добавлен.",
+                                                "Добавление сеанса",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                                MessageBoxDefaultButton.Button1);
+                                        }
+                                    }
+                                    catch (Exception e1)
+                                    {
+                                        MessageBox.Show("Сеанс не был добавлен. Возможно допущена ошибка в формате ввода даты. " +
+                                            "Введите дату в виде: ЧЧ:ММ.",
+                                            "Добавление сеанса",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                            MessageBoxDefaultButton.Button1);
+                                    }
+                                    //}
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Упс! Мы не смогли добавить запись в табл. Сеанс_дата.",
+                                        "Добавить сеанс", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                    db.CloseConnection();
+                                }
+                            }
+
+                            if (dataGridViewShedule.RowCount > 6)
+                            {
+                                buttonAdd.Enabled = false;
+                                buttonAddSave.Enabled = false;
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пожалуйста, введите значение времени в формате: \"ЧЧ:ММ\".",
+                            "Добавление сеанса", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
                     }
                 }
             }
-            //}
-            // если выделена НЕ 1-ая строка
-            //else
-            //{
-            //    int numStr = dataGridViewShedule.CurrentCell.RowIndex;
-
-            //    string[] str1 = new string[dataGridViewShedule.Columns.Count];
-            //    string[] str2 = new string[dataGridViewShedule.Columns.Count];
-
-            //    // кладем в массивы строк выделенную строку в DataGridView
-            //    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
-            //        str1[i] = dataGridViewShedule[i, numStr].Value.ToString();
-
-            //    for (int i = 0; i < dataGridViewShedule.ColumnCount; i++)
-            //        str2[i] = dataGridViewShedule[i, numStr-1].Value.ToString();
-
-            //    if (str1[1] == "" || str2[1] == "")
-            //    {
-            //        MessageBox.Show("Пожалуйста, введите название фильма.", "Добавление сеанса",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Warning,
-            //            MessageBoxDefaultButton.Button1);
-
-            //        for (int i = 0; i < dataGridViewShedule.RowCount; i++)
-            //            for (int j = 0; j < dataGridViewShedule.ColumnCount - 1; j++)
-            //                dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
-            //    } 
-            //    else if (str1[3] == "" || str2[3] == "")
-            //    {
-            //        MessageBox.Show("Пожалуйста, введите время сеанса.", "Добавление сеанса",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Warning,
-            //            MessageBoxDefaultButton.Button1);
-            //        for (int i = 0; i < dataGridViewShedule.RowCount; i++)
-            //            for (int j = 0; j < dataGridViewShedule.ColumnCount - 1; j++)
-            //                dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
-            //    }
-            //    else
-            //    {
-            //        DB db = new DB();
-
-            //        DataTable table1 = new DataTable();
-            //        DataTable table2 = new DataTable();
-
-            //        MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-
-            //        MySqlCommand myCom1 = new MySqlCommand("CALL getNumFilm(@nameFilm);",
-            //            db.getConnection());
-            //        myCom1.Parameters.AddWithValue("nameFilm", str1[1]);
-
-            //        MySqlCommand myCom2 = new MySqlCommand("CALL getNumFilm(@nameFilm);",
-            //            db.getConnection());
-            //        myCom2.Parameters.AddWithValue("nameFilm", str2[1]);
-
-            //        dataAdapter.SelectCommand = myCom1;
-            //        dataAdapter.Fill(table1);
-            //        dataAdapter.SelectCommand = myCom2;
-            //        dataAdapter.Fill(table2);
-
-            //        // если фильма с таким названием нет в БД
-            //        if (table1.Rows.Count == 0 && table2.Rows.Count == 0)
-            //        {
-            //            MessageBox.Show("Фильма с таким названием не существует, мы не можем добавить для него сеанс." +
-            //                "\nЧтобы добавить фильм, пожалуйста, перейдите на вкладку \"Добавление фильма\".", "Добавление сеанса",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Warning,
-            //            MessageBoxDefaultButton.Button1);
-            //            for (int i = 0; i < dataGridViewShedule.RowCount; i++)
-            //                for (int j = 0; j < dataGridViewShedule.ColumnCount - 1; j++)
-            //                    dataGridViewShedule.Rows[i].Cells[j].ReadOnly = false;
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Добавляем сеанс...", "Добавление сеанса",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Information,
-            //            MessageBoxDefaultButton.Button1);
-
-            //            if (dataGridViewShedule.RowCount > 6)
-            //            {
-            //                buttonAdd.Enabled = false;
-            //                buttonAddSave.Enabled = false;
-            //            }
-            //        }
-            //    }
-            //}
-            //MessageBox.Show("Данные были успешно добавлены.", "Добавление",
-                //MessageBoxButtons.OK, MessageBoxIcon.Information,
-                //MessageBoxDefaultButton.Button1);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -1151,6 +1272,164 @@ namespace Kino
             catch (Exception e1)
             {
                 MessageBox.Show(e1.Message);
+            }
+        }
+
+        public void fillingComboBoxChooseFilm()
+        {
+            DB db = new DB();
+            // получаем все названия фильмов
+            MySqlCommand myCom = new MySqlCommand("SELECT Название FROM Фильм;",
+                db.getConnection());
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            db.OpenConnection();
+
+            dataAdapter.SelectCommand = myCom;
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            db.CloseConnection();
+
+            for (int i = 0; i < table.Rows.Count; i++)
+                comboBoxChooseFilm.Items.Add(table.Rows[i][0].ToString());
+
+            comboBoxChooseFilm.SelectedIndex = 0;
+        }
+
+        public string[] getAllInfoAboutFilmFromDB (bool cropJPG = true)
+        {
+            string filmName = comboBoxChooseFilm.Text;
+
+            DB db = new DB();
+            // получаем всю информацию о фильме с названием из combo-бокса
+            MySqlCommand myCom = new MySqlCommand("CALL selectFilmFromName(@name);",
+                db.getConnection());
+
+            myCom.Parameters.AddWithValue("name", filmName);
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            db.OpenConnection();
+
+            dataAdapter.SelectCommand = myCom;
+            DataTable table = new DataTable();
+            dataAdapter.Fill(table);
+
+            db.CloseConnection();
+
+            string[] infoAboutFilm = new string[table.Columns.Count];
+            for (int i = 0; i < table.Columns.Count; i++)
+                infoAboutFilm[i] = table.Rows[0][i].ToString();
+
+            if (cropJPG)
+            {
+                // обрезаем окончание ".jpg"
+                infoAboutFilm[5] = infoAboutFilm[5].Substring(0, infoAboutFilm[5].Length - 4);
+            }
+
+            return infoAboutFilm;
+        }
+
+        public void fillingFields (string[] strInfo)
+        {
+            // заполняем описание
+            textBoxEditDescription.Text = strInfo[2];
+
+            string[] ageCollection = new string[comboBoxEditAge.Items.Count];
+
+            // заполняем возраст
+            for (int i = 0; i < comboBoxEditAge.Items.Count; i++)
+            {
+                ageCollection[i] = comboBoxEditAge.Items[i].ToString();
+                if (ageCollection[i] == strInfo[3])
+                {
+                    comboBoxEditAge.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            // заполняем продолжительность
+            textBoxEditPeriod.Text = strInfo[4];
+
+            // заполняем постер
+            textBoxEditPoster.Text = strInfo[5];
+        }
+
+        public void enableFields ()
+        {
+            // активируем флажок
+            checkBox.Enabled = true;
+            // активируем описание
+            textBoxEditDescription.Enabled = true;
+            // активируем возраст
+            comboBoxEditAge.Enabled = true;
+            // активируем продолжительность
+            textBoxEditPeriod.Enabled = true;
+            // активируем постер
+            textBoxEditPoster.Enabled = true;
+        }
+
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            // если флажка нет
+            if (checkBox.CheckState == CheckState.Unchecked)
+            {
+                textBoxNewName.Enabled = false;
+            }
+            // если установлен флажок
+            else if (checkBox.CheckState == CheckState.Checked)
+            {
+                textBoxNewName.Enabled = true;
+            }
+        }
+
+        private void comboBoxChooseFilm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] info = getAllInfoAboutFilmFromDB();
+            fillingFields(info);
+        }
+
+        public void readingToStringWithOldName ()
+        {
+            string[] oldData = getAllInfoAboutFilmFromDB(false);
+
+            string numFilm = oldData[0];
+            string newDesc = textBoxEditDescription.Text;
+            string newAge = comboBoxEditAge.Text;
+            string newPeriod = textBoxEditPeriod.Text;
+            string newPoster = textBoxEditPoster.Text;
+
+            // проверки на корректность периода (что не буквы и допустимый диапазон)
+            if (checkCorrectPeriod(newPeriod) == -1)
+            {
+                MessageBox.Show("Пожалуйста, введите продолжительность фильма числом.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void buttonSaveEditing_Click(object sender, EventArgs e)
+        {
+            if (checkBox.Checked == false)
+            {
+                readingToStringWithOldName();
+            }
+            else if (checkBox.Checked == true)
+            {
+                // вызов функции, которая передаст в БД инфу с новым названием фильма
+            }
+        }
+
+        public int checkCorrectPeriod (string period)
+        {
+            if (int.TryParse(period, out int intPeriod))
+            {
+                // проверка допустимого диапазона для продолжительности
+                return 1;
+            }
+            else
+            {
+                // не получилось преобразовать в Int, скорее всего ввели строку!
+                return -1;
             }
         }
     }

@@ -590,3 +590,13 @@ END //
 DELIMITER ;
 #CALL updTimeSession("12:12", 10);
 
+# вытаскиваем всю инфу о фильме по названию
+DROP PROCEDURE IF EXISTS selectFilmFromName;
+DELIMITER //
+CREATE PROCEDURE selectFilmFromName (IN имяФильма VARCHAR(30))
+BEGIN
+	SELECT * FROM Фильм WHERE Название = имяФильма;
+END //
+DELIMITER ;
+CALL selectFilmFromName("Амнезия");
+
