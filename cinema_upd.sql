@@ -254,6 +254,18 @@ INSERT INTO Сеанс_дата (№_фильма, Дата) VALUES
 (5, "2021-06-12"),
 (6, "2021-06-12");
 
+-- (1, "2021-06-09"),
+-- (2, "2021-06-09"),
+-- (4, "2021-06-09"),
+
+-- (1, "2021-06-10"),
+-- (2, "2021-06-10"),
+-- (3, "2021-06-10"),
+
+-- (3, "2021-06-11"),
+-- (5, "2021-06-11"),
+-- (6, "2021-06-11");
+
 DROP PROCEDURE update_сеанс_время;
 DELIMITER //
 CREATE PROCEDURE `update_сеанс_время` (IN period TIME, IN var INT)
@@ -554,3 +566,27 @@ DELIMITER ;
 #CALL updateTimeFilm(1, "9:25");
 
 #SELECT Название FROM Фильм;
+
+# извлекаем №_фильма по названию
+DROP PROCEDURE IF EXISTS getNumFilm;
+DELIMITER //
+CREATE PROCEDURE `getNumFilm` (IN nameFilm VARCHAR(30))
+BEGIN
+	SELECT №_фильма FROM Фильм WHERE Название = nameFilm;
+END //
+DELIMITER ;
+#CALL getNumFilm("Амнезия");
+
+#SELECT MAX(id_сеанс_дата) FROM Сеанс_дата;
+
+# АПДЕЙТ сеанс_время по id Сеанс_даты
+DROP PROCEDURE IF EXISTS updTimeSession;
+DELIMITER //
+CREATE PROCEDURE `updTimeSession` (IN period TIME, IN id INT)
+BEGIN
+	UPDATE Сеанс_время 
+		SET Время = period WHERE id_сеанс_дата = id;
+END //
+DELIMITER ;
+#CALL updTimeSession("12:12", 10);
+

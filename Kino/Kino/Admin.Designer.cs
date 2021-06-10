@@ -66,6 +66,7 @@ namespace Kino
             this.dataGridViewRemoveFilm = new System.Windows.Forms.DataGridView();
             this.buttonRemoveFilm = new System.Windows.Forms.Button();
             this.buttonUpdChanges = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageEditShedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -92,6 +93,7 @@ namespace Kino
             // tabPageEditShedule
             // 
             this.tabPageEditShedule.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPageEditShedule.Controls.Add(this.label4);
             this.tabPageEditShedule.Controls.Add(this.pictureBox3);
             this.tabPageEditShedule.Controls.Add(this.buttonAddSave);
             this.tabPageEditShedule.Controls.Add(this.pictureBox1);
@@ -223,6 +225,7 @@ namespace Kino
             // 
             // dateTimePickerShedule
             // 
+            this.dateTimePickerShedule.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dateTimePickerShedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerShedule.Location = new System.Drawing.Point(197, 36);
             this.dateTimePickerShedule.MinDate = new System.DateTime(2021, 6, 6, 0, 0, 0, 0);
@@ -361,6 +364,7 @@ namespace Kino
             // 
             // comboBoxAgeLimit
             // 
+            this.comboBoxAgeLimit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBoxAgeLimit.FormattingEnabled = true;
             this.comboBoxAgeLimit.Location = new System.Drawing.Point(48, 118);
             this.comboBoxAgeLimit.Name = "comboBoxAgeLimit";
@@ -450,6 +454,7 @@ namespace Kino
             // 
             // buttonRemoveFilm
             // 
+            this.buttonRemoveFilm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonRemoveFilm.Location = new System.Drawing.Point(445, 109);
             this.buttonRemoveFilm.Name = "buttonRemoveFilm";
             this.buttonRemoveFilm.Size = new System.Drawing.Size(220, 72);
@@ -460,6 +465,7 @@ namespace Kino
             // 
             // buttonUpdChanges
             // 
+            this.buttonUpdChanges.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonUpdChanges.Location = new System.Drawing.Point(445, 227);
             this.buttonUpdChanges.Name = "buttonUpdChanges";
             this.buttonUpdChanges.Size = new System.Drawing.Size(220, 72);
@@ -467,6 +473,15 @@ namespace Kino
             this.buttonUpdChanges.Text = "Обновить данные";
             this.buttonUpdChanges.UseVisualStyleBackColor = true;
             this.buttonUpdChanges.Click += new System.EventHandler(this.buttonUpdChanges_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(293, 15);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Выберите строку для изменения, кликнув по ней:";
             // 
             // Admin
             // 
@@ -535,5 +550,6 @@ namespace Kino
         private System.Windows.Forms.DataGridView dataGridViewRemoveFilm;
         private System.Windows.Forms.Button buttonUpdChanges;
         private System.Windows.Forms.Button buttonRemoveFilm;
+        private System.Windows.Forms.Label label4;
     }
 }
