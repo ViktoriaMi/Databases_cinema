@@ -85,6 +85,7 @@ namespace Kino
 
             // ВКЛАДКА РЕДАКТИРОВАНИЕ ФИЛЬМА
             comboBoxChooseFilm.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxChooseFilm.Sorted = false;
             comboBoxEditAge.DropDownStyle = ComboBoxStyle.DropDownList;
 
             comboBoxEditAge.MaxDropDownItems = 5;
@@ -106,7 +107,7 @@ namespace Kino
             textBoxEditPoster.Enabled = false;
 
             fillingComboBoxChooseFilm();
-            string[] info = getAllInfoAboutFilmFromDB();
+            string[] info = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text);
             fillingFields(info);
             enableFields();
 
@@ -1275,8 +1276,10 @@ namespace Kino
             }
         }
 
-        public void fillingComboBoxChooseFilm()
+        public void fillingComboBoxChooseFilm(bool changeIndex = true)
         {
+            comboBoxChooseFilm.Items.Clear();
+
             DB db = new DB();
             // получаем все названия фильмов
             MySqlCommand myCom = new MySqlCommand("SELECT Название FROM Фильм;",
@@ -1294,12 +1297,13 @@ namespace Kino
             for (int i = 0; i < table.Rows.Count; i++)
                 comboBoxChooseFilm.Items.Add(table.Rows[i][0].ToString());
 
-            comboBoxChooseFilm.SelectedIndex = 0;
+            if (changeIndex == true)
+                comboBoxChooseFilm.SelectedIndex = 0;
         }
 
-        public string[] getAllInfoAboutFilmFromDB (bool cropJPG = true)
+        public string[] getAllInfoAboutFilmFromDB (string filmName, bool cropJPG = true)
         {
-            string filmName = comboBoxChooseFilm.Text;
+            //string filmName = comboBoxChooseFilm.Text;
 
             DB db = new DB();
             // получаем всю информацию о фильме с названием из combo-бокса
@@ -1375,6 +1379,7 @@ namespace Kino
             if (checkBox.CheckState == CheckState.Unchecked)
             {
                 textBoxNewName.Enabled = false;
+                textBoxNewName.Text = "";
             }
             // если установлен флажок
             else if (checkBox.CheckState == CheckState.Checked)
@@ -1385,13 +1390,13 @@ namespace Kino
 
         private void comboBoxChooseFilm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] info = getAllInfoAboutFilmFromDB();
+            string[] info = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text);
             fillingFields(info);
         }
 
         public void readingToStringWithOldName ()
         {
-            string[] oldData = getAllInfoAboutFilmFromDB(false);
+            string[] oldData = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text, false);
 
             string numFilm = oldData[0];
             string newDesc = textBoxEditDescription.Text;
@@ -1407,7 +1412,7 @@ namespace Kino
             else if (newPeriod.Length == 0)
             {
                 MessageBox.Show("Продолжительность фильма не может быть пустой. " +
-                    "Укажите старую продолжительность или введите новую.",
+                    "Укажите старую продолжительность фильма или введите новую.",
                     "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (newPoster.Length == 0)
@@ -1466,7 +1471,106 @@ namespace Kino
                     }
                     else
                     {
-                        MessageBox.Show("Изменения не были сохранены.",
+                        MessageBox.Show("Не удалось сохранить изменения.",
+                            "Сохранить изменения",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                }
+            }
+        }
+
+        public void readingToStringWithNewName()
+        {
+            string[] oldData = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text, false);
+
+            string numFilm = oldData[0];
+            string newName = textBoxNewName.Text;
+            string newDesc = textBoxEditDescription.Text;
+            string newAge = comboBoxEditAge.Text;
+            string newPeriod = textBoxEditPeriod.Text;
+            string newPoster = textBoxEditPoster.Text;
+
+            if (newName.Length == 0)
+            {
+                MessageBox.Show("Название фильма не может быть пустым. " +
+                    "Пожалуйста, введите новое название или уберите флажок из поля \"Редактировать название\".",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newDesc.Length == 0)
+            {
+                MessageBox.Show("Описание фильма не может быть пустым. Пожалуйста, введите описание.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newPeriod.Length == 0)
+            {
+                MessageBox.Show("Продолжительность фильма не может быть пустой. " +
+                    "Укажите старую продолжительность фильма или введите новую.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newPoster.Length == 0)
+            {
+                MessageBox.Show("Название постера не может быть пустым. " +
+                    "Укажите старое название постера или введите название нового.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newName.Length > 30)
+            {
+                MessageBox.Show("Слишком длинное название фильма. " +
+                    "Пожалуйста, введите не более 30 символов.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            // проверки на корректность периода (что не буквы и допустимый диапазон)
+            else if (checkCorrectPeriod(newPeriod) == -1)
+            {
+                MessageBox.Show("Пожалуйста, введите продолжительность фильма числом.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (checkCorrectPeriod(newPeriod) == -2)
+            {
+                MessageBox.Show("Пожалуйста, введите продолжительность фильма в диапазоне от 60 до 130 минут.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (checkCorrectPeriod(newPeriod) == 1)
+            {
+                // если название постера некорректно
+                if (!checkCorrectPoster(newPoster))
+                {
+                    MessageBox.Show("Название постера не должно превышать 10 символов.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                // постер корректный
+                else if (checkCorrectPoster(newPoster))
+                {
+                    // добавляем расширение для постера ".jpg"
+                    newPoster = newPoster + ".jpg";
+
+                    // значит апдейтим данные в базе
+                    DB db = new DB();
+
+                    MySqlCommand myCom =
+                    new MySqlCommand("UPDATE Фильм SET Название = @name, Описание = @desc, Возрастное_огр = @age, Продолжительность = @period, Постер = @poster WHERE №_фильма = @numFilm;",
+                    db.getConnection());
+
+                    myCom.Parameters.AddWithValue("name", newName);
+                    myCom.Parameters.AddWithValue("numFilm", numFilm);
+                    myCom.Parameters.AddWithValue("desc", newDesc);
+                    myCom.Parameters.AddWithValue("age", newAge);
+                    myCom.Parameters.AddWithValue("period", newPeriod);
+                    myCom.Parameters.AddWithValue("poster", newPoster);
+
+                    db.OpenConnection();
+
+                    if (myCom.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Изменения были успешно сохранены.",
+                            "Сохранить изменения",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не удалось сохранить изменения.",
                             "Сохранить изменения",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1);
@@ -1483,7 +1587,161 @@ namespace Kino
             }
             else if (checkBox.Checked == true)
             {
-                // вызов функции, которая передаст в БД инфу с новым названием фильма
+                string newName = textBoxNewName.Text;
+                if (newName.Length == 0)
+                {
+                    MessageBox.Show("Название фильма не может быть пустым. " +
+                    "Пожалуйста, введите новое название или уберите флажок из поля \"Редактировать название\".",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (newName.Length > 30)
+                {
+                    MessageBox.Show("Слишком длинное название фильма. " +
+                    "Пожалуйста, введите не более 30 символов.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    string[] info = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text, false);
+
+                    string numFilm2 = info[0];
+
+                    DB db = new DB();
+
+                    MySqlCommand myCom =
+                    new MySqlCommand("UPDATE Фильм SET Название = @name WHERE №_фильма = @numFilm;",
+                    db.getConnection());
+
+                    myCom.Parameters.AddWithValue("name", newName);
+                    myCom.Parameters.AddWithValue("numFilm", numFilm2);
+
+                    db.OpenConnection();
+
+                    if (myCom.ExecuteNonQuery() == 1)
+                    {
+                        //MessageBox.Show("Название фильма было обновлено.",
+                        //    "Сохранить изменения",
+                        //    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        //    MessageBoxDefaultButton.Button1);
+
+                        ///////////////////////////////////////////////////////////////////////////
+                        string[] oldData = getAllInfoAboutFilmFromDB(newName, false);
+
+                        string numFilm = oldData[0];
+                        //string newName = textBoxNewName.Text;
+                        string newDesc = textBoxEditDescription.Text;
+                        string newAge = comboBoxEditAge.Text;
+                        string newPeriod = textBoxEditPeriod.Text;
+                        string newPoster = textBoxEditPoster.Text;
+
+                        if (newName.Length == 0)
+                        {
+                            MessageBox.Show("Название фильма не может быть пустым. " +
+                                "Пожалуйста, введите новое название или уберите флажок из поля \"Редактировать название\".",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (newDesc.Length == 0)
+                        {
+                            MessageBox.Show("Описание фильма не может быть пустым. Пожалуйста, введите описание.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (newPeriod.Length == 0)
+                        {
+                            MessageBox.Show("Продолжительность фильма не может быть пустой. " +
+                                "Укажите старую продолжительность фильма или введите новую.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (newPoster.Length == 0)
+                        {
+                            MessageBox.Show("Название постера не может быть пустым. " +
+                                "Укажите старое название постера или введите название нового.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (newName.Length > 30)
+                        {
+                            MessageBox.Show("Слишком длинное название фильма. " +
+                                "Пожалуйста, введите не более 30 символов.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        // проверки на корректность периода (что не буквы и допустимый диапазон)
+                        else if (checkCorrectPeriod(newPeriod) == -1)
+                        {
+                            MessageBox.Show("Пожалуйста, введите продолжительность фильма числом.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (checkCorrectPeriod(newPeriod) == -2)
+                        {
+                            MessageBox.Show("Пожалуйста, введите продолжительность фильма в диапазоне от 60 до 130 минут.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (checkCorrectPeriod(newPeriod) == 1)
+                        {
+                            // если название постера некорректно
+                            if (!checkCorrectPoster(newPoster))
+                            {
+                                MessageBox.Show("Название постера не должно превышать 10 символов.",
+                                "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            // постер корректный
+                            else if (checkCorrectPoster(newPoster))
+                            {
+                                // добавляем расширение для постера ".jpg"
+                                newPoster = newPoster + ".jpg";
+
+                                // значит апдейтим данные в базе
+                                db = new DB();
+
+                                MySqlCommand myCom2 =
+                                new MySqlCommand("UPDATE Фильм SET Название = @name, Описание = @desc, Возрастное_огр = @age, Продолжительность = @period, Постер = @poster WHERE №_фильма = @numFilm;",
+                                db.getConnection());
+
+                                myCom2.Parameters.AddWithValue("name", newName);
+                                myCom2.Parameters.AddWithValue("numFilm", numFilm);
+                                myCom2.Parameters.AddWithValue("desc", newDesc);
+                                myCom2.Parameters.AddWithValue("age", newAge);
+                                myCom2.Parameters.AddWithValue("period", newPeriod);
+                                myCom2.Parameters.AddWithValue("poster", newPoster);
+
+                                db.OpenConnection();
+
+                                if (myCom2.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Изменения были успешно сохранены.",
+                                        "Сохранить изменения",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information,
+                                        MessageBoxDefaultButton.Button1);
+
+                                    // обновить comboBoxChooseFilm
+                                    fillingComboBoxChooseFilm(false);
+
+                                    // поставить выбранным эл-т по индексу
+                                    // выбрать тот, у которого Text = newName
+                                    for (int i = 0; i < comboBoxChooseFilm.Items.Count; i++)
+                                        if (comboBoxChooseFilm.Items[i].ToString() == newName)
+                                            comboBoxChooseFilm.SelectedIndex = i;
+
+                                    checkBox.Checked = false;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Не удалось сохранить изменения.",
+                                        "Сохранить изменения",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                                        MessageBoxDefaultButton.Button1);
+                                }
+                            }
+                        }
+                        ///////////////////////////////////////////////////////////////////////////
+                        //readingToStringWithNewName();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не получилось имя поменять!",
+                            "Сохранить изменения",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                }
             }
         }
 
@@ -1520,7 +1778,7 @@ namespace Kino
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            string[] info = getAllInfoAboutFilmFromDB();
+            string[] info = getAllInfoAboutFilmFromDB(comboBoxChooseFilm.Text);
             fillingFields(info);
 
             checkBox.Checked = false;
