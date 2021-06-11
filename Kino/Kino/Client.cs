@@ -21,10 +21,6 @@ namespace Kino
             dateTimePickerShedule.MinDate = DateTime.Today;
             dateTimePickerShedule.MaxDate = dateTimePickerShedule.MinDate.AddDays(2);
 
-            //dataGridViewShedule.ClearSelection();
-            //this.StartPosition = FormStartPosition.CenterScreen;
-            //TabControl.SelectTab(tabPage_Registration);
-
             buttonBuyTicket.Select();
             outputSheduleForClient();
         }
@@ -46,8 +42,6 @@ namespace Kino
             dataGridViewShedule.DataSource = table;
 
             db.CloseConnection();
-
-            //dataGridViewShedule.EnableHeadersVisualStyles = false;
 
             dataGridViewShedule.ScrollBars = ScrollBars.None;
             dataGridViewShedule.RowHeadersVisible = false;

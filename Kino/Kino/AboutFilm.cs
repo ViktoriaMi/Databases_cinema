@@ -62,8 +62,6 @@ namespace Kino
             if (dataGridViewShedule.GetCellCount(DataGridViewElementStates.Selected) == 1
                 && dataGridViewShedule.CurrentCell.ColumnIndex == 0)
             {
-                //MessageBox.Show("выделена одна ячейка 1-го столбца");
-
                 // извлекаем название фильма из выбранной ячейки
                 string selectCell = dataGridViewShedule.CurrentCell.Value.ToString();
 
@@ -109,17 +107,17 @@ namespace Kino
             {
                 // заполняем описание фильма
                 textBoxFilmDesc.Text = table.Rows[0][0].ToString();
-                //string str = String.Concat("imgs/", table.Rows[0][1].ToString());
                 string pict = table.Rows[0][1].ToString();
                 string path = String.Concat(Environment.CurrentDirectory, "\\", pict);
 
-                Bitmap image1; // фото загрузки в pictureBox
-                image1 = new Bitmap(path); // инициализация файл с фото
+                // фото загрузки в pictureBox
+                Bitmap image1;
+                // инициализация файла с фото
+                image1 = new Bitmap(path);
                 posterPictureBox.Image = image1;
             }
             catch (Exception e1)
             {
-                //MessageBox.Show(e1.ToString());
                 MessageBox.Show("Не получилось найти постер к этому фильму.",
                     "О фильме",
                     MessageBoxButtons.OK, MessageBoxIcon.Information,

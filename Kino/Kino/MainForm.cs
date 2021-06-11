@@ -39,7 +39,7 @@ namespace Kino
             if (emailTextBox1.Text == "" || emailTextBox1.Text == "Введите email")
             {
                 MessageBox.Show("Пожалуйста, введите email для входа.", "Войти",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
                 return;
@@ -47,7 +47,7 @@ namespace Kino
             else if (passTextBox1.Text == "" || passTextBox1.Text == "Введите пароль")
             {
                 MessageBox.Show("Пожалуйста, введите пароль для входа.", "Войти",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
                 return;
@@ -73,6 +73,22 @@ namespace Kino
                 {
                     Admin form = new Admin();
                     form.ShowDialog();
+
+                    emailTextBox1.Text = "Введите email";
+                    emailTextBox1.ForeColor = Color.Gray;
+                    emailTextBox1.UseSystemPasswordChar = false;
+                    passTextBox1.Text = "Введите пароль";
+                    passTextBox1.ForeColor = Color.Gray;
+                    passTextBox1.UseSystemPasswordChar = false;
+
+                    emailTextBox2.Text = "Введите email";
+                    emailTextBox2.ForeColor = Color.Gray;
+                    passTextBox2.Text = "Введите пароль";
+                    passTextBox2.ForeColor = Color.Gray;
+                    passTextBox2.UseSystemPasswordChar = false;
+                    passTextBoxRepeat.Text = "Повторите пароль";
+                    passTextBoxRepeat.ForeColor = Color.Gray;
+                    passTextBoxRepeat.UseSystemPasswordChar = false;
                 }
                 else
                 {
@@ -94,7 +110,7 @@ namespace Kino
             if (emailTextBox1.Text == "" || emailTextBox1.Text == "Введите email")
             {
                 MessageBox.Show("Пожалуйста, введите email для входа.", "Войти",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
                 return;
@@ -102,7 +118,7 @@ namespace Kino
             else if (passTextBox1.Text == "" || passTextBox1.Text == "Введите пароль")
             {
                 MessageBox.Show("Пожалуйста, введите пароль для входа.", "Войти",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
                 return;
@@ -128,6 +144,22 @@ namespace Kino
                 {
                     ClientForm form = new ClientForm();
                     form.ShowDialog();
+
+                    emailTextBox1.Text = "Введите email";
+                    emailTextBox1.ForeColor = Color.Gray;
+                    emailTextBox1.UseSystemPasswordChar = false;
+                    passTextBox1.Text = "Введите пароль";
+                    passTextBox1.ForeColor = Color.Gray;
+                    passTextBox1.UseSystemPasswordChar = false;
+
+                    emailTextBox2.Text = "Введите email";
+                    emailTextBox2.ForeColor = Color.Gray;
+                    passTextBox2.Text = "Введите пароль";
+                    passTextBox2.ForeColor = Color.Gray;
+                    passTextBox2.UseSystemPasswordChar = false;
+                    passTextBoxRepeat.Text = "Повторите пароль";
+                    passTextBoxRepeat.ForeColor = Color.Gray;
+                    passTextBoxRepeat.UseSystemPasswordChar = false;
                 }
                 else
                 {
@@ -244,16 +276,38 @@ namespace Kino
         {
             if (emailTextBox2.Text == "" || emailTextBox2.Text == "Введите email")
             {
-                MessageBox.Show("Пустое имя пользователя!", "Зарегистрироваться",
+                MessageBox.Show("Пожалуйста, введите адрес электронной почты.", "Зарегистрироваться",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
                 return;
             }
+            else if (emailTextBox2.Text.IndexOf("@") == -1)
+            {
+                MessageBox.Show("Адрес электронной почты не содержит символа \"@\". " +
+                    "Пожалуйста, введите корректный адрес электронной почты.", "Зарегистрироваться",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+                return;
+            }
+            else if (passTextBox2.Text.Length < 6 || passTextBoxRepeat.Text.Length < 6)
+            {
+                MessageBox.Show("Пароль не может быть короче 6 символов. " +
+                    "Пожалуйста, введите другой.", "Зарегистрироваться",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+                passTextBox2.Text = "Введите пароль";
+                passTextBox2.ForeColor = Color.Gray;
+                passTextBox2.UseSystemPasswordChar = false;
+                passTextBoxRepeat.Text = "Повторите пароль";
+                passTextBoxRepeat.ForeColor = Color.Gray;
+                passTextBoxRepeat.UseSystemPasswordChar = false;
+                return;
+            }
             else if (passTextBox2.Text == "" || passTextBox2.Text == "Введите пароль" 
                 || passTextBoxRepeat.Text == "" || passTextBoxRepeat.Text == "Повторите пароль")
             {
-                MessageBox.Show("Введите пароли в оба поля!", "Зарегистрироваться",
+                MessageBox.Show("Пожалуйста, введите пароли в оба поля.", "Зарегистрироваться",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.RightAlign);
@@ -296,10 +350,10 @@ namespace Kino
 
                 if (table.Rows.Count > 0)
                 {
-                    MessageBox.Show("Такой пользователь уже существует!", "Зарегистрироваться",
+                    MessageBox.Show("Пользователь с таким адресом электронной почты уже существует. " +
+                        "Пожалуйста, введите другой.", "Зарегистрироваться",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.RightAlign);
+                    MessageBoxDefaultButton.Button1);
                 }
                 else
                 // процесс регистрации
@@ -323,6 +377,22 @@ namespace Kino
 
                             ClientForm form = new ClientForm();
                             form.ShowDialog();
+
+                            emailTextBox1.Text = "Введите email";
+                            emailTextBox1.ForeColor = Color.Gray;
+                            emailTextBox1.UseSystemPasswordChar = false;
+                            passTextBox1.Text = "Введите пароль";
+                            passTextBox1.ForeColor = Color.Gray;
+                            passTextBox1.UseSystemPasswordChar = false;
+
+                            emailTextBox2.Text = "Введите email";
+                            emailTextBox2.ForeColor = Color.Gray;
+                            passTextBox2.Text = "Введите пароль";
+                            passTextBox2.ForeColor = Color.Gray;
+                            passTextBox2.UseSystemPasswordChar = false;
+                            passTextBoxRepeat.Text = "Повторите пароль";
+                            passTextBoxRepeat.ForeColor = Color.Gray;
+                            passTextBoxRepeat.UseSystemPasswordChar = false;
                         }
                         else
                             MessageBox.Show("Регистрация не была совершена", "Зарегистрироваться",

@@ -621,31 +621,6 @@ namespace Kino
 
             comboBoxSelectFilmTicket.Items.Clear();
 
-            //DB db = new DB();
-            //// получаем все названия фильмов, доступных на 3 дня
-            //MySqlCommand myCom = new MySqlCommand("SELECT * FROM movieSelection;",
-            //    db.getConnection());
-
-            //MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-            //db.OpenConnection();
-
-            //dataAdapter.SelectCommand = myCom;
-            //DataTable table = new DataTable();
-            //dataAdapter.Fill(table);
-
-            //db.CloseConnection();
-
-            //// передаем названия фильмов в массив строк
-            //// и добавляем их в combobox
-            //string[] films = new string[table.Rows.Count];
-            //for (int i = 0; i < table.Rows.Count; i++)
-            //{
-            //    films[i] = table.Rows[i][0].ToString();
-            //    comboBoxSelectFilmTicket.Items.Add(films[i]);
-            //}
-
-            //comboBoxSelectFilmTicket.SelectedIndex = 0;
-
             string yDate = dateFromFormToString(dateTimePickerTicket.Value);
 
             DB db = new DB();
@@ -1483,34 +1458,7 @@ namespace Kino
 
         private void dateTimePickerTicket_ValueChanged(object sender, EventArgs e)
         {
-            //comboBoxSelectFilmTicket.Items.Clear();
-
             loadFilms();
-
-            //string yDate = dateFromFormToString(dateTimePickerTicket.Value);
-
-            //DB db = new DB();
-            //MySqlCommand myCom = new MySqlCommand("CALL selectFilmByDate(@ydate);",
-            //    db.getConnection());
-            //myCom.Parameters.Add("@ydate", MySqlDbType.Date).Value = yDate;
-
-            //db.OpenConnection();
-
-            //MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-            //dataAdapter.SelectCommand = myCom;
-            //DataTable table = new DataTable();
-            //dataAdapter.Fill(table);
-
-            //db.CloseConnection();
-
-            //string[] films = new string[table.Rows.Count];
-            //for (int i = 0; i < table.Rows.Count; i++)
-            //{
-            //    films[i] = table.Rows[i][0].ToString();
-            //    comboBoxSelectFilmTicket.Items.Add(films[i]);
-            //}
-
-            //comboBoxSelectFilmTicket.SelectedIndex = 0;
         }
 
         public string dateFromFormToString(DateTime yDate)
@@ -1533,65 +1481,5 @@ namespace Kino
         {
             buttonBuyTicket.Select();
         }
-
-        //private void b00_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b00.BackColor != Color.DarkMagenta)
-        //        b00.Cursor = Cursors.Hand;
-        //}
-
-        //private void b01_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b01.BackColor != Color.DarkMagenta)
-        //        b01.Cursor = Cursors.Hand;
-        //}
-
-        //private void b02_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b02.BackColor != Color.DarkMagenta)
-        //        b02.Cursor = Cursors.Hand;
-        //}
-
-        //private void b03_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b03.BackColor != Color.DarkMagenta)
-        //        b03.Cursor = Cursors.Hand;
-        //}
-
-        //private void b04_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b04.BackColor != Color.DarkMagenta)
-        //        b04.Cursor = Cursors.Hand;
-        //}
-
-        //private void b05_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b05.BackColor != Color.DarkMagenta)
-        //        b05.Cursor = Cursors.Hand;
-        //}
-
-        //private void b06_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b06.BackColor != Color.DarkMagenta)
-        //        b06.Cursor = Cursors.Hand;
-        //}
-
-        //private void b07_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b07.BackColor != Color.DarkMagenta)
-        //        b07.Cursor = Cursors.Hand;
-        //}
-
-        //private void b08_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b08.BackColor != Color.DarkMagenta)
-        //        b08.Cursor = Cursors.Hand;
-        //}
-
-        //private void b09_MouseHover(object sender, EventArgs e)
-        //{
-        //    if (b09.BackColor != Color.DarkMagenta)
-        //        b09.Cursor = Cursors.Hand;
-        //}
     }
 }
