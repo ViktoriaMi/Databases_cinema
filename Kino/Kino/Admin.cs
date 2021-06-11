@@ -1399,11 +1399,79 @@ namespace Kino
             string newPeriod = textBoxEditPeriod.Text;
             string newPoster = textBoxEditPoster.Text;
 
+            if (newDesc.Length == 0)
+            {
+                MessageBox.Show("Описание фильма не может быть пустым. Пожалуйста, введите описание.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newPeriod.Length == 0)
+            {
+                MessageBox.Show("Продолжительность фильма не может быть пустой. " +
+                    "Укажите старую продолжительность или введите новую.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (newPoster.Length == 0)
+            {
+                MessageBox.Show("Название постера не может быть пустым. " +
+                    "Укажите старое название постера или введите название нового.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             // проверки на корректность периода (что не буквы и допустимый диапазон)
-            if (checkCorrectPeriod(newPeriod) == -1)
+            else if (checkCorrectPeriod(newPeriod) == -1)
             {
                 MessageBox.Show("Пожалуйста, введите продолжительность фильма числом.",
                     "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (checkCorrectPeriod(newPeriod) == -2)
+            {
+                MessageBox.Show("Пожалуйста, введите продолжительность фильма в диапазоне от 60 до 130 минут.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            // если период введен правильно
+            else if (checkCorrectPeriod(newPeriod) == 1)
+            {
+                // если название постера некорректно
+                if (!checkCorrectPoster(newPoster))
+                {
+                    MessageBox.Show("Название постера не должно превышать 10 символов.",
+                    "Сохранить изменения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                // постер корректный
+                else if (checkCorrectPoster(newPoster))
+                {
+                    // добавляем расширение для постера ".jpg"
+                    newPoster = newPoster + ".jpg";
+
+                    // значит апдейтим данные в базе
+                    DB db = new DB();
+
+                    MySqlCommand myCom =
+                    new MySqlCommand("UPDATE Фильм SET Описание = @desc, Возрастное_огр = @age, Продолжительность = @period, Постер = @poster WHERE №_фильма = @numFilm;",
+                    db.getConnection());
+
+                    myCom.Parameters.AddWithValue("numFilm", numFilm);
+                    myCom.Parameters.AddWithValue("desc", newDesc);
+                    myCom.Parameters.AddWithValue("age", newAge);
+                    myCom.Parameters.AddWithValue("period", newPeriod);
+                    myCom.Parameters.AddWithValue("poster", newPoster);
+
+                    db.OpenConnection();
+
+                    if (myCom.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Изменения были успешно сохранены.",
+                            "Сохранить изменения",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Изменения не были сохранены.",
+                            "Сохранить изменения",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                    }
+                }
             }
         }
 
@@ -1424,13 +1492,40 @@ namespace Kino
             if (int.TryParse(period, out int intPeriod))
             {
                 // проверка допустимого диапазона для продолжительности
-                return 1;
+                if (intPeriod < 60 || intPeriod > 130)
+                {
+                    // продолжительность указана в недопустимом диапазоне
+                    return -2;
+                }
+                else
+                {
+                    // а тут всё корректно
+                    return 1;
+                }
             }
             else
             {
                 // не получилось преобразовать в Int, скорее всего ввели строку!
                 return -1;
             }
+        }
+
+        public bool checkCorrectPoster (string poster)
+        {
+            if (poster.Length > 10)
+                return false;
+            else
+                return true;
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            string[] info = getAllInfoAboutFilmFromDB();
+            fillingFields(info);
+
+            checkBox.Checked = false;
+            textBoxNewName.Text = "";
+            textBoxNewName.Enabled = false;
         }
     }
 }

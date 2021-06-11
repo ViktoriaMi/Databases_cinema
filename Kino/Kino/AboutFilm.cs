@@ -124,6 +124,7 @@ namespace Kino
                     "О фильме",
                     MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
+                posterPictureBox.Image = Properties.Resources.popcorn;
             }
         }
 
