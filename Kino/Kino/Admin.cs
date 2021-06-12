@@ -1785,5 +1785,10 @@ namespace Kino
             textBoxNewName.Text = "";
             textBoxNewName.Enabled = false;
         }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillingComboBoxChooseFilm();
+        }
     }
 }

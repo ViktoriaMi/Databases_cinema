@@ -60,6 +60,7 @@ namespace Kino
             this.labelDescription = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.tabPageEditFilm = new System.Windows.Forms.TabPage();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxNewName = new System.Windows.Forms.TextBox();
             this.checkBox = new System.Windows.Forms.CheckBox();
@@ -81,7 +82,6 @@ namespace Kino
             this.buttonRemoveFilm = new System.Windows.Forms.Button();
             this.dataGridViewRemoveFilm = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonReset = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageEditShedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -104,6 +104,7 @@ namespace Kino
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(757, 404);
             this.tabControl.TabIndex = 34;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPageEditShedule
             // 
@@ -438,6 +439,16 @@ namespace Kino
             this.tabPageEditFilm.TabIndex = 2;
             this.tabPageEditFilm.Text = "Редактирование фильма";
             // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(157, 303);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(110, 43);
+            this.buttonReset.TabIndex = 27;
+            this.buttonReset.Text = "Сбросить";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -645,16 +656,6 @@ namespace Kino
             this.label3.Size = new System.Drawing.Size(212, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Выберите фильм, кликнув по нему:";
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Location = new System.Drawing.Point(157, 303);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(110, 43);
-            this.buttonReset.TabIndex = 27;
-            this.buttonReset.Text = "Сбросить";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // Admin
             // 
