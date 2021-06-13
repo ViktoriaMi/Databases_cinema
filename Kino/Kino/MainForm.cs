@@ -354,6 +354,8 @@ namespace Kino
                         "Пожалуйста, введите другой.", "Зарегистрироваться",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1);
+                    emailTextBox2.Text = "Введите email";
+                    emailTextBox2.ForeColor = Color.Gray;
                 }
                 else
                 // процесс регистрации

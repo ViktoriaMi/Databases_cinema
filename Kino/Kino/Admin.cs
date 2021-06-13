@@ -583,7 +583,7 @@ namespace Kino
 
                     try
                     {
-                        if (MessageBox.Show("Вы действительно хотите удалить запись? Это действие нельзя будет отменить",
+                        if (MessageBox.Show("Вы действительно хотите удалить запись? Это действие нельзя будет отменить.",
                         "Удаление", MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
@@ -596,10 +596,10 @@ namespace Kino
                             myCom.ExecuteNonQuery();
                             db.CloseConnection();
 
+                            outputSheduleForAdmin();
+
                             MessageBox.Show("Сеанс был успешно удален.", "Удаление",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            outputSheduleForAdmin();
                         }
                     }
                     catch (Exception e1)
@@ -853,8 +853,8 @@ namespace Kino
                                     }
                                     catch (Exception e1)
                                     {
-                                        MessageBox.Show("Сеанс не был добавлен. Возможно допущена ошибка в формате ввода даты. " +
-                                            "Введите дату в виде: ЧЧ:ММ.",
+                                        MessageBox.Show("Сеанс не был добавлен. Возможно допущена ошибка в формате ввода времени. " +
+                                            "Введите время в виде: ЧЧ:ММ.",
                                             "Добавление сеанса",
                                             MessageBoxButtons.OK, MessageBoxIcon.Warning,
                                             MessageBoxDefaultButton.Button1);
@@ -1327,8 +1327,11 @@ namespace Kino
 
             if (cropJPG)
             {
-                // обрезаем окончание ".jpg"
-                infoAboutFilm[5] = infoAboutFilm[5].Substring(0, infoAboutFilm[5].Length - 4);
+                if (infoAboutFilm[5] != "")
+                {
+                    // обрезаем окончание ".jpg"
+                    infoAboutFilm[5] = infoAboutFilm[5].Substring(0, infoAboutFilm[5].Length - 4);
+                }
             }
 
             return infoAboutFilm;
