@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS Сеанс_дата (
     Дата DATE NOT NULL,
     PRIMARY KEY (id_сеанс_дата),
     INDEX fk_Сеанс_дата_Фильм (№_фильма ASC) VISIBLE,
-    INDEX fk_Сеанс_дата (Дата ASC) VISIBLE,
+    INDEX index_Сеанс_дата (Дата ASC) VISIBLE,
     CONSTRAINT fk_Сеанс_дата_фильм
 	FOREIGN KEY (№_фильма)
 	REFERENCES Фильм (№_фильма)
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS Сеанс_время (
     Время TIME NULL,
     PRIMARY KEY (id_сеанс_время),
     INDEX fk_Сеанс_время_дата (id_сеанс_дата ASC) VISIBLE,
-    INDEX fk_Сеанс_время (Время ASC) VISIBLE,
+    INDEX index_Сеанс_время (Время ASC) VISIBLE,
     CONSTRAINT fk_Сеанс_время
 	FOREIGN KEY (id_сеанс_дата)
 	REFERENCES Сеанс_дата (id_сеанс_дата)
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS Билет (
     Куплен BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (№_билета),
 	INDEX fk_Билет_сеанс_время (id_сеанс_время) VISIBLE,
-	INDEX index_Cost_билет (Цена ASC) VISIBLE,
+	INDEX index_Цена_билет (Цена ASC) VISIBLE,
     CHECK (Цена = 180 OR Цена = 200 OR Цена = 220),
     CHECK (№_ряда >= 1 AND №_ряда <= 10 AND №_места >= 1 AND №_места <= 10),
     CONSTRAINT fk_Билет_сеансВремя
@@ -221,17 +221,17 @@ CREATE
 DELIMITER ;
 
 INSERT INTO Сеанс_дата (№_фильма, Дата) VALUES
-(1, "2021-06-13"),
-(2, "2021-06-13"),
-(4, "2021-06-13"),
+(1, "2021-06-15"),
+(2, "2021-06-15"),
+(4, "2021-06-15"),
 
-(1, "2021-06-14"),
-(2, "2021-06-14"),
-(3, "2021-06-14"),
+(1, "2021-06-16"),
+(2, "2021-06-16"),
+(3, "2021-06-16"),
 
-(3, "2021-06-15"),
-(5, "2021-06-15"),
-(6, "2021-06-15");
+(3, "2021-06-17"),
+(5, "2021-06-17"),
+(6, "2021-06-17");
 
 DROP PROCEDURE IF EXISTS update_сеанс_время;
 DELIMITER //
@@ -361,7 +361,7 @@ END //
 DELIMITER ;
 #CALL showSheduleForDate("2021-06-05");
 
-# Вывести информацию о клиентах, зарегистрированных в системе, сгруппировать их по дате регистрации и упорядочить по возрастанию
+# ОТЧЕТ Вывести информацию о клиентах, зарегистрированных в системе, сгруппировать их по дате регистрации и упорядочить по возрастанию
 DROP VIEW IF EXISTS all_clients;
 CREATE VIEW all_clients AS
 	SELECT №_клиента, Имя, Фамилия, Email, Дата_рождения, Пол, Телефон, Дата_регистрации
